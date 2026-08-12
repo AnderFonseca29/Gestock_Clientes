@@ -1,0 +1,31 @@
+<header class="header">
+    <section class="system">
+        <div class="logo">
+            🤡
+        </div>
+        <div class="system-text">
+            <h1>{{nombreSistema}}</h1>
+            <span>
+                {{DescripcionSistema}}
+            </span>
+
+        </div>
+    </section>
+
+    <section class="user">
+        <div class="user-data">
+            <h3>{{Usuario}}</h3>
+            <span>{{rol}}</span>
+            <small>
+                🗓️ {{fechaActual()}}
+            </small>
+            <small>
+                🕒 {{horaActual()}}
+            </small>
+        </div>
+        <button class="logout" (click)="cerrarSesion()">
+            Cerrar sesión
+        </button>
+    </section>
+
+</header>
