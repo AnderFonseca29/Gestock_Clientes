@@ -1,0 +1,43 @@
+<div class="two-factor-container">
+  <div class="two-factor-card">
+    <h2>Verificación en Dos Pasos</h2>
+    <p class="subtitle">
+      Ingresa el código de 6 dígitos enviado a tu dispositivo o aplicación autenticadora.
+    </p>
+
+    <form [formGroup]="twoFactorForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="code">Código de Verificación</label>
+        <input 
+          type="text" 
+          id="code" 
+          formControlName="code" 
+          placeholder="000000"
+          maxlength="6"
+          [class.invalid]="twoFactorForm.get('code')?.touched && twoFactorForm.get('code')?.invalid"
+        />
+        <span class="error-msg" *ngIf="twoFactorForm.get('code')?.touched && twoFactorForm.get('code')?.errors?.['required']">
+          El código es obligatorio.
+        </span>
+        <span class="error-msg" *ngIf="twoFactorForm.get('code')?.touched && twoFactorForm.get('code')?.errors?.['pattern']">
+          Ingresa un código válido de 6 dígitos numéricos.
+        </span>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Verificando...' : 'Verificar' }}
+      </button>
+
+      <div class="resend-container">
+        <span>¿No recibiste el código?</span>
+        <button type="button" class="btn-link" (click)="resendCode()">Reenviar código</button>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/login">Volver al Inicio de Sesión</a>
+      </div>
+
+    </form>
+  </div>
+</div>
