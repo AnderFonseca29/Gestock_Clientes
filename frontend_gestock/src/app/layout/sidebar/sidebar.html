@@ -1,30 +1,27 @@
-<aside class="sidebar">
-    <section class="sidebar-logo">
-        <div class="logo-circle">
-            ADSO
-        </div>
-        <h2>
-            Menú
-        </h2>
-    </section>
-    <nav class="menu">
-        @for(item of menuVisible; track item.ruta){
-            <a [routerLink]="item.ruta" routerLinkActive="active">
-                <span class="icon">
-                    {{item.icono}}
-                </span>
-                <span>
-                    {{item.nombre}}
-                </span>
-            </a>
-        }
-    </nav>
-    <section class="sidebar-footer">
-        <small>
-            Sistema ADSO
-        </small>
-        <small>
-            Versió 1.0.0
-        </small>
-    </section>
+<aside class="sidebar-container">
+  
+  <!-- Logo y Marca -->
+  <div class="sidebar-brand">
+    <div class="brand-logo">
+      <mat-icon class="brand-icon">inventory_2</mat-icon>
+      <span class="brand-name">Gestock</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Menú de Opciones -->
+  <mat-nav-list class="nav-list">
+    @for (item of menuItems; track item.label) {
+      <a 
+        mat-list-item 
+        [routerLink]="item.route" 
+        routerLinkActive="active-link"
+        class="nav-item">
+        <mat-icon matListItemIcon class="item-icon">{{ item.icon }}</mat-icon>
+        <span matListItemTitle class="item-text">{{ item.label }}</span>
+      </a>
+    }
+  </mat-nav-list>
+
 </aside>

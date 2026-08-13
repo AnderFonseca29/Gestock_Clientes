@@ -1,0 +1,79 @@
+<div class="empresas-container">
+  
+  <!-- Subtítulo de bienvenida/sección -->
+  <div class="page-header">
+    <h2 class="page-title">Empresas</h2>
+    <p class="page-subtitle">Personaliza tu experiencia en GESTOCK</p>
+  </div>
+
+  <!-- Tarjeta del Formulario de Configuración -->
+  <div class="config-card">
+    <div class="card-header">
+      <h3>Configuración</h3>
+      <p>Personaliza la información de tu empresa</p>
+    </div>
+
+    <form [formGroup]="companyForm" (ngSubmit)="saveChanges()" class="config-form">
+      
+      <!-- Nombre de la Empresa -->
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>Nombre de la Empresa</label>
+          <mat-form-field appearance="outline" class="custom-field">
+            <input matInput formControlName="companyName" placeholder="Ej. GESTOCK Inc.">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Email de Contacto -->
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>Email de contacto</label>
+          <mat-form-field appearance="outline" class="custom-field">
+            <input matInput type="email" formControlName="contactEmail" placeholder="contacto@empresa.com">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Moneda y Formato de Fecha en 2 Columnas -->
+      <div class="form-row grid-2">
+        
+        <div class="form-group">
+          <label>Moneda</label>
+          <mat-form-field appearance="outline" class="custom-field">
+            <mat-select formControlName="currency">
+              @for (curr of currencies; track curr.value) {
+                <mat-option [value]="curr.value">{{ curr.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label>Formato de Fecha</label>
+          <mat-form-field appearance="outline" class="custom-field">
+            <mat-select formControlName="dateFormat">
+              @for (format of dateFormats; track format.value) {
+                <mat-option [value]="format.value">{{ format.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <!-- Botón de Guardar Cambios -->
+      <div class="form-actions">
+        <button 
+          mat-flat-button 
+          type="submit" 
+          class="btn-save" 
+          [disabled]="companyForm.invalid">
+          Guardar cambios
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

@@ -1,137 +1,97 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe IU', sans-serif;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 0 28px;
+  background-color: #0b0e14;
+  border-bottom: 1px solid #1f2738;
+  color: #ffffff;
 }
 
-
-.header{
-    width: 100%;
-    min-height: 110px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background:linear-gradient(90deg, #0f172a, #172554);
-    color: white;
-    box-shadow: 0 3px 10px rgba(0,0,0,.25);
-}
-.system{
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-.logo{
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#3b82f6,#2563eb);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 18px;
-    letter-spacing: .5px;
-    flex-shrink: 0;
-    box-shadow: 0 5px 15px rgba(37,99,235,.35);
-}
-.system-text{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.system-text h1{
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 4px;
-}
-.system-text span{
-    color: #cbd5e1;
-    font-size: 14px;
-}
-.user{
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-.user-data{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-.user-data h3{
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 3px;
+/* Título */
+.header-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
 }
 
-.user-data span{
-    color: #cbd5e1;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-.user-data small{
-    color: #94a3b8;
-    font-size: 13px;
-    margin-bottom: 2px;
-}
-.logout{
-    padding: 12px 24px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    background: #dc2626;
-    color: white;
-    cursor: pointer;
-    transition: .3s;
-    font-size: 14px;
-    font-weight: 600;
-}
-.logout:hover{
-    background: #b91c1c;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(220,38,38,.35);
+/* Acciones lado derecho */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.logo:hover{
-    transform: rotate(-5deg) scale(1.05);
-    transition: .3s;
+/* Botón de campana */
+.icon-btn {
+  color: #8b949e !important;
+  transition: color 0.2s ease;
 }
 
-@media(max-width:900px){
-    .header{
-        flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
-    }
-    .system{
-        width: 100%;
-       
-    }
-    .user{
-        width: 100%;
-        justify-content: space-between;
-    }
+.icon-btn:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
-@media(max-width:650px){
-    .header{
-        padding: 20px;
-    }
-    .system{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .user{
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    .user-data{
-        align-items: flex-start;
-    }
-    .logout{
-        width: 100%;
-    }
+
+/* Estilos Badge Notificación */
+::ng-deep .mat-badge-content {
+  background-color: #ff4d4f !important;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+/* Perfil de Usuario */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-profile:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #2f80ed;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(47, 128, 237, 0.4);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: #8b949e;
+}
+
+.dropdown-icon {
+  color: #8b949e;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
