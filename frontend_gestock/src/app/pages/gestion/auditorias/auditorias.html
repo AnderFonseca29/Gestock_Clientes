@@ -1,0 +1,82 @@
+<div class="modulo-container">
+  
+  <header class="modulo-header">
+    <h2>Auditoría de Usuarios</h2>
+    <p>Historial y registro detallado de las actividades realizadas en el sistema</p>
+  </header>
+
+  <!-- Filtros -->
+  <div class="filtros-card">
+    <div class="filtro-item">
+      <label for="buscarUsuario">Usuario:</label>
+      <input 
+        type="text" 
+        id="buscarUsuario" 
+        [(ngModel)]="filtroUsuario" 
+        placeholder="Ej: Anderson..." 
+        class="custom-input"
+      />
+    </div>
+
+    <div class="filtro-item">
+      <label for="buscarAccion">Tipo de Acción:</label>
+      <select id="buscarAccion" [(ngModel)]="filtroAccion" class="custom-select">
+        <option value="">Todas las Acciones</option>
+        <option value="Creación">Creación</option>
+        <option value="Modificación">Modificación</option>
+        <option value="Eliminación">Eliminación</option>
+        <option value="Asignación">Asignación</option>
+      </select>
+    </div>
+
+    <div class="filtro-item">
+      <label for="buscarFecha">Fecha:</label>
+      <input 
+        type="date" 
+        id="buscarFecha" 
+        [(ngModel)]="filtroFecha" 
+        class="custom-input"
+      />
+    </div>
+
+    <div class="filtro-acciones">
+      <button type="button" class="btn-secondary" (click)="limpiarFiltros()">Limpiar</button>
+    </div>
+  </div>
+
+  <!-- Tabla del Historial -->
+  <div class="tabla-card">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Rol</th>
+          <th>Acción</th>
+          <th>Módulo</th>
+          <th>Fecha / Hora</th>
+          <th>Detalles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reg of registrosFiltrados">
+          <td><span class="badge">#{{ reg.id }}</span></td>
+          <td><strong>{{ reg.usuario }}</strong></td>
+          <td><span class="rol-tag">{{ reg.rol }}</span></td>
+          <td>
+            <span class="accion-tag" [ngClass]="reg.accion.toLowerCase()">
+              {{ reg.accion }}
+            </span>
+          </td>
+          <td>{{ reg.modulo }}</td>
+          <td>{{ reg.fechaHora }}</td>
+          <td class="detalles-col">{{ reg.detalles }}</td>
+        </tr>
+        <tr *ngIf="registrosFiltrados.length === 0">
+          <td colspan="7" class="no-results">No se encontraron registros de auditoría con los filtros seleccionados.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

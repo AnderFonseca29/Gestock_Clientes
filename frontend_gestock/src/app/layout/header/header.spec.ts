@@ -1,17 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+<<<<<<< HEAD
 import { HeaderComponent } from './header';
 
 describe('HeaderComponent', () => {
+=======
+
+import { HeaderComponent } from './header';
+
+describe('Header', () => {
+>>>>>>> origin/develop
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+<<<<<<< HEAD
       imports: [HeaderComponent]
+=======
+      imports: [HeaderComponent],
+>>>>>>> origin/develop
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+<<<<<<< HEAD
     fixture.detectChanges();
   });
 
@@ -27,3 +39,12 @@ describe('HeaderComponent', () => {
     expect(component.horaActual()).not.toBe('');
   });
 });
+=======
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+>>>>>>> origin/develop

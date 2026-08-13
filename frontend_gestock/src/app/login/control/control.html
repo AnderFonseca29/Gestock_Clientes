@@ -1,0 +1,48 @@
+<div class="control-container">
+  <div class="control-card">
+    <h2>Control de Sesiones Activas</h2>
+    <p class="subtitle">Gestiona y revoca las sesiones abiertas en tus diferentes dispositivos.</p>
+
+    <div class="header-actions" *ngIf="sessions.length > 1">
+      <button class="btn-danger-outline" (click)="revokeAllOthers()">
+        Cerrar todas las demás sesiones
+      </button>
+    </div>
+
+    <div class="sessions-list">
+      <div class="session-item" *ngFor="let session of sessions" [class.current]="session.isCurrent">
+        <div class="session-icon">
+          <span *ngIf="session.device.includes('iPhone') || session.device.includes('Android')">📱</span>
+          <span *ngIf="!session.device.includes('iPhone') && !session.device.includes('Android')">💻</span>
+        </div>
+
+        <div class="session-info">
+          <div class="device-title">
+            <strong>{{ session.device }}</strong> 
+            <span class="badge" *ngIf="session.isCurrent">Sesión actual</span>
+          </div>
+          <div class="session-details">
+            <span>{{ session.browser }}</span> • <span>IP: {{ session.ip }}</span>
+          </div>
+          <div class="last-active">
+            Última actividad: {{ session.lastActive }}
+          </div>
+        </div>
+
+        <div class="session-action">
+          <button 
+            *ngIf="!session.isCurrent" 
+            class="btn-revoke" 
+            (click)="revokeSession(session.id)"
+          >
+            Revocar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/login">Volver al Inicio de Sesión</a>
+    </div>
+  </div>
+</div>
