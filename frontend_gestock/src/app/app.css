@@ -1,0 +1,82 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a222f;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home-card {
+  background-color: #2b303b;
+  border: 1px solid #3b404a;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+}
+
+.logo {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.header p {
+  margin: 0 0 30px 0;
+  color: #a0a5b1;
+  font-size: 0.9rem;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  display: block;
+  padding: 14px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s, background-color 0.2s;
+  color: #ffffff;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-login {
+  background-color: #007bff;
+}
+.btn-login:hover {
+  background-color: #0056b3;
+}
+
+.btn-register {
+  background-color: #28a745;
+}
+.btn-register:hover {
+  background-color: #1e7e34;
+}
+
+.btn-dashboard {
+  background-color: #6c757d;
+}
+.btn-dashboard:hover {
+  background-color: #545b62;
+}

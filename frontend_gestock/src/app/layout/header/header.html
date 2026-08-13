@@ -1,31 +1,33 @@
-<header class="header">
-    <section class="system">
-        <div class="logo">
-            🤡
-        </div>
-        <div class="system-text">
-            <h1>{{nombreSistema}}</h1>
-            <span>
-                {{DescripcionSistema}}
-            </span>
+<header class="header-container">
+  <!-- Lado Izquierdo: Título de la Sección -->
+  <div class="header-title">
+    <h1>{{ title }}</h1>
+  </div>
 
-        </div>
-    </section>
+  <!-- Lado Derecho: Acciones y Usuario -->
+  <div class="header-actions">
+    
+    <!-- Botón Notificaciones con Badge -->
+    <button mat-icon-button class="icon-btn" aria-label="Notificaciones">
+      <mat-icon 
+        [matBadge]="notificationCount" 
+        matBadgeColor="warn" 
+        matBadgeSize="small">
+        notifications
+      </mat-icon>
+    </button>
 
-    <section class="user">
-        <div class="user-data">
-            <h3>{{Usuario}}</h3>
-            <span>{{rol}}</span>
-            <small>
-                🗓️ {{fechaActual()}}
-            </small>
-            <small>
-                🕒 {{horaActual()}}
-            </small>
-        </div>
-        <button class="logout" (click)="cerrarSesion()">
-            Cerrar sesión
-        </button>
-    </section>
+    <!-- Perfil del Usuario -->
+    <div class="user-profile">
+      <div class="avatar">
+        {{ userInitial }}
+      </div>
+      <div class="user-info">
+        <span class="user-name">{{ userName }}</span>
+        <span class="user-role">{{ userRole }}</span>
+      </div>
+      <mat-icon class="dropdown-icon">expand_more</mat-icon>
+    </div>
 
+  </div>
 </header>

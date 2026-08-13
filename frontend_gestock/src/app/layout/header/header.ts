@@ -1,61 +1,30 @@
-import { Component, OnInit, OnDestroy, signal, Signal } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+// Angular Material
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule
+  ],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrl: './header.css'
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  constructor(private router: Router){}
+export class HeaderComponent {
+  // Título dinámico que se puede cambiar según la página
+  @Input() title: string = 'Empresas';
 
-  nombreSistema: string= 'Sistema ADSO';
-  DescripcionSistema: string= 'Plataforma Academica';
-  Usuario: string= '';
-  rol: string= '';
-  fechaActual= signal('');
-  horaActual= signal('');
-
-  private intervalo: any;
-
-  ngOnInit(): void {
-    this.Usuario=localStorage.getItem('nombre')??'';
-    this.rol=localStorage.getItem('rol')??'';
-    this.actualizarFechaHora();
-    this.intervalo = setInterval(() => {
-      this.actualizarFechaHora();
-    }, 1000);
-  }
-
-  
-
-  actualizarFechaHora(): void {
-    const ahora = new Date();
-    this.fechaActual.set (ahora.toLocaleDateString(
-      'es-CO',
-      {
-        weekday: 'long',
-        day:'2-digit',
-        month:'long',
-        year:'numeric'
-      }
-    ));
-    this.horaActual.set (ahora.toLocaleTimeString(  
-      'es-CO',
-      {
-        hour12: false
-      }
-    ));
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.intervalo);
-  }
-  cerrarSesion(): void {
-    localStorage.removeItem('usuarioLogueado');
-    this.router.navigate(['/login']);
-    alert('Sesión cerrada');
-  }
+  // Datos del usuario logueado
+  userName: string = 'Administrador';
+  userRole: string = 'Administrador';
+  userInitial: string = 'A';
+  notificationCount: number = 3;
 }

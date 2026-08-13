@@ -1,0 +1,102 @@
+<div class="modal-container">
+  <!-- Encabezado -->
+  <div class="modal-header">
+    <h2>CREAR NUEVO INVENTARIO</h2>
+    <p>Complete la información para crear un nuevo inventario</p>
+  </div>
+
+  <div class="modal-body">
+    <!-- Formulario principal -->
+    <form [formGroup]="inventoryForm" class="inventory-form">
+      
+      <div class="form-row">
+        <label>Nombre del inventario:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <input matInput formControlName="nombre" placeholder="Ej. Inventario de Marzo">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <label>Empresa:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <mat-select formControlName="empresa" placeholder="Seleccionar empresa">
+            @for (item of empresas; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <label>Bodega:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <mat-select formControlName="bodega" placeholder="Seleccionar bodega">
+            @for (item of bodegas; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <label>Fecha del inventario:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <input matInput [matDatepicker]="picker" formControlName="fecha" placeholder="Selecciona fecha">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <label>Responsable:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <mat-select formControlName="responsable" placeholder="Seleccionar responsable">
+            @for (item of responsables; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <label>Categoria de productos:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <mat-select formControlName="categoria" placeholder="Seleccionar categoria">
+            @for (item of categorias; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <label>Notas adicionaes:</label>
+        <mat-form-field appearance="outline" class="custom-input">
+          <textarea matInput formControlName="notas" rows="3" placeholder="Agregar alguna observación"></textarea>
+        </mat-form-field>
+      </div>
+
+    </form>
+
+    <!-- Tarjeta lateral de requisitos -->
+    <div class="requirements-card">
+      <h4>Requisitos para Crear Inventario:</h4>
+      <ul>
+        <li><mat-icon class="check-icon">check</mat-icon> Seleccionar la Bodega</li>
+        <li><mat-icon class="check-icon">check</mat-icon> Elegir el Tipo de Inventario</li>
+        <li><mat-icon class="check-icon">check</mat-icon> Definir la Fecha del Conteo</li>
+        <li><mat-icon class="check-icon">check</mat-icon> Asignar Responsable</li>
+        <li><mat-icon class="check-icon">check</mat-icon> Elegir Categoria de Productos</li>
+        <li class="warning"><mat-icon class="warn-icon">error</mat-icon> ¡Revisar las notas adicionales!</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div class="modal-actions">
+    <button mat-button class="btn-cancel" (click)="onCancel()">CANCELAR</button>
+    <button mat-flat-button class="btn-create" (click)="onSubmit()" [disabled]="inventoryForm.invalid">
+      CREAR INVENTARIO
+    </button>
+  </div>
+</div>

@@ -1,124 +1,354 @@
-/*
-CONFIGURACION GENERAL
-
-*/
-
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-
+/* --- Variables de Color Gestock --- */
+:host {
+  --bg-dark: #0a0d14;
+  --card-bg: #141923;
+  --card-border: #252e3e;
+  --input-bg: #1c2333;
+  --primary-blue: #2f80ed;
+  --primary-blue-hover: #1e62c9;
+  --primary-blue-glow: rgba(47, 128, 237, 0.3);
+  --text-primary: #ffffff;
+  --text-secondary: #8b949e;
+  --text-muted: #5e6878;
 }
 
-/*
-CONFIGURACION CONTENEDOR PRINCIPAL
-*/
-
-.login-container{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b,
-        #334155
-    );
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #1a233a 0%, var(--bg-dark) 70%);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/*
-card login
-*/
-
-.login-card{
-    width: 400px;
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 px 30px rgba(0,0,0, .25);
-    text-align: center;
+/* Tarjeta Principal */
+.login-card {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
 }
 
-/*
-Logo
-*/
-.logo-section{
-    text-align: center;
-    margin-bottom: 30px;
-}
-.logo-section h1{
-    color: #0f172a;
-    margin-bottom: 10px;
-}
-.logo-section p{
-    color: #64748b;
-
+/* Lado Izquierdo (Branding) */
+.brand-section {
+  flex: 1;
+  background: linear-gradient(135deg, #1b2438 0%, #111520 100%);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--card-border);
+  position: relative;
 }
 
-/*
-FORMULARIO
-*/
-
-.form-group{
-    margin-bottom: 20px;
-
-}
-.form-group label{
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-.form-group input{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    transition: .3s;
-
-}
-.form-group input:focus{
-    outline: none;
-    border-color: #2563eb;
-
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-/*
-Boton
-*/
-
-button{
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: .3s;
+.brand-logo .icon {
+  font-size: 2rem;
 }
 
-button:hover{
-    background: #1d4ed8;
-
-}
-/*Estilo del boton de registro*/
-.register-button{
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #2563eb;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: .3s;
-    margin-top: 20px;
+.brand-logo h2 {
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
-.register-button:hover{
-    background: #1d4ed8;
-    color: white;
+.brand-tagline {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.brand-footer {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Lado Derecho (Formulario) */
+.form-section {
+  flex: 1.2;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-header h2 {
+  color: var(--text-primary);
+  font-size: 1.6rem;
+  margin: 0 0 8px 0;
+}
+
+.form-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0 0 28px 0;
+}
+
+/* Formulario & Campos */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 1rem;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px var(--primary-blue-glow);
+  background-color: #21293c;
+}
+
+/* Botón Principal (Ingresar) */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--primary-blue-glow);
+}
+
+.btn-primary .arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Separador y Botón Secundario */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0 16px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.divider span {
+  padding: 0 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #1e2638;
+  border-color: var(--text-secondary);
+}
+/* --- Lado Izquierdo (Branding Centrado) --- */
+.brand-section {
+  flex: 1;
+  background: linear-gradient(135deg, #1b2438 0%, #111520 100%);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; /* Centra horizontalmente */
+  text-align: center;  /* Centra el texto */
+  border-right: 1px solid var(--card-border);
+  position: relative;
+}
+
+.brand-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* Ocupa el centro vertical */
+}
+
+/* --- Animación e Iluminación (Hover Glow) --- */
+.brand-logo-glow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.brand-logo-glow .icon {
+  font-size: 2.2rem;
+  transition: transform 0.4s ease;
+}
+
+.brand-logo-glow h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+/* EFECTO HOVER: Al pasar el mouse alumbra un azul clarito (#00d2ff / #64b5f6) */
+.brand-logo-glow:hover {
+  background-color: rgba(0, 210, 255, 0.05);
+  border-color: rgba(0, 210, 255, 0.4);
+  transform: translateY(-2px);
+  /* Resplandor exterior de la tarjeta en azul claro */
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.35);
+}
+
+.brand-logo-glow:hover h2 {
+  color: #7dd3fc; /* Azul clarito/neón en el texto */
+  /* Resplandor del texto */
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.8),
+               0 0 24px rgba(0, 210, 255, 0.5);
+}
+
+.brand-logo-glow:hover .icon {
+  transform: scale(1.15) rotate(-5deg); /* Leve movimiento dinámico al ícono */
+}
+
+.brand-tagline {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 16px;
+  max-width: 260px;
+}
+/* --- Botón Google y Separador 'o' --- */
+.or-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+  position: relative;
+}
+
+.or-divider span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  background-color: var(--card-bg);
+  padding: 0 8px;
+}
+
+.btn-google {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffffff;
+  color: #1f1f1f;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-google:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-google:active {
+  background-color: #eee;
+  transform: translateY(0);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* Responsividad en Pantallas Pequeñas */
+@media (max-width: 768px) {
+  .login-card {
+    flex-direction: column;
+  }
+  .brand-section {
+    padding: 24px;
+  }
+  .form-section {
+    padding: 28px;
+  }
 }
