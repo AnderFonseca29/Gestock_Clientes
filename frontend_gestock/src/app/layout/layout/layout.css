@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f1f5f9;
+}
+
+.layout-header {
+    flex-shrink: 0;
+}
+
+.layout-main {
+    align-items: stretch;
+    display: flex;
+    flex: 1;
+}
+
+.layout-sidebar {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.layout-content {
+    flex: 1;
+    padding: 40px;
+    background: #f8fafc;
+    overflow: auto;
+}
+
+.layout-footer {
+    flex-shrink: 0;
+}

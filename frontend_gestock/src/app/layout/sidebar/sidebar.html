@@ -1,0 +1,32 @@
+<aside class="sidebar">
+
+    <section class="sidebar-logo">
+        <div class="logo-circle">
+            GS
+        </div>
+        <h2>Gestock</h2>
+    </section>
+
+    <nav class="menu">
+
+        @for (item of menu; track item.ruta) {
+
+            @if (item.disponible) {
+                <a
+                    [routerLink]="item.ruta"
+                    routerLinkActive="active">
+                    <span class="icon">{{ item.icono }}</span>
+                    <span>{{ item.nombre }}</span>
+                </a>
+            } @else {
+                <div class="menu-disabled" title="Próximamente">
+                    <span class="icon">{{ item.icono }}</span>
+                    <span>{{ item.nombre }}</span>
+                </div>
+            }
+
+        }
+
+    </nav>
+
+</aside>

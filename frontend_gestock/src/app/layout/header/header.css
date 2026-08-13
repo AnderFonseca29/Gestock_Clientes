@@ -1,0 +1,145 @@
+.header {
+    width: 100%;
+    min-height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #0f172a, #172554);
+    color: #fff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, .25);
+}
+
+.system {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
+    box-shadow: 0px 5px 15px rgba(37, 99, 235, .35);
+}
+
+.logo:hover {
+    transform: rotate(-5deg) scale(1.05);
+    transition: .3s;
+}
+
+.system-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.system-text h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.system-text span {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-data h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.user-data span {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.user-data small {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 2px;
+}
+
+.logout {
+    padding: 12px 24px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: #ef4444;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.logout:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 18px rgba(220, 38, 38, .35);
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .system {
+        width: 100%;
+    }
+
+    .user {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        padding: 20px;
+    }
+
+    .system {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .user-data {
+        align-items: flex-start;
+    }
+
+    .logout {
+        width: 100%;
+    }
+}
