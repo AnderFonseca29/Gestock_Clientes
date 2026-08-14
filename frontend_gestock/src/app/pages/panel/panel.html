@@ -274,7 +274,7 @@
 =======
   <!-- ENCABEZADO DEL PANEL CON BOTÓN DE ACCIÓN '+' -->
   <div class="panel-header">
-    <h2 class="panel-title">Panel</h2>
+  <h2 class="panel-title">{{ inventarioActivo.nombre }}</h2>
 
     <button mat-icon-button [matMenuTriggerFor]="invMenu" class="btn-add-action" aria-label="Opciones de inventario">
       <mat-icon>add</mat-icon>
@@ -285,47 +285,52 @@
         <span>Crear nuevo inventario</span>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item>
+      <!-- CORREGIDO: Se agregó el (click) para activar el modal -->
+      <button mat-menu-item (click)="openCambiarInventario()">
         <span>Cambiar de inventario</span>
       </button>
     </mat-menu>
   </div>
 
-  <!-- TARJETAS DE MÉTRICAS (GRID SUPERIOR) -->
+  <!-- TARJETAS DE MÉTRICAS (GRID SUPERIOR VINCULADO A VARIABLES) -->
   <div class="metrics-grid">
     
     <div class="metric-card">
       <span class="metric-label">Total precios</span>
-      <div class="metric-value">19</div>
-      <span class="metric-subtext">19 activos</span>
+      <div class="metric-value">{{ kpis.totalPrecios }}</div>
+      <span class="metric-subtext">{{ kpis.activos }} activos</span>
     </div>
 
     <div class="metric-card">
       <span class="metric-label">Valor de inventario</span>
-      <div class="metric-value">$29.997</div>
-      <span class="metric-subtext trend-up">+12% vs mes anterior</span>
+      <div class="metric-value">${{ kpis.valorInventario | number }}</div>
+      <span class="metric-subtext trend-up">+{{ kpis.porcentajeMesAnterior }}% vs mes anterior</span>
     </div>
 
     <div class="metric-card">
       <span class="metric-label">Alertas de inventario</span>
-      <div class="metric-value">4</div>
-      <span class="metric-subtext">2 bajo | 2 agotado</span>
+      <div class="metric-value">{{ kpis.alertasTotal }}</div>
+      <span class="metric-subtext">{{ kpis.alertasBajo }} bajo | {{ kpis.alertasAgotado }} agotado</span>
     </div>
 
     <div class="metric-card">
       <span class="metric-label">Bodegas activas</span>
-      <div class="metric-value">3</div>
+      <div class="metric-value">{{ kpis.bodegasActivas }}</div>
     </div>
 
     <div class="metric-card">
       <span class="metric-label">Usuarios activos</span>
-      <div class="metric-value">4</div>
+      <div class="metric-value">{{ kpis.usuariosActivos }}</div>
     </div>
 
     <div class="metric-card">
       <span class="metric-label">Tasa de ocupacion</span>
+<<<<<<< HEAD
       <div class="metric-value">63%</div>
 >>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
+=======
+      <div class="metric-value">{{ kpis.tasaOcupacion }}%</div>
+>>>>>>> origin/develop
     </div>
 
   </div>
@@ -435,3 +440,20 @@
   </div>
 
 </div>
+
+<!-- MODAL CAMBIAR INVENTARIO (CORREGIDO: FALTABA AGREGARLO) -->
+@if (mostrarModalCambiar) {
+  <app-cambiar-inventario
+    [listaInventarios]="inventarios"
+    (inventarioSeleccionado)="onInventarioSeleccionado($event)"
+    (cerrarModal)="cerrarModal()">
+  </app-cambiar-inventario>
+}
+
+<!-- MODAL CREAR INVENTARIO -->
+@if (mostrarModalCrear) {
+  <app-crear-inventario 
+    (inventarioCreado)="onInventarioCreado($event)"
+    (cerrarModal)="cerrarModal()">
+  </app-crear-inventario>
+}

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Component,
   OnDestroy,
@@ -24,6 +25,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 
+=======
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth';
+import { UsuarioAuth } from '../../models/usuario-auth';
+>>>>>>> origin/develop
 
 @Component({
   selector: 'app-header',
@@ -207,23 +214,40 @@ export class HeaderComponent
 
 =======
   standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatBadgeModule,
-    MatButtonModule
-  ],
+  imports: [CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class HeaderComponent {
-  // Título dinámico que se puede cambiar según la página
-  @Input() title: string = 'Empresas';
+export class HeaderComponent implements OnInit {
+  private authService = inject(AuthService);
+  usuario: UsuarioAuth | null = null;
 
+<<<<<<< HEAD
   // Datos del usuario logueado
   userName: string = 'Administrador';
   userRole: string = 'Administrador';
   userInitial: string = 'A';
   notificationCount: number = 3;
 >>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
+=======
+  ngOnInit(): void {
+    this.usuario = this.authService.obtenerUsuario();
+  }
+
+  get inicialNombre(): string {
+    return this.usuario?.nombre ? this.usuario.nombre.charAt(0).toUpperCase() : 'U';
+  }
+
+  cerrarSesion(): void {
+    this.authService.cerrarSesion();
+    window.location.href = '/login';
+  }
+
+  toggleMenu(): void {
+    this.menuAbierto = !this.menuAbierto;
+    console.log(this.menuAbierto);
+  }
+
+  menuAbierto = false;
+>>>>>>> origin/develop
 }

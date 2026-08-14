@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* =========================================
    SIDEBAR GESTOCK
 ========================================= */
@@ -362,67 +363,70 @@
   height: 100%;
   background-color: #121722;
   border-right: 1px solid #1f2738;
+=======
+.sidebar {
+>>>>>>> origin/develop
   display: flex;
   flex-direction: column;
-  user-select: none;
+  height: 100%;
+  padding: 20px 12px;
 }
 
-/* Marca / Logo */
-.sidebar-brand {
-  padding: 20px 24px;
-}
-
-.brand-logo {
+.brand {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.brand-icon {
-  color: #2f80ed;
-  font-size: 28px;
-  width: 28px;
-  height: 28px;
-}
-
-.brand-name {
-  font-size: 1.4rem;
+  padding: 0 12px 24px 12px;
+  font-size: 22px;
   font-weight: 700;
   color: #ffffff;
-  letter-spacing: 0.5px;
+  border-bottom: 1px solid #1e2638;
+  margin-bottom: 20px;
 }
 
-.divider {
-  height: 1px;
-  background-color: #1f2738;
-  width: 100%;
+.logo-icon {
+  color: #2563eb;
 }
 
-/* Lista del menú */
-.nav-list {
-  padding-top: 16px !important;
+.menu-nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .nav-item {
-  margin: 0 14px !important;
-  border-radius: 8px !important;
-  height: 44px !important;
-  color: #8b949e !important;
-  transition: all 0.2s ease !important;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-item i {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
 }
 
 .nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff;
+  background-color: #1a2333;
+}
+
+/* Selección activa azul idéntica a tu boceto */
+.nav-item.active {
+  background-color: #2563eb !important;
   color: #ffffff !important;
 }
 
-/* Opción Activa (Azul Gestock) */
-.active-link {
-  background-color: #2f80ed !important;
+.nav-item.active i {
   color: #ffffff !important;
+<<<<<<< HEAD
   box-shadow: 0 4px 14px rgba(47, 128, 237, 0.4);
 }
 
@@ -442,4 +446,6 @@
   font-weight: 500;
   font-size: 0.92rem;
 >>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
+=======
+>>>>>>> origin/develop
 }

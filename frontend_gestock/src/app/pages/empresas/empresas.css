@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 :host {
   display: block;
   width: 100%;
@@ -352,52 +353,64 @@ form {
 .empresas-container {
   max-width: 1100px;
   margin: 0 auto;
+=======
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+>>>>>>> origin/develop
 }
 
-/* Header de la vista */
-.page-header {
+.empresas-container {
+  padding: 30px 40px;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ENCABEZADO */
+.header-section {
   margin-bottom: 24px;
 }
 
 .page-title {
+  font-size: 24px;
+  font-weight: 600;
   margin: 0 0 4px 0;
-  font-size: 1.6rem;
-  font-weight: 700;
   color: #ffffff;
 }
 
 .page-subtitle {
+  font-size: 13px;
+  color: #94a3b8;
   margin: 0;
-  font-size: 0.9rem;
-  color: #8b949e;
 }
 
-/* Tarjeta principal */
+/* CARD CONTENEDORA */
 .config-card {
-  background-color: #121722;
-  border: 1px solid #1f2738;
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  background-color: #121824;
+  border-radius: 8px;
+  padding: 28px 32px;
+  max-width: 850px;
 }
 
-.card-header h3 {
-  margin: 0 0 4px 0;
-  font-size: 1.3rem;
+.card-title {
+  font-size: 18px;
   font-weight: 600;
+  margin: 0 0 4px 0;
   color: #ffffff;
 }
 
-.card-header p {
+.card-subtitle {
+  font-size: 12px;
+  color: #64748b;
   margin: 0 0 24px 0;
-  font-size: 0.85rem;
-  color: #8b949e;
 }
 
-/* Estructura del Formulario */
+/* FORMULARIO */
 .config-form {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   gap: 16px;
 }
 
@@ -410,6 +423,9 @@ form {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 >>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
+=======
+  gap: 18px;
+>>>>>>> origin/develop
 }
 
 .form-group {
@@ -504,72 +520,142 @@ form {
   gap: 6px;
 }
 
+.form-group.full-width {
+  width: 100%;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .form-group label {
-  font-size: 0.85rem;
+  font-size: 12px;
+  color: #94a3b8;
   font-weight: 500;
-  color: #c9d1d9;
 }
 
-/* Personalización Inputs de Angular Material */
-::ng-deep .custom-field .mat-mdc-text-field-wrapper {
-  background-color: #1a202c !important;
-  border-radius: 8px !important;
-  padding: 0 12px !important;
+/* INPUTS Y SELECTS */
+.custom-input {
+  background-color: #232d3f;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 10px 14px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-::ng-deep .custom-field .mat-mdc-form-field-flex {
-  align-items: center !important;
+.custom-input::placeholder {
+  color: #64748b;
 }
 
-::ng-deep .custom-field input.mat-mdc-input-element,
-::ng-deep .custom-field .mat-mdc-select-value {
-  color: #ffffff !important;
-  font-size: 0.92rem !important;
+.custom-input:focus {
+  border-color: #3b82f6;
 }
 
-::ng-deep .custom-field .mdc-notched-outline__leading,
-::ng-deep .custom-field .mdc-notched-outline__notch,
-::ng-deep .custom-field .mdc-notched-outline__trailing {
-  border-color: #2b3548 !important;
+/* SELECTS */
+.select-wrapper {
+  position: relative;
+  width: 100%;
 }
 
-::ng-deep .custom-field.mat-focused .mdc-notched-outline__leading,
-::ng-deep .custom-field.mat-focused .mdc-notched-outline__notch,
-::ng-deep .custom-field.mat-focused .mdc-notched-outline__trailing {
-  border-color: #2f80ed !important;
-  border-width: 1.5px !important;
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 32px;
 }
 
-::ng-deep .custom-field .mat-mdc-select-arrow {
-  color: #8b949e !important;
+.custom-select option {
+  background-color: #121824;
+  color: #ffffff;
 }
 
-/* Acciones y Botón */
-.form-actions {
+.select-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+/* BOTONES DE ACCIÓN */
+.actions-footer {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
   margin-top: 16px;
 }
 
+.btn-cancel {
+  background-color: transparent;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
 .btn-save {
-  background-color: #2f80ed !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
-  padding: 8px 24px !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.35);
-  transition: all 0.2s ease !important;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .btn-save:hover {
-  background-color: #1f6fd8 !important;
-  box-shadow: 0 6px 16px rgba(47, 128, 237, 0.5);
+  background-color: #2563eb;
 }
 
 .btn-save:disabled {
+<<<<<<< HEAD
   background-color: #1f2738 !important;
   color: #485264 !important;
   box-shadow: none;
 >>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
+=======
+  background-color: #1d4ed8;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ALERTAS */
+.alert {
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.alert-success {
+  background-color: rgba(34, 197, 94, 0.15);
+  border: 1px solid #22c55e;
+  color: #4ade80;
+}
+
+.alert-danger {
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #f87171;
+>>>>>>> origin/develop
 }

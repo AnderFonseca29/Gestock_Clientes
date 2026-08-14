@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* =========================================
    LAYOUT PRINCIPAL GESTOCK
 ========================================= */
@@ -144,31 +145,53 @@
 =======
 .layout-container {
   height: 100vh;
+=======
+:host {
+  display: block;
+>>>>>>> origin/develop
   width: 100vw;
+  height: 100vh;
   background-color: #0b0e14;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
 
-/* Sidebar Contenedor */
-.sidenav-wrapper {
-  border: none !important;
-  background-color: transparent !important;
+.layout-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
-/* Área Derecha (Main) */
-.main-wrapper {
+.sidebar-container {
+  width: 250px;
+  min-width: 250px;
+  background-color: #121824;
+  border-right: 1px solid #1e2638;
+  height: 100%;
+}
+
+.main-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: #0b0e14;
+  height: 100%;
+  overflow: hidden;
 }
 
-/* Contenido Interno con Scroll suave */
-.page-content {
+.header-container {
+  height: 65px;
+  min-height: 65px;
+  background-color: #0f141e;
+  border-bottom: 1px solid #1e2638;
+}
+
+.content-body {
   flex: 1;
-  padding: 24px 28px;
+  padding: 24px;
   overflow-y: auto;
   background-color: #0b0e14;
+<<<<<<< HEAD
 }
 
 /* Personalización del Scrollbar */
@@ -188,4 +211,6 @@
 .page-content::-webkit-scrollbar-thumb:hover {
   background: #2f80ed;
 >>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
+=======
+>>>>>>> origin/develop
 }

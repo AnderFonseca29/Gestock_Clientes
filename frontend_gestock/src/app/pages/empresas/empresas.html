@@ -387,76 +387,91 @@
 }
 =======
   
-  <!-- Subtítulo de bienvenida/sección -->
-  <div class="page-header">
-    <h2 class="page-title">Empresas</h2>
+  <div class="header-section">
+    <h1 class="page-title">Empresas</h1>
     <p class="page-subtitle">Personaliza tu experiencia en GESTOCK</p>
   </div>
 
-  <!-- Tarjeta del Formulario de Configuración -->
   <div class="config-card">
-    <div class="card-header">
-      <h3>Configuración</h3>
-      <p>Personaliza la información de tu empresa</p>
-    </div>
+    <h2 class="card-title">Configuración</h2>
+    <p class="card-subtitle">Personaliza la información de tu empresa</p>
 
-    <form [formGroup]="companyForm" (ngSubmit)="saveChanges()" class="config-form">
+    <!-- ALERTAS DE FEEDBACK -->
+    @if (mensajeExito) {
+      <div class="alert alert-success">{{ mensajeExito }}</div>
+    }
+    @if (mensajeError) {
+      <div class="alert alert-danger">{{ mensajeError }}</div>
+    }
+
+    <form class="config-form" (ngSubmit)="guardarCambios()">
       
-      <!-- Nombre de la Empresa -->
-      <div class="form-row">
-        <div class="form-group full-width">
-          <label>Nombre de la Empresa</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <input matInput formControlName="companyName" placeholder="Ej. GESTOCK Inc.">
-          </mat-form-field>
-        </div>
+      <!-- CAMPO NOMBRE -->
+      <div class="form-group full-width">
+        <label for="nombreEmpresa">Nombre de la Empresa *</label>
+        <input 
+          id="nombreEmpresa"
+          type="text" 
+          class="custom-input" 
+          [(ngModel)]="empresa.nombre" 
+          name="nombre"
+          placeholder="GESTOCK Inc.">
       </div>
 
-      <!-- Email de Contacto -->
-      <div class="form-row">
-        <div class="form-group full-width">
-          <label>Email de contacto</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <input matInput type="email" formControlName="contactEmail" placeholder="contacto@empresa.com">
-          </mat-form-field>
-        </div>
+      <!-- CAMPO EMAIL -->
+      <div class="form-group full-width">
+        <label for="emailContacto">Email de contacto *</label>
+        <input 
+          id="emailContacto"
+          type="email" 
+          class="custom-input" 
+          [(ngModel)]="empresa.email" 
+          name="email"
+          placeholder="contacto@gestock.com">
       </div>
 
-      <!-- Moneda y Formato de Fecha en 2 Columnas -->
-      <div class="form-row grid-2">
+      <!-- FILA DE SELECTS -->
+      <div class="form-row">
         
         <div class="form-group">
-          <label>Moneda</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <mat-select formControlName="currency">
-              @for (curr of currencies; track curr.value) {
-                <mat-option [value]="curr.value">{{ curr.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+          <label for="moneda">Moneda</label>
+          <div class="select-wrapper">
+            <select 
+              id="moneda"
+              class="custom-input custom-select" 
+              [(ngModel)]="empresa.moneda" 
+              name="moneda">
+              <option value="COP">COP - Peso Colombiano</option>
+              <option value="USD">USD - Dólar</option>
+            </select>
+            <span class="select-arrow">▼</span>
+          </div>
         </div>
 
         <div class="form-group">
-          <label>Formato de Fecha</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <mat-select formControlName="dateFormat">
-              @for (format of dateFormats; track format.value) {
-                <mat-option [value]="format.value">{{ format.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+          <label for="formatoFecha">Formato de Fecha</label>
+          <div class="select-wrapper">
+            <select 
+              id="formatoFecha"
+              class="custom-input custom-select" 
+              [(ngModel)]="empresa.formatoFecha" 
+              name="formatoFecha">
+              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+            </select>
+            <span class="select-arrow">▼</span>
+          </div>
         </div>
 
       </div>
 
-      <!-- Botón de Guardar Cambios -->
-      <div class="form-actions">
-        <button 
-          mat-flat-button 
-          type="submit" 
-          class="btn-save" 
-          [disabled]="companyForm.invalid">
-          Guardar cambios
+      <!-- BOTONES DE ACCIÓN (CANCELAR Y GUARDAR) -->
+      <div class="actions-footer">
+        <button type="button" class="btn-cancel" (click)="cancelar()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn-save" [disabled]="guardando">
+          {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
         </button>
       </div>
 

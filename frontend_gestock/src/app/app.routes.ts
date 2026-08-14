@@ -10,6 +10,7 @@ import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
 import { InventarioComponent } from './pages/gestion/inventario/inventario';
 import { RolesUsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yusuarios';
 import { PanelComponent } from './pages/panel/panel';
+<<<<<<< HEAD
 import { EmpresasComponent } from './pages/empresas/empresas';
 
 
@@ -105,4 +106,66 @@ export const routes: Routes = [
     redirectTo: 'login'
   }
 
+=======
+import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
+import { authGuard } from './guards/auth-guard';
+
+export const routes: Routes = [
+
+    // Al entrar a localhost:4200/
+    // enviamos al usuario directamente al login
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
+
+    // =========================
+    // RUTAS PÚBLICAS
+    // =========================
+
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+
+    {
+        path: 'creacion',
+        component: CreacionComponent
+    },
+
+    // =========================
+    // RUTAS PRIVADAS
+    // =========================
+
+    {
+        path: '',
+        component: LayoutComponent,
+        canActivate: [authGuard],
+        children: [
+
+            {
+                path: 'empresas',
+                component: EmpresasComponent
+            },
+
+            {
+                path: 'crear-inventario',
+                component: CrearInventarioComponent
+            },
+
+            {
+                path: 'panel',
+                component: PanelComponent
+            }
+
+        ]
+    },
+
+    // Cualquier ruta que no exista
+    {
+        path: '**',
+        redirectTo: 'login'
+    }
+>>>>>>> origin/develop
 ];
