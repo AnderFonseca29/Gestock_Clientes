@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* =========================================
    SIDEBAR GESTOCK
 ========================================= */
@@ -357,15 +355,13 @@
   .user-mini {
     justify-content: center;
   }
-=======
 .sidebar-container {
   width: 240px;
   height: 100%;
   background-color: #121722;
   border-right: 1px solid #1f2738;
-=======
+}
 .sidebar {
->>>>>>> origin/develop
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -426,7 +422,6 @@
 
 .nav-item.active i {
   color: #ffffff !important;
-<<<<<<< HEAD
   box-shadow: 0 4px 14px rgba(47, 128, 237, 0.4);
 }
 
@@ -445,7 +440,5 @@
 .item-text {
   font-weight: 500;
   font-size: 0.92rem;
->>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
-=======
->>>>>>> origin/develop
+}
 }

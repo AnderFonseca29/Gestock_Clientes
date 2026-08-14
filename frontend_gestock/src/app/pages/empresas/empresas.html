@@ -1,17 +1,11 @@
 <div class="empresas-container">
-<<<<<<< HEAD
 
   <!-- ENCABEZADO -->
   <div class="page-header">
-
     <div>
       <span class="page-label">GESTIÓN EMPRESARIAL</span>
-
       <h1>Empresas</h1>
-
-      <p>
-        Administra las empresas registradas en el sistema Gestock.
-      </p>
+      <p>Administra las empresas registradas en el sistema Gestock.</p>
     </div>
 
     <button
@@ -22,79 +16,47 @@
       <span>＋</span>
       Nueva empresa
     </button>
-
   </div>
-
 
   <!-- ESTADÍSTICAS -->
   <div class="stats-grid">
-
     <div class="stat-card">
-
-      <div class="stat-icon blue">
-        🏢
-      </div>
-
+      <div class="stat-icon blue">🏢</div>
       <div>
         <span>Total empresas</span>
         <strong>{{ totalEmpresas }}</strong>
       </div>
-
     </div>
 
-
     <div class="stat-card">
-
-      <div class="stat-icon green">
-        ✓
-      </div>
-
+      <div class="stat-icon green">✓</div>
       <div>
         <span>Empresas activas</span>
         <strong>{{ empresasActivas }}</strong>
       </div>
-
     </div>
 
-
     <div class="stat-card">
-
-      <div class="stat-icon gray">
-        ○
-      </div>
-
+      <div class="stat-icon gray">○</div>
       <div>
         <span>Empresas inactivas</span>
         <strong>{{ empresasInactivas }}</strong>
       </div>
-
     </div>
-
   </div>
 
-
-  <!-- TABLA -->
+  <!-- TABLA DE EMPRESAS -->
   <div class="table-card">
-
     <div class="table-header">
-
       <div>
         <h2>Empresas registradas</h2>
-
-        <p>
-          Información general de las empresas.
-        </p>
+        <p>Información general de las empresas.</p>
       </div>
-
     </div>
 
-
     <div class="table-container">
-
       <table>
-
         <thead>
-
           <tr>
             <th>EMPRESA</th>
             <th>NIT</th>
@@ -103,56 +65,28 @@
             <th>ESTADO</th>
             <th>ACCIONES</th>
           </tr>
-
         </thead>
 
-
         <tbody>
-
           @for (empresa of empresas; track empresa.id) {
-
             <tr>
-
               <td>
-
                 <div class="empresa-info">
-
                   <div class="empresa-avatar">
                     {{ empresa.nombre.charAt(0) }}
                   </div>
-
                   <div>
-                    <strong>
-                      {{ empresa.nombre }}
-                    </strong>
-
-                    <small>
-                      {{ empresa.correo }}
-                    </small>
+                    <strong>{{ empresa.nombre }}</strong>
+                    <small>{{ empresa.correo }}</small>
                   </div>
-
                 </div>
-
               </td>
 
+              <td>{{ empresa.nit }}</td>
+              <td>{{ empresa.telefono }}</td>
+              <td>{{ empresa.ciudad }}</td>
 
               <td>
-                {{ empresa.nit }}
-              </td>
-
-
-              <td>
-                {{ empresa.telefono }}
-              </td>
-
-
-              <td>
-                {{ empresa.ciudad }}
-              </td>
-
-
-              <td>
-
                 <button
                   type="button"
                   class="status"
@@ -160,20 +94,13 @@
                   [class.inactive]="!empresa.estado"
                   (click)="cambiarEstado(empresa)"
                 >
-
                   <span></span>
-
                   {{ empresa.estado ? 'Activa' : 'Inactiva' }}
-
                 </button>
-
               </td>
 
-
               <td>
-
                 <div class="actions">
-
                   <button
                     type="button"
                     class="action edit"
@@ -183,7 +110,6 @@
                     ✎
                   </button>
 
-
                   <button
                     type="button"
                     class="action delete"
@@ -192,94 +118,43 @@
                   >
                     🗑
                   </button>
-
                 </div>
-
               </td>
-
             </tr>
-
           }
 
           @if (empresas.length === 0) {
-
             <tr>
-
-              <td
-                colspan="6"
-                class="empty"
-              >
+              <td colspan="6" class="empty">
                 No hay empresas registradas.
               </td>
-
             </tr>
-
           }
-
         </tbody>
-
       </table>
-
     </div>
-
   </div>
 
 </div>
 
-
-<!-- ==========================================
-     MODAL
-========================================== -->
-
+<!-- MODAL CREAR / EDITAR EMPRESA -->
 @if (modalAbierto) {
-
-  <div
-    class="modal-overlay"
-    (click)="cerrarModal()"
-  >
-
-    <div
-      class="modal"
-      (click)="$event.stopPropagation()"
-    >
-
+  <div class="modal-overlay" (click)="cerrarModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      
       <div class="modal-header">
-
         <div>
-
-          <span class="modal-label">
-            GESTOCK
-          </span>
-
-          <h2>
-            {{ modoEdicion ? 'Editar empresa' : 'Nueva empresa' }}
-          </h2>
-
+          <span class="modal-label">GESTOCK</span>
+          <h2>{{ modoEdicion ? 'Editar empresa' : 'Nueva empresa' }}</h2>
         </div>
-
-        <button
-          type="button"
-          class="close"
-          (click)="cerrarModal()"
-        >
-          ×
-        </button>
-
+        <button type="button" class="close" (click)="cerrarModal()">×</button>
       </div>
 
-
-      <form
-        (ngSubmit)="guardarEmpresa()"
-      >
-
+      <form (ngSubmit)="guardarEmpresa()">
         <div class="form-grid">
-
+          
           <div class="form-group full">
-
-            <label>
-              Nombre de la empresa
-            </label>
-
+            <label>Nombre de la empresa</label>
             <input
               type="text"
               name="nombre"
@@ -287,16 +162,10 @@
               placeholder="Ej. Gestock S.A.S."
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
-            <label>
-              NIT
-            </label>
-
+            <label>NIT</label>
             <input
               type="text"
               name="nit"
@@ -304,32 +173,20 @@
               placeholder="901234567-1"
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
-            <label>
-              Teléfono
-            </label>
-
+            <label>Teléfono</label>
             <input
               type="text"
               name="telefono"
               [(ngModel)]="formulario.telefono"
               placeholder="320 000 0000"
             >
-
           </div>
 
-
           <div class="form-group">
-
-            <label>
-              Correo electrónico
-            </label>
-
+            <label>Correo electrónico</label>
             <input
               type="email"
               name="correo"
@@ -337,146 +194,31 @@
               placeholder="empresa@correo.com"
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
-            <label>
-              Ciudad
-            </label>
-
+            <label>Ciudad</label>
             <input
               type="text"
               name="ciudad"
               [(ngModel)]="formulario.ciudad"
               placeholder="Yopal"
             >
-
           </div>
 
         </div>
 
-
         <div class="modal-footer">
-
-          <button
-            type="button"
-            class="btn-cancel"
-            (click)="cerrarModal()"
-          >
+          <button type="button" class="btn-cancel" (click)="cerrarModal()">
             Cancelar
           </button>
-
-          <button
-            type="submit"
-            class="btn-primary"
-          >
+          <button type="submit" class="btn-primary">
             {{ modoEdicion ? 'Guardar cambios' : 'Crear empresa' }}
           </button>
-
         </div>
 
       </form>
 
     </div>
-
   </div>
-
 }
-=======
-  
-  <div class="header-section">
-    <h1 class="page-title">Empresas</h1>
-    <p class="page-subtitle">Personaliza tu experiencia en GESTOCK</p>
-  </div>
-
-  <div class="config-card">
-    <h2 class="card-title">Configuración</h2>
-    <p class="card-subtitle">Personaliza la información de tu empresa</p>
-
-    <!-- ALERTAS DE FEEDBACK -->
-    @if (mensajeExito) {
-      <div class="alert alert-success">{{ mensajeExito }}</div>
-    }
-    @if (mensajeError) {
-      <div class="alert alert-danger">{{ mensajeError }}</div>
-    }
-
-    <form class="config-form" (ngSubmit)="guardarCambios()">
-      
-      <!-- CAMPO NOMBRE -->
-      <div class="form-group full-width">
-        <label for="nombreEmpresa">Nombre de la Empresa *</label>
-        <input 
-          id="nombreEmpresa"
-          type="text" 
-          class="custom-input" 
-          [(ngModel)]="empresa.nombre" 
-          name="nombre"
-          placeholder="GESTOCK Inc.">
-      </div>
-
-      <!-- CAMPO EMAIL -->
-      <div class="form-group full-width">
-        <label for="emailContacto">Email de contacto *</label>
-        <input 
-          id="emailContacto"
-          type="email" 
-          class="custom-input" 
-          [(ngModel)]="empresa.email" 
-          name="email"
-          placeholder="contacto@gestock.com">
-      </div>
-
-      <!-- FILA DE SELECTS -->
-      <div class="form-row">
-        
-        <div class="form-group">
-          <label for="moneda">Moneda</label>
-          <div class="select-wrapper">
-            <select 
-              id="moneda"
-              class="custom-input custom-select" 
-              [(ngModel)]="empresa.moneda" 
-              name="moneda">
-              <option value="COP">COP - Peso Colombiano</option>
-              <option value="USD">USD - Dólar</option>
-            </select>
-            <span class="select-arrow">▼</span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="formatoFecha">Formato de Fecha</label>
-          <div class="select-wrapper">
-            <select 
-              id="formatoFecha"
-              class="custom-input custom-select" 
-              [(ngModel)]="empresa.formatoFecha" 
-              name="formatoFecha">
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-            <span class="select-arrow">▼</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- BOTONES DE ACCIÓN (CANCELAR Y GUARDAR) -->
-      <div class="actions-footer">
-        <button type="button" class="btn-cancel" (click)="cancelar()">
-          Cancelar
-        </button>
-        <button type="submit" class="btn-save" [disabled]="guardando">
-          {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
-        </button>
-      </div>
-
-    </form>
-  </div>
-
-</div>
->>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
