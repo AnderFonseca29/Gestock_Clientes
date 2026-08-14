@@ -1,63 +1,90 @@
 <aside class="sidebar">
-<<<<<<< HEAD
 
-    <section class="sidebar-logo">
-        <div class="logo-circle">
-            GS
-        </div>
-        <h2>Gestock</h2>
-    </section>
+  <!-- LOGO -->
+  <div class="sidebar-header">
 
-    <nav class="menu">
+    <div class="logo-icon">
+      G
+    </div>
 
-        @for (item of menu; track item.ruta) {
+    <div class="logo-info">
+      <h2>Gestock</h2>
+      <span>Gestión de inventario</span>
+    </div>
 
-            @if (item.disponible) {
-                <a
-                    [routerLink]="item.ruta"
-                    routerLinkActive="active">
-                    <span class="icon">{{ item.icono }}</span>
-                    <span>{{ item.nombre }}</span>
-                </a>
-            } @else {
-                <div class="menu-disabled" title="Próximamente">
-                    <span class="icon">{{ item.icono }}</span>
-                    <span>{{ item.nombre }}</span>
-                </div>
-            }
+  </div>
 
-        }
 
-    </nav>
+  <!-- MENÚ -->
+  <nav class="sidebar-menu">
 
-=======
-    <section class="sidebar-logo">
-        <div class="logo-circle">
-            ADSO
-        </div>
-        <h2>
-            Menú
-        </h2>
-    </section>
-    <nav class="menu">
-        @for(item of menuVisible; track item.ruta){
-            <a [routerLink]="item.ruta" routerLinkActive="active">
-                <span class="icon">
-                    {{item.icono}}
-                </span>
-                <span>
-                    {{item.nombre}}
-                </span>
-            </a>
-        }
-    </nav>
-    <section class="sidebar-footer">
-        <small>
-            Sistema ADSO
-        </small>
-        <small>
-            Versió 1.0.0
-        </small>
-    </section>
->>>>>>> origin/develop
+    <p class="menu-title">
+      MENÚ PRINCIPAL
+    </p>
+
+    <a
+      *ngFor="let item of menu"
+      class="menu-item"
+      [routerLink]="item.ruta"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+
+      <span class="menu-icon">
+        {{ item.icono }}
+      </span>
+
+      <span class="menu-text">
+        {{ item.nombre }}
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </a>
+
+  </nav>
+
+
+  <!-- PARTE INFERIOR -->
+  <div class="sidebar-bottom">
+
+    <div class="user-mini">
+
+      <div class="user-avatar">
+        A
+      </div>
+
+      <div class="user-info">
+
+        <strong>
+          {{ nombreUsuario }}
+        </strong>
+
+        <span>
+          {{ rolUsuario }}
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="logout-button"
+      (click)="cerrarSesion()"
+    >
+
+      <span>↪</span>
+
+      <span>
+        Cerrar sesión
+      </span>
+
+    </button>
+
+  </div>
+
 </aside>

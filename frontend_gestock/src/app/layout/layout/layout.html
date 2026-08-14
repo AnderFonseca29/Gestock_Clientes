@@ -1,39 +1,30 @@
-<div class="layout-container">
-    <header class="layout-header">
-<<<<<<< HEAD
-        <app-header></app-header>
-    </header>
-    <main class="layout-main">
-        <aside class="layout-sidebar">
-            <app-sidebar></app-sidebar>
-        </aside>
-        <section class="layout-content">
-=======
-        <!--Posteriormente se carga el componente headerComponents-->
-        <app-header></app-header>
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar-container">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <!-- ZONA PRINCIPAL -->
+  <div class="main-container">
+
+    <!-- HEADER -->
+    <header class="header-container">
+      <app-header></app-header>
     </header>
 
-    <main class="layout-main">
-        <aside class="layout-sidebar">
-            <!--Posteriormente se carga el componente sidebarComponents-->
-            <app-sidebar></app-sidebar>
-        </aside>
-        <!--Contenido dinamico-->
-        <section class="layout-content">
-            <!--Aqui va los componenentes de dashboard, usuarios, etc-->
->>>>>>> origin/develop
-            <router-outlet></router-outlet>
-        </section>
+    <!-- CONTENIDO -->
+    <main class="content-container">
+
+      <router-outlet></router-outlet>
+
     </main>
-    <footer class="layout-footer">
-        <app-footer></app-footer>
-<<<<<<< HEAD
-    </footer>
-</div>
-=======
-        <!--Posteriormente se carga el componente footerComponents-->
-        
 
+    <!-- FOOTER -->
+    <footer class="footer-container">
+      <app-footer></app-footer>
     </footer>
+
+  </div>
+
 </div>
->>>>>>> origin/develop

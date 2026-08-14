@@ -1,120 +1,127 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 interface MenuItem {
-  icono: string;
   nombre: string;
+  icono: string;
   ruta: string;
-  disponible: boolean;
-=======
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth';
-interface MenuItem{
-  icono:string;
-  nombre:string;
-  ruta:string;
-  roles:string[];
->>>>>>> origin/develop
 }
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css',
+  styleUrl: './sidebar.css'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
-<<<<<<< HEAD
-  //"disponible: false" son las secciones del Figma que todavía no tienen
-  //componente creado. Cuando armes cada página, cambia su ruta real y
-  //pon disponible en true para que se vuelva un link funcional.
+  // ==============================
+  // DATOS DEL USUARIO
+  // ==============================
+
+  nombreUsuario: string = 'Administrador';
+  rolUsuario: string = 'Administrador';
+
+
+  // ==============================
+  // MENÚ LATERAL
+  // ==============================
+
   menu: MenuItem[] = [
-    { icono: '🏢', nombre: 'Empresas', ruta: '/empresas', disponible: false },
-    { icono: '📋', nombre: 'Panel', ruta: '/panel', disponible: false },
-    { icono: '📦', nombre: 'Productos', ruta: '/productos', disponible: false },
-    { icono: '🏬', nombre: 'Bodegas', ruta: '/bodegas', disponible: false },
-    { icono: '🔄', nombre: 'Movimientos', ruta: '/movimientos', disponible: false },
-    { icono: '👥', nombre: 'Usuarios', ruta: '/usuarios', disponible: false },
-    { icono: '📊', nombre: 'Reportes', ruta: '/reportes', disponible: true },
-    { icono: '⚙️', nombre: 'Configuración', ruta: '/configuracion', disponible: false }
-  ];
-}
-=======
-  constructor(private authService:AuthService){
-    this.rolUsuario=this.authService.obtenerRol();
-    this.cargarMenu();
-  }
-  rolUsuario:string='';
-  menuVisible:MenuItem[]=[];
-  menu:MenuItem[]=[
-    {
-      icono:'🛖',
-      nombre:'Dasboard',
-      ruta: '/dashboard',
-      roles:[
-        'Administrador'
-      ]
-    },
-    {
-      icono:'🤦‍♂️',
-      nombre:'Usuarios',
-      ruta:'/users',
-      roles:[
-        'Administrador',
-        'Instructor'
-      ]
-    },
-    {
-      icono:'🛡️',
-      nombre:'Roles',
-      ruta:'/roles',
-      roles:[
-        'Administrador'
-      ]
-    },
-    {
-      icono:'📚',
-      nombre:'Cursos',
-      ruta:'/cursos',
-      roles:[
-        'Administrador',
-        'Instructor',
-        'Aprendiz'
-      ]
-    },
-    {
-      icono:'😎',
-      nombre:'Comoponente dinamico',
-      ruta:'/contenido',
-      roles:[
-        'Administrador',
-        'Instructor',
-        'Aprendiz'
-      ]
 
-    },
     {
-      icono:'❤️',
-      nombre:'Reserva de vuelos',
-      ruta:'/reserva',
-      roles:[
-        'Administrador',
-        'Instructor',
-        'Aprendiz'
-      ]
+      nombre: 'Empresas',
+      icono: '🏢',
+      ruta: '/app/empresas'
     },
-  
-    
+
+    {
+      nombre: 'Panel',
+      icono: '▦',
+      ruta: '/app/panel'
+    },
+
+    {
+      nombre: 'Productos',
+      icono: '📦',
+      ruta: '/app/productos'
+    },
+
+    {
+      nombre: 'Bodegas',
+      icono: '🏭',
+      ruta: '/app/bodegas'
+    },
+
+    {
+      nombre: 'Movimientos',
+      icono: '↔',
+      ruta: '/app/movimientos'
+    },
+
+    {
+      nombre: 'Usuarios',
+      icono: '👥',
+      ruta: '/app/roles-usuarios'
+    },
+
+    {
+      nombre: 'Reportes',
+      icono: '▥',
+      ruta: '/app/reportes'
+    },
+
+    {
+      nombre: 'Configuración',
+      icono: '⚙',
+      ruta: '/app/configuracion'
+    }
 
   ];
- 
 
-  private cargarMenu():void{
-    this.menuVisible=this.menu.filter(
-      opcion=>opcion.roles.includes(this.rolUsuario))
+
+  // ==============================
+  // CONSTRUCTOR
+  // ==============================
+
+  constructor(
+    private router: Router
+  ) {}
+
+
+  // ==============================
+  // CARGAR DATOS DEL USUARIO
+  // ==============================
+
+  ngOnInit(): void {
+
+    this.nombreUsuario =
+      localStorage.getItem('nombre') || 'Administrador';
+
+    this.rolUsuario =
+      localStorage.getItem('rol') || 'Administrador';
+
   }
+
+
+  // ==============================
+  // CERRAR SESIÓN
+  // ==============================
+
+  cerrarSesion(): void {
+
+    localStorage.removeItem('usuarioLogueado');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('rol');
+
+    this.router.navigate(['/login']);
+
+  }
+
 }
->>>>>>> origin/develop

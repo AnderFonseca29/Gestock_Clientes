@@ -1,27 +1,20 @@
-<footer class="footer">
+<footer class="footer-container">
+  <div class="footer-content">
+    
+    <!-- Lado Izquierdo: Copyright -->
     <div class="footer-left">
-        <span>
-<<<<<<< HEAD
-            Versión {{ version }}
-        </span>
+      <span>Gestock &copy; {{ currentYear }} • Sistema de Gestión de Inventarios</span>
+      <span class="badge-sena">ADSO</span>
     </div>
-    <div class="footer-center">
-        © {{ anio }} Gestock
-    </div>
-</footer>
-=======
-            Versió {{version}}
-        </span>
-    </div>
-    <div class="footer-center">
-        @ {{anio}}
-        {{institucion}}
-    </div>
+
+    <!-- Lado Derecho: Enlaces legales -->
     <div class="footer-right">
-        Desarrollado por
-        <strong>
-            {{desarrollador}}
-        </strong>
+      <a href="#" (click)="$event.preventDefault()">Aviso legal</a>
+      <span class="dot">•</span>
+      <a href="#" (click)="$event.preventDefault()">Declaración de privacidad</a>
+      <span class="dot">•</span>
+      <a href="#" (click)="$event.preventDefault()">Soporte</a>
     </div>
+
+  </div>
 </footer>
->>>>>>> origin/develop

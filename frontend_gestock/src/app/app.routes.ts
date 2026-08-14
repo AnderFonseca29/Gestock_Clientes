@@ -1,57 +1,108 @@
 import { Routes } from '@angular/router';
+
 import { LoginComponent } from './login/login/login';
 import { CreacionComponent } from './login/creacion/creacion';
+
 import { LayoutComponent } from './layout/layout/layout';
-import { EmpresasComponent } from './pages/empresas/empresas';
+
+import { ReportesComponent } from './pages/reportes/reportes';
+import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
+import { InventarioComponent } from './pages/gestion/inventario/inventario';
+import { RolesUsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yusuarios';
 import { PanelComponent } from './pages/panel/panel';
-import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
+import { EmpresasComponent } from './pages/empresas/empresas';
+
 
 export const routes: Routes = [
-  // Redirección inicial a /app si se entra a la raíz
+
+  /* =========================
+     LOGIN
+  ========================= */
+
   {
     path: '',
-    redirectTo: 'app',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 
-  // Rutas públicas / Login
   {
     path: 'login',
     component: LoginComponent
   },
+
   {
     path: 'creacion-usuarios',
     component: CreacionComponent
   },
 
-  // Layout Contenedor con sus Vistas Hijas
+
+  /* =========================
+     APLICACIÓN
+  ========================= */
+
   {
     path: 'app',
     component: LayoutComponent,
+
     children: [
+
       {
         path: '',
-        redirectTo: 'empresas',
+        redirectTo: 'panel',
         pathMatch: 'full'
       },
-      {
-        path: 'empresas',
-        component: EmpresasComponent
-      },
+
       {
         path: 'panel',
         component: PanelComponent
       },
+
       {
-        path: 'crear-inventario',
-        component: CrearInventarioComponent
+        path: 'empresas',
+        component: EmpresasComponent
+      },
+
+      {
+        path: 'productos',
+        component: InventarioComponent
+      },
+
+      {
+        path: 'bodegas',
+        component: InventarioComponent
+      },
+
+      {
+        path: 'movimientos',
+        component: InventarioComponent
+      },
+
+      {
+        path: 'roles-usuarios',
+        component: RolesUsuariosComponent
+      },
+
+      {
+        path: 'auditorias',
+        component: AuditoriasComponent
+      },
+
+      {
+        path: 'reportes',
+        component: ReportesComponent
       }
+
     ]
+
   },
 
-  // Redirección comodín
+  /* =========================
+     CUALQUIER RUTA DESCONOCIDA
+  ========================= */
+
   {
     path: '**',
     redirectTo: 'login'
   }
+
 ];

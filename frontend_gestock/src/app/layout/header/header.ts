@@ -1,108 +1,197 @@
-<<<<<<< HEAD
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-=======
-import { Component, OnInit, OnDestroy, signal, Signal } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Input,
+  signal
+} from '@angular/core';
+
+import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
->>>>>>> origin/develop
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-header',
-  imports: [],
+
+  standalone: true,
+
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule
+  ],
+
   templateUrl: './header.html',
-  styleUrl: './header.css',
+
+  styleUrl: './header.css'
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-<<<<<<< HEAD
+export class HeaderComponent
+  implements OnInit, OnDestroy {
 
-  nombreSistema: string = 'Gestock';
-  descripcionSistema: string = 'Sistema de gestión de inventario y bodegas';
 
-  //Mientras no exista login en este proyecto, se dejan valores fijos.
-  //Cuando armes autenticación, reemplaza esto por lo que devuelva tu AuthService.
-  usuario: string = 'Administrador';
-  rol: string = 'Admin';
+  @Input()
+  title: string = 'Panel';
 
-  fechaActual = signal('');
-  horaActual = signal('');
-=======
-  constructor(private router: Router){}
 
-  nombreSistema: string= 'Sistema ADSO';
-  DescripcionSistema: string= 'Plataforma Academica';
-  Usuario: string= '';
-  rol: string= '';
-  fechaActual= signal('');
-  horaActual= signal('');
->>>>>>> origin/develop
+  nombreSistema: string =
+    'Gestock';
+
+
+  descripcionSistema: string =
+    'Sistema de gestión de inventario y bodegas';
+
+
+  usuario: string =
+    'Administrador';
+
+
+  rol: string =
+    'Administrador';
+
+
+  userName: string =
+    'Administrador';
+
+
+  userRole: string =
+    'Administrador';
+
+
+  userInitial: string =
+    'A';
+
+
+  notificationCount: number =
+    3;
+
+
+  fechaActual =
+    signal('');
+
+
+  horaActual =
+    signal('');
+
 
   private intervalo: any;
 
+
+  constructor(
+    private router: Router
+  ) {}
+
+
   ngOnInit(): void {
-<<<<<<< HEAD
-=======
-    this.Usuario=localStorage.getItem('nombre')??'';
-    this.rol=localStorage.getItem('rol')??'';
->>>>>>> origin/develop
+
+    this.usuario =
+      localStorage.getItem('nombre')
+      ?? 'Administrador';
+
+
+    this.rol =
+      localStorage.getItem('rol')
+      ?? 'Administrador';
+
+
+    this.userName =
+      this.usuario;
+
+
+    this.userRole =
+      this.rol;
+
+
+    this.userInitial =
+      this.usuario
+        .charAt(0)
+        .toUpperCase();
+
+
     this.actualizarFechaHora();
-    this.intervalo = setInterval(() => {
-      this.actualizarFechaHora();
-    }, 1000);
+
+
+    this.intervalo =
+      setInterval(() => {
+
+        this.actualizarFechaHora();
+
+      }, 1000);
   }
 
-<<<<<<< HEAD
+
   actualizarFechaHora(): void {
-    const ahora = new Date();
+
+    const ahora =
+      new Date();
+
+
     this.fechaActual.set(
-      ahora.toLocaleDateString('es-CO', {
-        weekday: 'long',
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
-      })
-    );
-    this.horaActual.set(
-      ahora.toLocaleTimeString('es-CO', { hour12: false })
-    );
-=======
-  
 
-  actualizarFechaHora(): void {
-    const ahora = new Date();
-    this.fechaActual.set (ahora.toLocaleDateString(
-      'es-CO',
-      {
-        weekday: 'long',
-        day:'2-digit',
-        month:'long',
-        year:'numeric'
-      }
-    ));
-    this.horaActual.set (ahora.toLocaleTimeString(  
-      'es-CO',
-      {
-        hour12: false
-      }
-    ));
->>>>>>> origin/develop
+      ahora.toLocaleDateString(
+        'es-CO',
+        {
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }
+      )
+
+    );
+
+
+    this.horaActual.set(
+
+      ahora.toLocaleTimeString(
+        'es-CO',
+        {
+          hour12: false
+        }
+      )
+
+    );
+
   }
+
+
+  cerrarSesion(): void {
+
+    localStorage.removeItem(
+      'usuarioLogueado'
+    );
+
+    localStorage.removeItem(
+      'nombre'
+    );
+
+    localStorage.removeItem(
+      'rol'
+    );
+
+
+    this.router.navigate([
+      '/login'
+    ]);
+
+  }
+
 
   ngOnDestroy(): void {
-    clearInterval(this.intervalo);
-  }
-<<<<<<< HEAD
 
-  cerrarSesion(): void {
-    //Sin login todavía en este proyecto; cuando lo agregues, aquí va
-    //la limpieza de sesión y el router.navigate(['/login']).
-    alert('Cerrando sesión...');
+    if (this.intervalo) {
+
+      clearInterval(
+        this.intervalo
+      );
+
+    }
+
   }
+
 }
-=======
-  cerrarSesion(): void {
-    localStorage.removeItem('usuarioLogueado');
-    this.router.navigate(['/login']);
-    alert('Sesión cerrada');
-  }
-}
->>>>>>> origin/develop

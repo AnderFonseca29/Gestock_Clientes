@@ -1,269 +1,97 @@
-<<<<<<< HEAD
-.header {
-    width: 100%;
-    min-height: 90px;
-=======
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe IU', sans-serif;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 0 28px;
+  background-color: #0b0e14;
+  border-bottom: 1px solid #1f2738;
+  color: #ffffff;
 }
 
-
-.header{
-    width: 100%;
-    min-height: 110px;
->>>>>>> origin/develop
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-<<<<<<< HEAD
-    background: linear-gradient(90deg, #0f172a, #172554);
-    color: #fff;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, .25);
+/* Título */
+.header-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
 }
 
-.system {
-=======
-    background:linear-gradient(90deg, #0f172a, #172554);
-    color: white;
-    box-shadow: 0 3px 10px rgba(0,0,0,.25);
-}
-.system{
->>>>>>> origin/develop
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-<<<<<<< HEAD
-
-.logo {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    flex-shrink: 0;
-    box-shadow: 0px 5px 15px rgba(37, 99, 235, .35);
+/* Acciones lado derecho */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.logo:hover {
-    transform: rotate(-5deg) scale(1.05);
-    transition: .3s;
+/* Botón de campana */
+.icon-btn {
+  color: #8b949e !important;
+  transition: color 0.2s ease;
 }
 
-.system-text {
-=======
-.logo{
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#3b82f6,#2563eb);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 18px;
-    letter-spacing: .5px;
-    flex-shrink: 0;
-    box-shadow: 0 5px 15px rgba(37,99,235,.35);
-}
-.system-text{
->>>>>>> origin/develop
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-<<<<<<< HEAD
-
-.system-text h1 {
-    font-size: 26px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 4px;
+.icon-btn:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-.system-text span {
-    font-size: 14px;
-    color: #94a3b8;
+/* Estilos Badge Notificación */
+::ng-deep .mat-badge-content {
+  background-color: #ff4d4f !important;
+  font-weight: 600;
+  font-size: 10px;
 }
 
-.user {
-=======
-.system-text h1{
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 4px;
-}
-.system-text span{
-    color: #cbd5e1;
-    font-size: 14px;
-}
-.user{
->>>>>>> origin/develop
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-<<<<<<< HEAD
-
-.user-data {
-=======
-.user-data{
->>>>>>> origin/develop
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-<<<<<<< HEAD
-
-.user-data h3 {
-=======
-.user-data h3{
->>>>>>> origin/develop
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 3px;
+/* Perfil de Usuario */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-<<<<<<< HEAD
-.user-data span {
-    font-size: 13px;
-    color: #94a3b8;
-    margin-bottom: 8px;
+.user-profile:hover {
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
-.user-data small {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-bottom: 2px;
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #2f80ed;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(47, 128, 237, 0.4);
 }
 
-.logout {
-=======
-.user-data span{
-    color: #cbd5e1;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-.user-data small{
-    color: #94a3b8;
-    font-size: 13px;
-    margin-bottom: 2px;
-}
-.logout{
->>>>>>> origin/develop
-    padding: 12px 24px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-<<<<<<< HEAD
-    background: #ef4444;
-    color: #fff;
-=======
-    background: #dc2626;
-    color: white;
->>>>>>> origin/develop
-    cursor: pointer;
-    transition: .3s;
-    font-size: 14px;
-    font-weight: 600;
-}
-<<<<<<< HEAD
-
-.logout:hover {
-    background: #b91c1c;
-    transform: translateY(-2px);
-    box-shadow: 0px 8px 18px rgba(220, 38, 38, .35);
+.user-info {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
-    .header {
-=======
-.logout:hover{
-    background: #b91c1c;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(220,38,38,.35);
+.user-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
 }
 
-.logo:hover{
-    transform: rotate(-5deg) scale(1.05);
-    transition: .3s;
+.user-role {
+  font-size: 0.75rem;
+  color: #8b949e;
 }
 
-@media(max-width:900px){
-    .header{
->>>>>>> origin/develop
-        flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
-    }
-<<<<<<< HEAD
-
-    .system {
-        width: 100%;
-    }
-
-    .user {
-=======
-    .system{
-        width: 100%;
-       
-    }
-    .user{
->>>>>>> origin/develop
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-<<<<<<< HEAD
-
-@media (max-width: 650px) {
-    .header {
-        padding: 20px;
-    }
-
-    .system {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .user {
-=======
-@media(max-width:650px){
-    .header{
-        padding: 20px;
-    }
-    .system{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .user{
->>>>>>> origin/develop
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-<<<<<<< HEAD
-
-    .user-data {
-        align-items: flex-start;
-    }
-
-    .logout {
-=======
-    .user-data{
-        align-items: flex-start;
-    }
-    .logout{
->>>>>>> origin/develop
-        width: 100%;
-    }
+.dropdown-icon {
+  color: #8b949e;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }

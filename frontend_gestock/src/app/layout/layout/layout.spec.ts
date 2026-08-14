@@ -1,43 +1,44 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-<<<<<<< HEAD
-import { provideRouter } from '@angular/router';
 import { LayoutComponent } from './layout';
+import { provideRouter } from '@angular/router';
 
 describe('LayoutComponent', () => {
-=======
 
-import { LayoutComponent } from './layout';
-
-describe('Layout', () => {
->>>>>>> origin/develop
   let component: LayoutComponent;
   let fixture: ComponentFixture<LayoutComponent>;
 
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
-      imports: [LayoutComponent],
-<<<<<<< HEAD
-      providers: [provideRouter([])]
-=======
->>>>>>> origin/develop
+
+      imports: [
+        LayoutComponent
+      ],
+
+      providers: [
+        provideRouter([])
+      ]
+
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LayoutComponent);
-    component = fixture.componentInstance;
-<<<<<<< HEAD
+
+    fixture =
+      TestBed.createComponent(
+        LayoutComponent
+      );
+
+    component =
+      fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
-  it('debe crearse correctamente', () => {
-    expect(component).toBeTruthy();
-  });
-});
-=======
-    await fixture.whenStable();
-  });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+
+    expect(component)
+      .toBeTruthy();
+
   });
+
 });
->>>>>>> origin/develop

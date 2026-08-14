@@ -1,0 +1,327 @@
+<div class="panel-container">
+
+  <!-- ENCABEZADO -->
+
+  <div class="page-header">
+
+    <div>
+
+      <span class="page-label">
+        GESTOCK · DASHBOARD
+      </span>
+
+      <h1>
+        Control de Inventario y Bodega
+      </h1>
+
+      <p>
+        Gestión de existencias, ubicaciones, vencimientos y registro de productos.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- KPIs -->
+
+  <div class="kpi-grid">
+
+    <div class="kpi-card">
+
+      <div class="kpi-icon blue">
+        📦
+      </div>
+
+      <div>
+
+        <span>Productos registrados</span>
+
+        <strong>
+          {{ totalProductos }}
+        </strong>
+
+        <small>
+          En el inventario
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+      <div class="kpi-icon green">
+        ✓
+      </div>
+
+      <div>
+
+        <span>Stock disponible</span>
+
+        <strong>
+          {{ stockTotal }}
+        </strong>
+
+        <small>
+          Unidades
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+      <div class="kpi-icon orange">
+        ⚠
+      </div>
+
+      <div>
+
+        <span>Stock bajo</span>
+
+        <strong>
+          {{ productosBajoStock }}
+        </strong>
+
+        <small>
+          Requieren atención
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+      <div class="kpi-icon purple">
+        ◉
+      </div>
+
+      <div>
+
+        <span>Stock óptimo</span>
+
+        <strong>
+          {{ productosOptimos }}
+        </strong>
+
+        <small>
+          Productos
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- TABS VISUALES -->
+
+  <div class="tabs">
+
+    <button class="tab active">
+      Listado de Stock
+    </button>
+
+    <button class="tab">
+      Registrar Producto
+    </button>
+
+    <button class="tab">
+      Alertas y Control
+    </button>
+
+  </div>
+
+
+  <!-- TABLA -->
+
+  <div class="inventory-card">
+
+    <div class="inventory-header">
+
+      <div>
+
+        <h2>
+          Inventario actual
+        </h2>
+
+        <p>
+          Productos registrados en las diferentes bodegas.
+        </p>
+
+      </div>
+
+      <span class="updated">
+        Actualizado ahora
+      </span>
+
+    </div>
+
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>CÓDIGO</th>
+
+            <th>PRODUCTO</th>
+
+            <th>CATEGORÍA</th>
+
+            <th>STOCK ACTUAL</th>
+
+            <th>UBICACIÓN</th>
+
+            <th>VENCIMIENTO</th>
+
+            <th>ESTADO STOCK</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (producto of productos; track producto.codigo) {
+
+            <tr>
+
+              <td>
+
+                <span class="codigo">
+                  {{ producto.codigo }}
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <strong class="producto">
+                  {{ producto.nombre }}
+                </strong>
+
+              </td>
+
+
+              <td>
+                {{ producto.categoria }}
+              </td>
+
+
+              <td>
+
+                <strong>
+                  {{ producto.stock }}
+                </strong>
+
+                <span class="unidad">
+                  unid.
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span class="ubicacion">
+                  {{ producto.ubicacion }}
+                </span>
+
+              </td>
+
+
+              <td>
+                {{ producto.vencimiento }}
+              </td>
+
+
+              <td>
+
+                <span
+                  class="estado"
+                  [class.optimo]="producto.estado === 'Óptimo'"
+                  [class.bajo]="producto.estado === 'Bajo'"
+                >
+
+                  {{ producto.estado }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- INFORMACIÓN INFERIOR -->
+
+  <div class="bottom-grid">
+
+    <div class="info-card">
+
+      <div class="info-icon">
+        📊
+      </div>
+
+      <div>
+
+        <h3>
+          Resumen del inventario
+        </h3>
+
+        <p>
+          Mantén controladas las existencias para evitar faltantes
+          y mejorar la gestión de tu bodega.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="info-card warning">
+
+      <div class="info-icon">
+        ⚠
+      </div>
+
+      <div>
+
+        <h3>
+          Atención requerida
+        </h3>
+
+        <p>
+          Tienes {{ productosBajoStock }}
+          productos con niveles de stock bajos.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
