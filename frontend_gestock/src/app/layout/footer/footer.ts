@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
-  templateUrl: './footer.html',
-  styleUrl: './footer.css',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './footer.html', // o './footer.component.html'
+  styleUrl: './footer.css'      // o './footer.component.css'
 })
 export class FooterComponent {
-  nombreSistema:string='Sistema ADSO';
-  institucion:string= 'Servicio Nacional de Aprendizaje- SENA'
-  version:string='1.0.0'
-  anio:number= new Date().getFullYear();
-  desarrollador: string='CAFEC'
+  currentYear: number = new Date().getFullYear();
 }

@@ -1,0 +1,106 @@
+<<<<<<< HEAD
+<p>layout works!</p>
+=======
+<div class="app-layout">
+  
+  <!-- 1. SIDEBAR / MENÚ LATERAL -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">G</div>
+      <div class="brand-info">
+        <span class="brand-title">Gestock</span>
+        <span class="brand-subtitle">Gestión Comercial</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <span class="section-label">MÓDULOS PRINCIPALES</span>
+        
+        <a routerLink="/gestion/inventario" routerLinkActive="active" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+          </svg>
+          <span>Inventario / Bodega</span>
+        </a>
+
+        <a routerLink="/gestion/auditorias" routerLinkActive="active" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <span>Auditorías</span>
+        </a>
+
+        <a routerLink="/gestion/roles-yusuarios" routerLinkActive="active" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <span>Roles y Usuarios</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-status">
+      <span class="status-indicator"></span>
+      <span class="status-text">Sistema en línea</span>
+    </div>
+  </aside>
+
+  <!-- SECCIÓN DERECHA: HEADER + BODY + FOOTER -->
+  <div class="layout-main-wrapper">
+    
+    <!-- 2. HEADER / ENCABEZADO SUPERIOR -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Buscar en el sistema..." />
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Notificaciones -->
+        <button type="button" class="icon-btn" title="Notificaciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+          </svg>
+          <span class="notification-badge"></span>
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Perfil Usuario -->
+        <div class="user-profile">
+          <div class="user-avatar">A</div>
+          <div class="user-info">
+            <span class="user-name">Anderson Rodelo</span>
+            <span class="user-role">Administrador</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. BODY / CONTENIDO PRINCIPAL -->
+    <main class="app-body">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- 4. FOOTER / PIE DE PÁGINA -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>© 2026 Gestock System. Todos los derechos reservados.</span>
+      </div>
+      <div class="footer-right">
+        <span class="version-tag">v1.0.0</span>
+        <a href="javascript:void(0)" class="footer-link">Soporte Técnico</a>
+      </div>
+    </footer>
+
+  </div>
+
+</div>
+>>>>>>> origin/develop

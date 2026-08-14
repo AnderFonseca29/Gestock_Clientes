@@ -1,24 +1,24 @@
-<div class="layout-container">
-    <header class="layout-header">
-        <!--Posteriormente se carga el componente headerComponents-->
-        <app-header></app-header>
-    </header>
+<mat-sidenav-container class="layout-container">
+  
+  <!-- SIDEBAR IZQUIERDO -->
+  <mat-sidenav mode="side" opened class="sidenav-wrapper">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
 
-    <main class="layout-main">
-        <aside class="layout-sidebar">
-            <!--Posteriormente se carga el componente sidebarComponents-->
-            <app-sidebar></app-sidebar>
-        </aside>
-        <!--Contenido dinamico-->
-        <section class="layout-content">
-            <!--Aqui va los componenentes de dashboard, usuarios, etc-->
-            <router-outlet></router-outlet>
-        </section>
+  <!-- CONTENIDO PRINCIPAL -->
+  <mat-sidenav-content class="main-wrapper">
+    
+    <!-- Header Superior -->
+    <app-header [title]="titleModule"></app-header>
+
+    <!-- Área de la página activa -->
+    <main class="page-content">
+      <router-outlet></router-outlet>
     </main>
-    <footer class="layout-footer">
-        <app-footer></app-footer>
-        <!--Posteriormente se carga el componente footerComponents-->
-        
 
-    </footer>
-</div>
+    <!-- Footer Inferior -->
+    <app-footer></app-footer>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
