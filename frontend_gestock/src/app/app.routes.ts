@@ -1,57 +1,32 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login/login';
-import { CreacionComponent } from './login/creacion/creacion';
-import { LayoutComponent } from './layout/layout/layout';
-import { EmpresasComponent } from './pages/empresas/empresas';
-import { PanelComponent } from './pages/panel/panel';
-import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
 
 export const routes: Routes = [
-  // Redirección inicial a /app si se entra a la raíz
   {
     path: '',
-    redirectTo: 'app',
-    pathMatch: 'full'
-  },
-
-  // Rutas públicas / Login
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'creacion-usuarios',
-    component: CreacionComponent
-  },
-
-  // Layout Contenedor con sus Vistas Hijas
-  {
-    path: 'app',
-    component: LayoutComponent,
+    loadComponent: () => import('./layout/layout').then(m => m.LayoutComponent),
     children: [
-      {
-        path: '',
-        redirectTo: 'empresas',
-        pathMatch: 'full'
+      // Redirección automática si entras a localhost:4200/
+      { 
+        path: '', 
+        redirectTo: 'gestion/auditorias', 
+        pathMatch: 'full' 
       },
       {
-        path: 'empresas',
-        component: EmpresasComponent
+        path: 'gestion/inventario',
+        loadComponent: () => import('./pages/gestion/inventario/inventario').then(m => m.InventarioComponent)
       },
       {
-        path: 'panel',
-        component: PanelComponent
+        path: 'gestion/auditorias',
+        loadComponent: () => import('./pages/gestion/auditorias/auditorias').then(m => m.AuditoriasComponent)
       },
       {
-        path: 'crear-inventario',
-        component: CrearInventarioComponent
+        path: 'gestion/roles-yusuarios',
+        loadComponent: () => import('./pages/gestion/roles-yusuarios/roles-yusuarios').then(m => m.UsuariosComponent)
       }
     ]
   },
-
-  // Redirección comodín
-  {
-    path: '**',
-    redirectTo: 'login'
+  { 
+    path: '**', 
+    redirectTo: ''  
   }
 ];
