@@ -15,16 +15,19 @@ import {
 
 @Component({
   selector: 'app-reportes',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './reportes.html',
-  styleUrl: './reportes.css',
+  styleUrl: './reportes.css'
 })
 export class ReportesComponent implements OnInit {
 
   constructor(
     private reportesService: ReportesService
   ) {}
-
 
   // =========================================================
   // BODEGAS
@@ -34,11 +37,24 @@ export class ReportesComponent implements OnInit {
 
   bodegaSeleccionada: string = 'todas';
 
-  // Bodega cuyo detalle se está mostrando
+  // Bodega cuyo detalle está abierto
   bodegaSeleccionadaDetalle: Bodega | null = null;
 
   // Controla si el detalle está abierto
   mostrarDetalleBodega: boolean = false;
+
+
+  // =========================================================
+  // DATOS ESPECÍFICOS DE LA BODEGA ABIERTA
+  // =========================================================
+
+  metricasBodega: MetricasInventario = {
+    valorTotal: 0,
+    costeTotal: 0,
+    margenGanancia: 0
+  };
+
+  categoriasBodega: CategoriaInventario[] = [];
 
 
   // =========================================================
@@ -49,7 +65,7 @@ export class ReportesComponent implements OnInit {
 
 
   // =========================================================
-  // MÉTRICAS
+  // MÉTRICAS GENERALES
   // =========================================================
 
   metricas: MetricasInventario = {
@@ -60,22 +76,20 @@ export class ReportesComponent implements OnInit {
 
 
   // =========================================================
-  // CATEGORÍAS
+  // CATEGORÍAS GENERALES
   // =========================================================
 
   categorias: CategoriaInventario[] = [];
 
 
-  // Índice de la categoría con el detalle abierto
-  // HU053
+  // Índice de categoría abierta
   categoriaSeleccionada: number | null = null;
 
 
   // =========================================================
-  // MODAL DE EXPORTACIÓN
+  // MODAL EXPORTACIÓN
   // =========================================================
 
-  // HU045 / HU050 / HU051
   mostrarModalExportar: boolean = false;
 
   mensajeExportacion: string = '';
@@ -87,7 +101,8 @@ export class ReportesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.bodegas = this.reportesService.obtenerBodegas();
+    this.bodegas =
+      this.reportesService.obtenerBodegas();
 
     this.cargarDatos();
 
@@ -95,7 +110,7 @@ export class ReportesComponent implements OnInit {
 
 
   // =========================================================
-  // CARGAR DATOS
+  // CARGAR DATOS GENERALES
   // =========================================================
 
   cargarDatos(): void {
@@ -117,7 +132,6 @@ export class ReportesComponent implements OnInit {
 
   // =========================================================
   // CAMBIAR BODEGA
-  // HU054
   // =========================================================
 
   cambiarBodega(bodegaId: string): void {
@@ -137,13 +151,21 @@ export class ReportesComponent implements OnInit {
 
     this.vistaActiva = vista;
 
-    // Cuando entramos a "Por bodega"
-    // cerramos cualquier detalle anterior
+    // Si entramos nuevamente a "Por bodega",
+    // cerramos el detalle anterior.
     if (vista === 'bodega') {
 
       this.mostrarDetalleBodega = false;
 
       this.bodegaSeleccionadaDetalle = null;
+
+      this.metricasBodega = {
+        valorTotal: 0,
+        costeTotal: 0,
+        margenGanancia: 0
+      };
+
+      this.categoriasBodega = [];
 
     }
 
@@ -151,17 +173,35 @@ export class ReportesComponent implements OnInit {
 
 
   // =========================================================
-  // DETALLE DE BODEGA
+  // ABRIR DETALLE DE BODEGA
   // =========================================================
 
   abrirDetalleBodega(bodega: Bodega): void {
 
+    // Guardamos la bodega seleccionada
     this.bodegaSeleccionadaDetalle = bodega;
 
+    // Cargamos las métricas SOLO de esa bodega
+    this.metricasBodega =
+      this.reportesService.obtenerMetricas(
+        bodega.id
+      );
+
+    // Cargamos las categorías SOLO de esa bodega
+    this.categoriasBodega =
+      this.reportesService.obtenerCategorias(
+        bodega.id
+      );
+
+    // Abrimos el detalle
     this.mostrarDetalleBodega = true;
 
   }
 
+
+  // =========================================================
+  // CERRAR DETALLE DE BODEGA
+  // =========================================================
 
   cerrarDetalleBodega(): void {
 
@@ -169,12 +209,19 @@ export class ReportesComponent implements OnInit {
 
     this.bodegaSeleccionadaDetalle = null;
 
+    this.metricasBodega = {
+      valorTotal: 0,
+      costeTotal: 0,
+      margenGanancia: 0
+    };
+
+    this.categoriasBodega = [];
+
   }
 
 
   // =========================================================
   // DETALLE DE CATEGORÍA
-  // HU053
   // =========================================================
 
   verDetalleCategoria(indice: number): void {
@@ -209,7 +256,7 @@ export class ReportesComponent implements OnInit {
 
 
   // =========================================================
-  // MODAL DE EXPORTACIÓN
+  // MODAL EXPORTAR
   // =========================================================
 
   abrirModalExportar(): void {
@@ -232,17 +279,17 @@ export class ReportesComponent implements OnInit {
 
   // =========================================================
   // EXPORTAR
-  // HU045 / HU050 / HU051 / HU052
   // =========================================================
 
-  exportar(formato: FormatoExportacion): void {
+  exportar(
+    formato: FormatoExportacion
+  ): void {
 
     const exportacionValida =
       this.reportesService.exportarReporte(
         this.bodegaSeleccionada,
         formato
       );
-
 
     if (!exportacionValida) {
 
@@ -252,7 +299,6 @@ export class ReportesComponent implements OnInit {
       return;
 
     }
-
 
     this.mostrarModalExportar = false;
 

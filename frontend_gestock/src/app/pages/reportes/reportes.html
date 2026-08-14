@@ -8,8 +8,12 @@
 
         <div>
             <h1>Reporte y análisis</h1>
-            <p>Visualiza el estado de tu inventario</p>
+
+            <p>
+                Visualiza el estado de tu inventario
+            </p>
         </div>
+
 
         <button
             type="button"
@@ -23,11 +27,14 @@
     </div>
 
 
+
     <!-- ===================================================== -->
-    <!-- MÉTRICAS -->
+    <!-- MÉTRICAS GENERALES -->
     <!-- ===================================================== -->
 
     <div class="metricas">
+
+        <!-- VALOR TOTAL -->
 
         <div class="metrica-card">
 
@@ -42,6 +49,8 @@
         </div>
 
 
+        <!-- COSTE TOTAL -->
+
         <div class="metrica-card">
 
             <span class="metrica-label">
@@ -54,6 +63,8 @@
 
         </div>
 
+
+        <!-- MARGEN -->
 
         <div class="metrica-card">
 
@@ -70,8 +81,9 @@
     </div>
 
 
+
     <!-- ===================================================== -->
-    <!-- FILTROS / PESTAÑAS -->
+    <!-- FILTROS / 3 OPCIONES -->
     <!-- ===================================================== -->
 
     <div class="filtros">
@@ -126,10 +138,15 @@
                 Todas las bodegas
             </option>
 
-            @for (bodega of bodegas; track bodega.id) {
+            @for (
+                bodega of bodegas;
+                track bodega.id
+            ) {
 
                 <option [value]="bodega.id">
+
                     {{ bodega.nombre }}
+
                 </option>
 
             }
@@ -158,6 +175,8 @@
                 track categoria.nombre;
                 let i = $index
             ) {
+
+                <!-- FILA DE CATEGORÍA -->
 
                 <div
                     class="categoria-fila"
@@ -251,6 +270,7 @@
                 Movimientos del inventario
             </h2>
 
+
             <p class="texto-vacio">
 
                 Aquí se mostrarán los movimientos
@@ -272,6 +292,9 @@
 
         <div class="panel-bodegas">
 
+
+            <!-- ENCABEZADO DE BODEGAS -->
+
             <div class="panel-bodegas-header">
 
                 <div>
@@ -290,8 +313,9 @@
             </div>
 
 
+
             <!-- ================================================= -->
-            <!-- TARJETAS DE BODEGAS -->
+            <!-- LISTADO DE BODEGAS -->
             <!-- ================================================= -->
 
             <div class="bodegas-grid">
@@ -305,6 +329,7 @@
                         class="bodega-card"
                         (click)="abrirDetalleBodega(bodega)">
 
+
                         <!-- ICONO -->
 
                         <div class="bodega-icono">
@@ -314,38 +339,63 @@
                         </div>
 
 
+
                         <!-- INFORMACIÓN -->
 
                         <div class="bodega-contenido">
 
+
+                            <!-- NOMBRE Y ESTADO -->
+
                             <div class="bodega-titulo">
 
                                 <h3>
+
                                     {{ bodega.nombre }}
+
                                 </h3>
 
+
                                 <span class="bodega-estado">
+
                                     Activa
+
                                 </span>
 
                             </div>
 
 
+
+                            <!-- VALOR -->
+
                             <div class="bodega-valor">
+
+                                <!--
+                                    Al mostrar las tarjetas usamos
+                                    las métricas generales.
+                                -->
 
                                 ${{ metricas.valorTotal | number }}
 
                             </div>
 
 
+
+                            <!-- BOTÓN VISUAL -->
+
                             <div class="bodega-footer">
 
                                 <span>
+
                                     Ver detalles
+
                                 </span>
 
+
                                 <span class="bodega-flecha">
+
                                     →
+
                                 </span>
 
                             </div>
@@ -365,7 +415,7 @@
 
 
     <!-- ===================================================== -->
-    <!-- DETALLE DE LA BODEGA -->
+    <!-- DETALLE AMPLIADO DE LA BODEGA -->
     <!-- ===================================================== -->
 
     @if (
@@ -373,34 +423,62 @@
         bodegaSeleccionadaDetalle
     ) {
 
-        <div class="detalle-bodega-overlay">
 
-            <div class="detalle-bodega">
+        <!-- FONDO OSCURO -->
 
+        <div
+            class="detalle-bodega-overlay"
+            (click)="cerrarDetalleBodega()">
+
+
+            <!-- ================================================= -->
+            <!-- PANEL PRINCIPAL -->
+            <!-- ================================================= -->
+
+            <div
+                class="detalle-bodega"
+                (click)="$event.stopPropagation()">
+
+
+                <!-- ================================================= -->
                 <!-- CABECERA -->
+                <!-- ================================================= -->
 
                 <div class="detalle-bodega-header">
 
-                    <div>
+
+                    <div class="detalle-titulo">
+
 
                         <span class="detalle-bodega-icono">
+
                             🏢
+
                         </span>
+
 
                         <div>
 
                             <h2>
+
                                 {{ bodegaSeleccionadaDetalle.nombre }}
+
                             </h2>
 
+
                             <p>
+
                                 Información detallada de la bodega
+
                             </p>
 
                         </div>
 
                     </div>
 
+
+
+                    <!-- CERRAR -->
 
                     <button
                         type="button"
@@ -416,58 +494,90 @@
 
 
                 <!-- ================================================= -->
-                <!-- INFORMACIÓN -->
+                <!-- INFORMACIÓN PRINCIPAL -->
                 <!-- ================================================= -->
 
                 <div class="detalle-bodega-contenido">
 
+
+                    <!-- NOMBRE -->
+
                     <div class="detalle-card">
 
                         <span class="detalle-label">
+
                             Nombre de la bodega
+
                         </span>
 
+
                         <strong>
+
                             {{ bodegaSeleccionadaDetalle.nombre }}
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- ID -->
+
                     <div class="detalle-card">
 
                         <span class="detalle-label">
+
                             ID de la bodega
+
                         </span>
+
 
                         <strong>
+
                             {{ bodegaSeleccionadaDetalle.id }}
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- ESTADO -->
+
                     <div class="detalle-card">
 
                         <span class="detalle-label">
+
                             Estado
+
                         </span>
+
 
                         <strong class="estado-activo">
+
                             Activa
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- VALOR -->
+
                     <div class="detalle-card">
 
                         <span class="detalle-label">
+
                             Valor del inventario
+
                         </span>
 
+
                         <strong>
-                            ${{ metricas.valorTotal | number }}
+
+                            ${{ metricasBodega.valorTotal | number }}
+
                         </strong>
 
                     </div>
@@ -483,59 +593,93 @@
                 <div class="detalle-resumen">
 
                     <h3>
+
                         Resumen de la bodega
+
                     </h3>
 
 
                     <div class="resumen-grid">
 
+
+                        <!-- PRODUCTOS -->
+
                         <div class="resumen-item">
 
                             <span>
+
                                 Productos
+
                             </span>
 
+
                             <strong>
-                                {{ categorias.length }}
+
+                                {{ categoriasBodega.length }}
+
                             </strong>
 
                         </div>
 
 
+
+                        <!-- VALOR -->
+
                         <div class="resumen-item">
 
                             <span>
+
                                 Valor total
+
                             </span>
 
+
                             <strong>
-                                ${{ metricas.valorTotal | number }}
+
+                                ${{ metricasBodega.valorTotal | number }}
+
                             </strong>
 
                         </div>
 
 
+
+                        <!-- COSTE -->
+
                         <div class="resumen-item">
 
                             <span>
+
                                 Coste total
+
                             </span>
 
+
                             <strong>
-                                ${{ metricas.costeTotal | number }}
+
+                                ${{ metricasBodega.costeTotal | number }}
+
                             </strong>
 
                         </div>
 
 
+
+                        <!-- MARGEN -->
+
                         <div class="resumen-item">
 
                             <span>
+
                                 Margen
+
                             </span>
 
+
                             <strong>
-                                ${{ metricas.margenGanancia | number }}
+
+                                ${{ metricasBodega.margenGanancia | number }}
+
                             </strong>
 
                         </div>
@@ -547,57 +691,104 @@
 
 
                 <!-- ================================================= -->
-                <!-- CATEGORÍAS DE LA BODEGA -->
+                <!-- CATEGORÍAS DE ESTA BODEGA -->
                 <!-- ================================================= -->
 
                 <div class="detalle-categorias">
 
-                    <h3>
-                        Categorías
-                    </h3>
+
+                    <div class="detalle-categorias-header">
+
+                        <div>
+
+                            <h3>
+
+                                Categorías
+
+                            </h3>
 
 
-                    @if (categorias.length > 0) {
+                            <p>
 
-                        @for (
-                            categoria of categorias;
-                            track categoria.nombre
-                        ) {
+                                Productos almacenados
+                                en esta bodega
 
-                            <div class="detalle-categoria-fila">
+                            </p>
 
-                                <span
-                                    class="categoria-punto"
-                                    [style.background]="categoria.color">
-                                </span>
+                        </div>
+
+                    </div>
 
 
-                                <span class="detalle-categoria-nombre">
 
-                                    {{ categoria.nombre }}
-
-                                </span>
+                    @if (categoriasBodega.length > 0) {
 
 
-                                <span>
+                        <!-- LISTADO -->
 
-                                    {{ categoria.productos }}
-                                    productos
+                        <div class="detalle-categorias-lista">
 
-                                </span>
+                            @for (
+                                categoria of categoriasBodega;
+                                track categoria.nombre
+                            ) {
 
 
-                                <strong>
+                                <div
+                                    class="detalle-categoria-fila">
 
-                                    ${{ categoria.valor | number }}
 
-                                </strong>
+                                    <!-- COLOR -->
 
-                            </div>
+                                    <span
+                                        class="categoria-punto"
+                                        [style.background]="categoria.color">
+                                    </span>
 
-                        }
+
+
+                                    <!-- NOMBRE -->
+
+                                    <span class="detalle-categoria-nombre">
+
+                                        {{ categoria.nombre }}
+
+                                    </span>
+
+
+
+                                    <!-- PRODUCTOS -->
+
+                                    <span>
+
+                                        {{ categoria.productos }}
+
+                                        productos
+
+                                    </span>
+
+
+
+                                    <!-- VALOR -->
+
+                                    <strong>
+
+                                        ${{ categoria.valor | number }}
+
+                                    </strong>
+
+
+                                </div>
+
+                            }
+
+                        </div>
+
 
                     } @else {
+
+
+                        <!-- SIN DATOS -->
 
                         <p class="detalle-sin-datos">
 
@@ -613,10 +804,11 @@
 
 
                 <!-- ================================================= -->
-                <!-- BOTÓN CERRAR -->
+                <!-- PIE DEL DETALLE -->
                 <!-- ================================================= -->
 
                 <div class="detalle-bodega-footer">
+
 
                     <button
                         type="button"
@@ -628,6 +820,7 @@
                     </button>
 
                 </div>
+
 
             </div>
 
@@ -643,21 +836,34 @@
 
     @if (mostrarModalExportar) {
 
-        <div class="modal-overlay">
 
-            <div class="modal-exportar">
+        <div
+            class="modal-overlay"
+            (click)="cerrarModalExportar()">
+
+
+            <div
+                class="modal-exportar"
+                (click)="$event.stopPropagation()">
+
 
                 <h3>
+
                     Exportar reporte
+
                 </h3>
 
 
                 <p>
+
                     Elige el formato de salida
+
                 </p>
 
 
+
                 <div class="formatos">
+
 
                     <button
                         type="button"
@@ -679,6 +885,7 @@
                 </div>
 
 
+
                 @if (mensajeExportacion) {
 
                     <p class="mensaje-error">
@@ -690,6 +897,7 @@
                 }
 
 
+
                 <button
                     type="button"
                     class="btn-cancelar"
@@ -699,13 +907,11 @@
 
                 </button>
 
+
             </div>
 
         </div>
 
     }
-
-    [class.detalle-abierto]="bodegaSeleccionada === bodega"
-    (click)="bodegaSeleccionada = bodegaSeleccionada === bodega ? null : bodega"
 
 </div>

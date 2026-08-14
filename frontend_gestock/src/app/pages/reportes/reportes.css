@@ -1,2888 +1,1022 @@
 /* =========================================================
-   RESET
-========================================================= */
+   REPORTES - GESTOCK
+   Diseño general
+   ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box;
+}
 
 /* =========================================================
    CONTENEDOR PRINCIPAL
-========================================================= */
+   ========================================================= */
 
 .reportes-container {
-
-    min-height: 100%;
-
-    background:
-        radial-gradient(
-            circle at 85% 10%,
-            rgba(37, 99, 235, .15),
-            transparent 30%
-        ),
-        linear-gradient(
-            180deg,
-            #0b1220,
-            #101c35
-        );
-
-    border-radius: 16px;
-
-    padding: 30px;
-
-    color: #fff;
-
-    overflow: hidden;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding: 32px 42px 50px;
+  background: #0b1220;
+  color: #e8eef8;
 }
-
 
 /* =========================================================
-   HEADER
-========================================================= */
+   ENCABEZADO
+   ========================================================= */
 
 .reportes-header {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 26px;
 
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    margin-bottom: 24px;
-
-    animation: aparecerHeader .5s ease;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
 }
 
-@keyframes aparecerHeader {
-
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+.reportes-titulo h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
 }
 
-.reportes-header h1 {
-
-    font-size: 24px;
-
-    font-weight: 600;
-
-    letter-spacing: .3px;
+.reportes-titulo p {
+  margin: 7px 0 0;
+  color: #8ea4c4;
+  font-size: 14px;
 }
-
-.reportes-header p {
-
-    font-size: 13px;
-
-    color: #94a3b8;
-
-    margin-top: 5px;
-}
-
 
 /* =========================================================
    BOTÓN EXPORTAR
-========================================================= */
+   ========================================================= */
 
 .btn-exportar {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
 
-    display: flex;
+  background: #159fe0;
+  color: #ffffff;
 
-    align-items: center;
+  font-size: 13px;
+  font-weight: 700;
 
-    gap: 7px;
+  cursor: pointer;
 
-    background: #149ddd;
-
-    color: #fff;
-
-    border: none;
-
-    border-radius: 8px;
-
-    padding: 10px 18px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        transform .25s ease,
-        background .25s ease,
-        box-shadow .25s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn-exportar:hover {
-
-    background: #20b5f4;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 20px rgba(20, 157, 221, .3);
+  background: #0b8dcc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(21, 159, 224, 0.25);
 }
 
 .btn-exportar:active {
-
-    transform: scale(.96);
+  transform: translateY(0);
 }
-
-.icono-exportar {
-
-    font-size: 17px;
-}
-
 
 /* =========================================================
    MÉTRICAS
-========================================================= */
+   ========================================================= */
 
 .metricas {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 22px;
 
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 16px;
-
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .metrica-card {
+  position: relative;
+  overflow: hidden;
 
-    position: relative;
+  min-height: 105px;
+  padding: 22px;
 
-    overflow: hidden;
+  border-radius: 13px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #dbeafe,
-            #c6e1f8
-        );
+  background: linear-gradient(
+    135deg,
+    #d8eaff 0%,
+    #c4ddf5 100%
+  );
 
-    border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 
-    padding: 18px;
+  color: #0c2345;
 
-    display: flex;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
 
-    flex-direction: column;
-
-    gap: 7px;
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease;
-}
-
-.metrica-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, .25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .metrica-card::after {
+  content: "";
+  position: absolute;
 
-    content: "";
+  width: 100px;
+  height: 100px;
 
-    position: absolute;
+  right: -25px;
+  top: -40px;
 
-    width: 100px;
+  border-radius: 50%;
 
-    height: 100px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, .2);
-
-    right: -35px;
-
-    top: -40px;
-
-    transition: transform .5s ease;
+  background: rgba(255, 255, 255, 0.18);
 }
 
-.metrica-card:hover::after {
+.metrica-card:hover {
+  transform: translateY(-3px);
 
-    transform: scale(1.4);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
 .metrica-label {
+  position: relative;
+  z-index: 1;
 
-    font-size: 12px;
+  display: block;
 
-    color: #1e3a8a;
+  margin-bottom: 8px;
 
-    position: relative;
-
-    z-index: 2;
+  font-size: 13px;
+  color: #234d80;
 }
 
 .metrica-valor {
+  position: relative;
+  z-index: 1;
 
-    font-size: 23px;
-
-    font-weight: 700;
-
-    color: #0f172a;
-
-    position: relative;
-
-    z-index: 2;
+  font-size: 25px;
+  font-weight: 800;
+  color: #071a35;
 }
-
-.metrica-decoracion {
-
-    position: absolute;
-
-    right: 20px;
-
-    bottom: 12px;
-
-    font-size: 40px;
-
-    color: #56c92f;
-
-    opacity: .8;
-
-    z-index: 2;
-}
-
 
 /* =========================================================
-   FILTROS
-========================================================= */
+   BARRA DE OPCIONES
+   ========================================================= */
 
-.filtros {
+.reportes-controles {
+  width: 100%;
+  max-width: 1400px;
 
-    display: flex;
+  margin: 0 auto 20px;
 
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    gap: 8px;
-
-    margin-bottom: 20px;
-
-    flex-wrap: wrap;
+  gap: 20px;
 }
-
-.tab {
-
-    background: rgba(255, 255, 255, .04);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, .16);
-
-    color: #cbd5e1;
-
-    border-radius: 5px;
-
-    padding: 8px 17px;
-
-    font-size: 13px;
-
-    font-weight: 500;
-
-    cursor: pointer;
-
-    transition:
-        background .25s ease,
-        color .25s ease,
-        transform .25s ease,
-        border .25s ease;
-}
-
-.tab:hover {
-
-    background: rgba(37, 99, 235, .2);
-
-    transform: translateY(-2px);
-
-    border-color: rgba(37, 99, 235, .6);
-}
-
-.tab:active {
-
-    transform: scale(.95);
-}
-
-.tab-activo {
-
-    background: #179ddd;
-
-    border-color: #179ddd;
-
-    color: #fff;
-
-    box-shadow:
-        0 5px 15px rgba(23, 157, 221, .2);
-}
-
 
 /* =========================================================
-   SELECT BODEGA
-========================================================= */
+   TABS
+   ========================================================= */
 
-.select-bodega {
-
-    margin-left: auto;
-
-    background: #1e293b;
-
-    color: #fff;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, .2);
-
-    border-radius: 7px;
-
-    padding: 8px 12px;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    outline: none;
-
-    transition:
-        border .25s ease,
-        box-shadow .25s ease;
+.tabs-reportes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.select-bodega:hover {
+.tab-reporte {
+  min-width: 105px;
 
-    border-color: #149ddd;
+  padding: 10px 18px;
+
+  border-radius: 7px;
+  border: 1px solid #34435c;
+
+  background: #121c2d;
+  color: #b9c7da;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.select-bodega:focus {
-
-    border-color: #149ddd;
-
-    box-shadow:
-        0 0 0 3px rgba(20, 157, 221, .12);
+.tab-reporte:hover {
+  color: #ffffff;
+  border-color: #159fe0;
+  background: #172840;
 }
 
+.tab-reporte.activo {
+  background: #159fe0;
+  color: #ffffff;
+
+  border-color: #159fe0;
+
+  box-shadow:
+    0 5px 15px rgba(21, 159, 224, 0.25);
+}
 
 /* =========================================================
-   ANIMACIÓN DE VISTAS
-========================================================= */
+   SELECTOR DE BODEGA
+   ========================================================= */
 
-.animacion-vista {
+.selector-bodega {
+  min-width: 175px;
 
-    animation:
-        aparecerVista .45s ease forwards;
+  padding: 10px 14px;
+
+  border-radius: 8px;
+
+  border: 1px solid #3a4960;
+
+  background: #121c2d;
+  color: #d9e5f4;
+
+  outline: none;
+
+  cursor: pointer;
+
+  font-size: 13px;
 }
 
-@keyframes aparecerVista {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(18px)
-            scale(.99);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
+.selector-bodega:focus {
+  border-color: #159fe0;
 }
-
 
 /* =========================================================
-   PANEL CATEGORÍAS
-========================================================= */
+   CONTENIDO
+   ========================================================= */
 
-.panel-categorias {
-
-    background:
-        linear-gradient(
-            135deg,
-            #dbeafe,
-            #c6e1f8
-        );
-
-    border-radius: 16px;
-
-    padding: 20px 22px;
-
-    color: #0f172a;
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, .2);
+.reporte-contenido {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
-
-.panel-titulo {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 12px;
-}
-
-.panel-categorias h2 {
-
-    font-size: 17px;
-
-    color: #0f172a;
-}
-
-.panel-titulo p {
-
-    font-size: 11px;
-
-    color: #64748b;
-
-    margin-top: 3px;
-}
-
-.titulo-icono {
-
-    font-size: 25px;
-
-    color: #2563eb;
-}
-
 
 /* =========================================================
-   CATEGORÍAS
-========================================================= */
+   SECCIÓN GENERAL
+   ========================================================= */
 
-.categoria-fila {
+.seccion-reporte {
+  width: 100%;
 
-    display: flex;
+  padding: 22px;
 
-    align-items: center;
+  border-radius: 14px;
 
-    gap: 12px;
+  background: #111b2b;
 
-    padding: 13px 8px;
+  border: 1px solid #25344c;
 
-    border-bottom:
-        1px solid
-        rgba(15, 23, 42, .08);
-
-    cursor: pointer;
-
-    transition:
-        background .25s ease,
-        transform .25s ease,
-        padding .25s ease;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.16);
 }
 
-.categoria-fila:hover {
+.seccion-reporte h2 {
+  margin: 0 0 6px;
 
-    background: rgba(37, 99, 235, .08);
+  color: #ffffff;
 
-    transform: translateX(5px);
-
-    padding-left: 14px;
+  font-size: 18px;
+  font-weight: 800;
 }
 
-.categoria-fila:last-child {
+.seccion-reporte > p {
+  margin: 0 0 20px;
 
-    border-bottom: none;
+  color: #8fa4c0;
+
+  font-size: 13px;
 }
 
-.categoria-punto {
+/* =========================================================
+   INVENTARIO - CATEGORÍAS
+   ========================================================= */
 
-    width: 10px;
+.categorias-lista {
+  width: 100%;
 
-    height: 10px;
+  background: #cfe3f7;
 
-    border-radius: 50%;
+  border-radius: 13px;
 
-    flex-shrink: 0;
+  overflow: hidden;
+}
 
-    box-shadow:
-        0 0 8px rgba(0, 0, 0, .15);
+.categoria-item {
+  position: relative;
+
+  padding: 15px 18px;
+
+  border-bottom: 1px solid rgba(20, 60, 100, 0.12);
+
+  color: #12345a;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    padding 0.3s ease;
+}
+
+.categoria-item:last-child {
+  border-bottom: none;
+}
+
+.categoria-item:hover {
+  background: #d9ebfa;
+}
+
+.categoria-principal {
+  display: grid;
+
+  grid-template-columns: 18px 1fr auto auto;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.categoria-indicador {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #dcecfb;
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
 .categoria-nombre {
-
-    font-size: 14px;
-
-    color: #0f172a;
-
-    flex: 1;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.categoria-info {
-
-    font-size: 12px;
-
-    color: #475569;
+.categoria-productos {
+  font-size: 12px;
+  color: #496783;
 }
 
 .categoria-porcentaje {
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    color: #0f172a;
-
-    width: 50px;
-
-    text-align: right;
+  font-weight: 800;
+  font-size: 12px;
 }
 
-.categoria-flecha {
-
-    color: #2563eb;
-
-    font-size: 17px;
-
-    opacity: 0;
-
-    transform: translateX(-5px);
-
-    transition:
-        opacity .25s ease,
-        transform .25s ease;
-}
-
-.categoria-fila:hover .categoria-flecha {
-
-    opacity: 1;
-
-    transform: translateX(0);
-}
+/* =========================================================
+   DETALLE DE CATEGORÍA
+   ========================================================= */
 
 .categoria-detalle {
+  margin-top: 14px;
 
-    font-size: 12px;
+  padding: 16px;
 
-    color: #475569;
+  border-radius: 9px;
 
-    padding:
-        8px
-        0
-        12px
-        22px;
+  background: rgba(255, 255, 255, 0.55);
 
-    animation:
-        aparecerDetalle .3s ease;
+  animation: aparecerDetalle 0.25s ease;
 }
 
 @keyframes aparecerDetalle {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 
-    from {
-
-        opacity: 0;
-
-        transform: translateY(-5px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-    }
-
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.categoria-detalle strong {
+/* =========================================================
+   POR BODEGA
+   ========================================================= */
 
-    color: #0f172a;
+.bodegas-contenedor {
+  width: 100%;
 }
 
+.bodegas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+   TARJETA DE BODEGA
+   ========================================================= */
+
+.bodega-card {
+  width: 100%;
+
+  padding: 18px 20px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #d8eaff,
+    #c3dbf2
+  );
+
+  border: 1px solid #b5cce5;
+
+  color: #102d50;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.bodega-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+
+  background: linear-gradient(
+    135deg,
+    #e0efff,
+    #cce3f7
+  );
+}
+
+.bodega-resumen {
+  display: grid;
+
+  grid-template-columns: 55px 1fr auto auto;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+.bodega-icono {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #159fe0;
+
+  color: white;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 5px 12px rgba(21, 159, 224, 0.3);
+}
+
+.bodega-info h3 {
+  margin: 0 0 5px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  color: #102d50;
+}
+
+.bodega-info p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #53708e;
+}
+
+.bodega-estado {
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  background: #d9f8e6;
+
+  color: #167442;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.bodega-valor {
+  font-size: 14px;
+  font-weight: 800;
+
+  color: #102d50;
+}
+
+/* =========================================================
+   DETALLE DE BODEGA
+   ESTA ES LA PARTE QUE SE EXPANDE
+   ========================================================= */
+
+.bodega-detalle {
+  margin-top: 14px;
+
+  padding: 24px;
+
+  border-radius: 14px;
+
+  background: #f5f8fc;
+
+  color: #142a43;
+
+  border: 1px solid #d7e1ec;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.2);
+
+  animation: abrirBodega 0.35s ease;
+}
+
+@keyframes abrirBodega {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   CABECERA DETALLE
+   ========================================================= */
+
+.detalle-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 20px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #d9e2ec;
+}
+
+.detalle-header h3 {
+  margin: 0;
+
+  font-size: 20px;
+  color: #102d50;
+}
+
+.detalle-header p {
+  margin: 4px 0 0;
+
+  color: #6d8198;
+
+  font-size: 12px;
+}
+
+.btn-cerrar-detalle {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e8eef5;
+
+  color: #344a63;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-cerrar-detalle:hover {
+  background: #e04b5b;
+  color: white;
+}
+
+/* =========================================================
+   INFORMACIÓN DE BODEGA
+   ========================================================= */
+
+.detalle-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1.7fr;
+
+  gap: 22px;
+}
+
+/* =========================================================
+   BLOQUE DE INFORMACIÓN
+   ========================================================= */
+
+.detalle-info {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.info-card {
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background: #edf3f9;
+
+  border: 1px solid #d8e3ee;
+}
+
+.info-card span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #71869d;
+
+  font-size: 11px;
+}
+
+.info-card strong {
+  display: block;
+
+  color: #122f50;
+
+  font-size: 15px;
+}
+
+/* =========================================================
+   PRODUCTOS DE LA BODEGA
+   ========================================================= */
+
+.productos-bodega {
+  padding: 18px;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9e3ed;
+}
+
+.productos-bodega h4 {
+  margin: 0 0 14px;
+
+  font-size: 14px;
+
+  color: #163555;
+}
+
+.productos-lista {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.producto-bodega {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+
+  border-radius: 7px;
+
+  background: #f1f5f9;
+}
+
+.producto-bodega span {
+  font-size: 12px;
+  color: #50657a;
+}
+
+.producto-bodega strong {
+  font-size: 12px;
+  color: #142f4d;
+}
 
 /* =========================================================
    MOVIMIENTOS
-========================================================= */
+   ========================================================= */
 
-.movimientos-vista {
-
-    width: 100%;
-}
-
-
-/* =========================================================
-   TARJETAS ENTRADAS / SALIDAS
-========================================================= */
-
-.movimientos-resumen {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 28px;
-
-    margin-bottom: 22px;
-}
-
-.movimiento-card {
-
-    position: relative;
-
-    overflow: hidden;
-
-    min-height: 105px;
-
-    padding: 17px 24px;
-
-    border-radius: 4px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease;
-}
-
-.movimiento-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, .3);
-}
-
-.movimiento-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 150px;
-
-    height: 150px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, .14);
-
-    right: -60px;
-
-    top: -80px;
-
-    transition: transform .5s ease;
-}
-
-.movimiento-card:hover::before {
-
-    transform: scale(1.3);
-}
-
-.movimiento-card.entradas {
-
-    background:
-        linear-gradient(
-            135deg,
-            #d2e9fa,
-            #b9dbf5
-        );
-}
-
-.movimiento-card.salidas {
-
-    background:
-        linear-gradient(
-            135deg,
-            #d2e9fa,
-            #b9dbf5
-        );
-}
-
-.movimiento-info {
-
-    position: relative;
-
-    z-index: 2;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 2px;
-}
-
-.movimiento-info span {
-
-    font-size: 12px;
-
-    color: #162235;
-}
-
-.movimiento-info strong {
-
-    font-size: 32px;
-
-    line-height: 1.1;
-}
-
-.entradas .movimiento-info strong {
-
-    color: #56c92f;
-}
-
-.salidas .movimiento-info strong {
-
-    color: #ff2638;
-}
-
-.movimiento-info small {
-
-    color: #263342;
-
-    font-size: 9px;
-}
-
-.movimiento-icono {
-
-    position: relative;
-
-    z-index: 2;
-
-    font-size: 48px;
-
-    font-weight: 700;
-
-    transition:
-        transform .4s ease;
-}
-
-.entradas .movimiento-icono {
-
-    color: #65ca24;
-}
-
-.salidas .movimiento-icono {
-
-    color: #ff1e38;
-}
-
-.movimiento-card:hover .movimiento-icono {
-
-    transform:
-        scale(1.15)
-        rotate(-5deg);
-}
-
-
-/* =========================================================
-   HEADER MOVIMIENTOS
-========================================================= */
-
-.movimientos-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin: 25px 5px 14px;
-}
-
-.movimientos-header h2 {
-
-    color: #fff;
-
-    font-size: 20px;
-
-    font-weight: 600;
-}
-
-.movimientos-header p {
-
-    color: #94a3b8;
-
-    font-size: 11px;
-
-    margin-top: 4px;
-}
-
-
-/* =========================================================
-   BOTÓN EXPORTAR MOVIMIENTOS
-========================================================= */
-
-.btn-exportar-movimientos {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    border: none;
-
-    border-radius: 4px;
-
-    padding: 9px 14px;
-
-    background: #159fdc;
-
-    color: #071522;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        transform .25s ease,
-        background .25s ease,
-        box-shadow .25s ease;
-}
-
-.btn-exportar-movimientos:hover {
-
-    background: #27b7f0;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 7px 18px rgba(21, 159, 220, .3);
-}
-
-.btn-exportar-movimientos:active {
-
-    transform: scale(.95);
-}
-
-
-/* =========================================================
-   LISTA PRODUCTOS
-========================================================= */
-
-.productos-movimiento {
-
-    background:
-        linear-gradient(
-            135deg,
-            #d5eafb,
-            #c2e0f7
-        );
-
-    border-radius: 45px;
-
-    padding: 25px;
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, .25);
-}
-
-
-/* =========================================================
-   PRODUCTO
-========================================================= */
-
-.producto-movimiento {
-
-    min-height: 50px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding:
-        10px
-        18px;
-
-    background: #292e33;
-
-    border-radius: 30px;
-
-    margin-bottom: 12px;
-
-    transition:
-        transform .3s ease,
-        background .3s ease,
-        box-shadow .3s ease;
-}
-
-.producto-movimiento:last-child {
-
-    margin-bottom: 0;
-}
-
-.producto-movimiento:hover {
-
-    transform: translateX(8px);
-
-    background: #333a40;
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, .3);
-}
-
-
-/* =========================================================
-   ANIMACIÓN PRODUCTOS
-========================================================= */
-
-.producto-movimiento {
-
-    animation:
-        productoEntrada .5s ease both;
-}
-
-.producto-movimiento:nth-child(1) {
-
-    animation-delay: .05s;
-}
-
-.producto-movimiento:nth-child(2) {
-
-    animation-delay: .12s;
-}
-
-.producto-movimiento:nth-child(3) {
-
-    animation-delay: .19s;
-}
-
-.producto-movimiento:nth-child(4) {
-
-    animation-delay: .26s;
-}
-
-@keyframes productoEntrada {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateX(-25px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateX(0);
-    }
-
-}
-
-
-/* =========================================================
-   DATOS PRODUCTO
-========================================================= */
-
-.producto-datos {
-
-    flex: 1;
-
-    min-width: 250px;
-}
-
-.producto-datos h3 {
-
-    color: #fff;
-
-    font-size: 14px;
-
-    font-weight: 500;
-}
-
-.producto-datos span {
-
-    display: block;
-
-    color: #9da7b1;
-
-    font-size: 8px;
-
-    margin-top: 2px;
-}
-
-
-/* =========================================================
-   ESTADÍSTICAS PRODUCTO
-========================================================= */
-
-.estadisticas-producto {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 30px;
-}
-
-.dato-producto {
-
-    min-width: 48px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    text-align: center;
-}
-
-.dato-producto strong {
-
-    font-size: 12px;
-
-    font-weight: 600;
-}
-
-.dato-producto small {
-
-    font-size: 7px;
-
-    color: #aeb5bd;
-
-    margin-top: 1px;
-}
-
-.dato-producto.entrada strong {
-
-    color: #00f26b;
-}
-
-.dato-producto.salida strong {
-
-    color: #ff293b;
-}
-
-.dato-producto.positivo strong {
-
-    color: #00f26b;
-}
-
-.dato-producto.negativo strong {
-
-    color: #ff293b;
-}
-
-
-/* =========================================================
-   VISTA BODEGA
-========================================================= */
-
-/* =========================================================
-   BODEGAS - TARJETAS EXPANDIBLES
-========================================================= */
-
-.bodega-card {
-    position: relative;
-    width: 100%;
-    min-height: 115px;
-
-    display: flex;
-    align-items: center;
-    gap: 18px;
-
-    padding: 18px 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(219, 234, 254, .96),
-            rgba(191, 219, 254, .92)
-        );
-
-    border: 1px solid rgba(255,255,255,.45);
-    border-radius: 16px;
-
-    color: #0f172a;
-
-    cursor: pointer;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.18);
-
-    transition:
-        min-height .55s cubic-bezier(.22,1,.36,1),
-        padding .55s cubic-bezier(.22,1,.36,1),
-        transform .4s cubic-bezier(.22,1,.36,1),
-        box-shadow .4s ease,
-        border-radius .45s ease;
-}
-
-
-/* Brillo */
-
-.bodega-card::before {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    right: -70px;
-    top: -90px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.28);
-
-    transition:
-        transform .7s cubic-bezier(.22,1,.36,1),
-        opacity .5s ease;
-}
-
-
-/* Línea luminosa */
-
-.bodega-card::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 4px;
-    height: 100%;
-
-    background: linear-gradient(
-        180deg,
-        #2563eb,
-        #06b6d4
-    );
-
-    opacity: 0;
-
-    transition: opacity .35s ease;
-}
-
-
-/* =========================================================
-   HOVER
-========================================================= */
-
-.bodega-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 18px 40px rgba(15,23,42,.28);
-}
-
-.bodega-card:hover::before {
-
-    transform: scale(1.5);
-
-}
-
-.bodega-card:hover::after {
-
-    opacity: 1;
-}
-
-
-/* =========================================================
-   ICONO
-========================================================= */
-
-.bodega-card .bodega-icono {
-
-    width: 58px;
-    height: 58px;
-
-    min-width: 58px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #3b82f6
-        );
-
-    color: white;
-
-    font-size: 27px;
-
-    box-shadow:
-        0 8px 20px rgba(37,99,235,.28);
-
-    transition:
-        transform .5s cubic-bezier(.22,1,.36,1),
-        width .5s ease,
-        height .5s ease,
-        border-radius .5s ease;
-}
-
-.bodega-card:hover .bodega-icono {
-
-    transform:
-        scale(1.08)
-        rotate(-2deg);
-}
-
-
-/* =========================================================
-   INFORMACIÓN PRINCIPAL
-========================================================= */
-
-.bodega-card .bodega-contenido {
-
-    flex: 1;
-
-    min-width: 0;
-
-    transition:
-        transform .5s cubic-bezier(.22,1,.36,1);
-}
-
-.bodega-card:hover .bodega-contenido {
-
-    transform: translateX(3px);
-}
-
-
-.bodega-card h3 {
-
-    margin: 0 0 5px;
-
-    font-size: 17px;
-
-    font-weight: 700;
-
-    color: #0f172a;
-}
-
-
-.bodega-card p {
-
-    margin: 2px 0;
-
-    font-size: 12px;
-
-    color: #475569;
-}
-
-
-/* =========================================================
-   INFORMACIÓN IMPORTANTE
-========================================================= */
-
-.bodega-resumen {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 22px;
-
-    margin-top: 9px;
-
-    flex-wrap: wrap;
-}
-
-
-.bodega-resumen-item {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 2px;
-}
-
-
-.bodega-resumen-item span {
-
-    font-size: 9px;
-
-    color: #64748b;
-
-    text-transform: uppercase;
-
-    letter-spacing: .4px;
-}
-
-
-.bodega-resumen-item strong {
-
-    font-size: 13px;
-
-    color: #0f172a;
-}
-
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
-.bodega-estado {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    padding: 5px 9px;
-
-    border-radius: 20px;
-
-    background: #dcfce7;
-
-    color: #15803d;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-
-.bodega-estado::before {
-
-    content: "";
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #22c55e;
-
-    box-shadow:
-        0 0 8px #22c55e;
-}
-
-
-/* =========================================================
-   BOTÓN / INDICADOR DETALLES
-========================================================= */
-
-.ver-detalle {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 8px 12px;
-
-    border-radius: 8px;
-
-    background: rgba(37,99,235,.10);
-
-    color: #2563eb;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    white-space: nowrap;
-
-    transition:
-        background .3s ease,
-        transform .4s cubic-bezier(.22,1,.36,1);
-}
-
-
-.ver-detalle::after {
-
-    content: "↓";
-
-    font-size: 14px;
-
-    transition:
-        transform .45s cubic-bezier(.22,1,.36,1);
-}
-
-
-.bodega-card:hover .ver-detalle {
-
-    background: rgba(37,99,235,.18);
-
-    transform: translateX(-3px);
-}
-
-
-/* =========================================================
-   CONTENIDO OCULTO
-========================================================= */
-
-.bodega-detalles {
-
-    width: 100%;
-
-    max-height: 0;
-
-    opacity: 0;
-
-    overflow: hidden;
-
-    transform:
-        translateY(-15px)
-        scale(.97);
-
-    margin-top: 0;
-
-    pointer-events: none;
-
-    transition:
-        max-height .65s cubic-bezier(.22,1,.36,1),
-        opacity .4s ease,
-        transform .55s cubic-bezier(.22,1,.36,1),
-        margin-top .55s cubic-bezier(.22,1,.36,1);
-}
-
-
-/* =========================================================
-   TARJETA ABIERTA
-   Angular debe agregar .detalle-abierto
-========================================================= */
-
-.bodega-card.detalle-abierto {
-
-    min-height: 330px;
-
-    padding: 25px;
-
-    border-radius: 20px;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 25px 60px rgba(15,23,42,.32);
-}
-
-
-.bodega-card.detalle-abierto::before {
-
-    transform: scale(1.8);
-
-    opacity: .7;
-}
-
-
-.bodega-card.detalle-abierto::after {
-
-    opacity: 1;
-}
-
-
-.bodega-card.detalle-abierto .bodega-icono {
-
-    width: 64px;
-    height: 64px;
-
-    border-radius: 16px;
-
-    transform: scale(1.05);
-}
-
-
-.bodega-card.detalle-abierto .ver-detalle {
-
-    background: #2563eb;
-
-    color: white;
-}
-
-
-.bodega-card.detalle-abierto .ver-detalle::after {
-
-    transform: rotate(180deg);
-}
-
-
-/* Mostrar información */
-
-.bodega-card.detalle-abierto .bodega-detalles {
-
-    max-height: 700px;
-
-    opacity: 1;
-
-    margin-top: 20px;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    pointer-events: auto;
-}
-
-
-/* =========================================================
-   GRID DE INFORMACIÓN DETALLADA
-========================================================= */
-
-.bodega-detalles-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 12px;
-
-    margin-top: 15px;
-}
-
-
-.bodega-detalle-item {
-
-    padding: 13px 15px;
-
-    background:
-        rgba(255,255,255,.52);
-
-    border:
-        1px solid rgba(255,255,255,.6);
-
-    border-radius: 12px;
-
-    opacity: 0;
-
-    transform: translateY(15px);
-
-    transition:
-        opacity .35s ease,
-        transform .45s cubic-bezier(.22,1,.36,1),
-        background .25s ease;
-}
-
-
-/* Animación escalonada */
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item {
-
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item:nth-child(1) {
-    transition-delay: .08s;
-}
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item:nth-child(2) {
-    transition-delay: .14s;
-}
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item:nth-child(3) {
-    transition-delay: .20s;
-}
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item:nth-child(4) {
-    transition-delay: .26s;
-}
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item:nth-child(5) {
-    transition-delay: .32s;
-}
-
-.bodega-card.detalle-abierto
-.bodega-detalle-item:nth-child(6) {
-    transition-delay: .38s;
-}
-
-
-.bodega-detalle-item:hover {
-
-    background:
-        rgba(255,255,255,.78);
-
-    transform: translateY(-3px) !important;
-}
-
-
-.bodega-detalle-item span {
-
-    display: block;
-
-    margin-bottom: 5px;
-
-    font-size: 9px;
-
-    color: #64748b;
-
-    text-transform: uppercase;
-
-    letter-spacing: .4px;
-}
-
-
-.bodega-detalle-item strong {
-
-    font-size: 14px;
-
-    color: #0f172a;
-}
-
-
-/* =========================================================
-   BARRA DE INFORMACIÓN
-========================================================= */
-
-.bodega-detalles-extra {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 14px;
-
-    margin-top: 14px;
-}
-
-
-.bodega-detalles-extra > div {
-
-    padding: 15px;
-
-    background:
-        rgba(255,255,255,.4);
-
-    border-radius: 12px;
-
-    border-left:
-        3px solid #2563eb;
-}
-
-
-.bodega-detalles-extra span {
-
-    display: block;
-
-    font-size: 9px;
-
-    color: #64748b;
-
-    margin-bottom: 5px;
-}
-
-
-.bodega-detalles-extra strong {
-
-    font-size: 12px;
-
-    color: #1e293b;
-}
-
-
-/* =========================================================
-   CATEGORÍAS / PRODUCTOS
-========================================================= */
-
-.bodega-categorias {
-
-    margin-top: 15px;
-
-    padding: 15px;
-
-    border-radius: 13px;
-
-    background:
-        rgba(255,255,255,.38);
-}
-
-
-.bodega-categorias h4 {
-
-    margin-bottom: 10px;
-
-    font-size: 12px;
-
-    color: #0f172a;
-}
-
-
-.bodega-categoria {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 9px 11px;
-
-    margin-bottom: 6px;
-
-    border-radius: 8px;
-
-    background:
-        rgba(255,255,255,.45);
-
-    font-size: 10px;
-
-    transition:
-        transform .25s ease,
-        background .25s ease;
-}
-
-
-.bodega-categoria:last-child {
-
-    margin-bottom: 0;
+.movimientos-contenedor {
+  width: 100%;
 }
 
+.movimientos-tabla {
+  width: 100%;
 
-.bodega-categoria:hover {
+  overflow-x: auto;
 
-    transform: translateX(4px);
+  border-radius: 10px;
 
-    background:
-        rgba(255,255,255,.8);
+  border: 1px solid #293a51;
 }
 
+.movimientos-tabla table {
+  width: 100%;
 
-.bodega-categoria strong {
+  border-collapse: collapse;
 
-    color: #2563eb;
+  min-width: 700px;
 }
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
-@media (max-width: 850px) {
+.movimientos-tabla th {
+  padding: 13px 15px;
 
-    .bodega-card.detalle-abierto {
+  background: #172337;
 
-        min-height: 400px;
-    }
+  color: #a9bdd5;
 
-    .bodega-detalles-grid {
+  font-size: 11px;
 
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
+  text-align: left;
 }
-
-
-@media (max-width: 600px) {
-
-    .bodega-card {
-
-        flex-wrap: wrap;
-
-        padding: 16px;
-    }
-
-    .bodega-card.detalle-abierto {
-
-        min-height: 0;
 
-        padding: 18px;
-    }
+.movimientos-tabla td {
+  padding: 13px 15px;
 
-    .bodega-card .bodega-contenido {
+  border-top: 1px solid #26364b;
 
-        width: calc(100% - 80px);
-    }
+  color: #d8e3f0;
 
-    .ver-detalle {
-
-        width: 100%;
-
-        justify-content: center;
-
-        margin-top: 5px;
-    }
-
-    .bodega-detalles-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-    .bodega-detalles-extra {
-
-        grid-template-columns: 1fr;
-    }
-
-    .bodega-resumen {
-
-        gap: 12px;
-    }
-
+  font-size: 12px;
 }
-
-
-/* =========================================================
-   TRANSICIÓN AL CERRAR
-========================================================= */
-
-.bodega-card:not(.detalle-abierto)
-.bodega-detalles {
-
-    max-height: 0;
-
-    opacity: 0;
-
-    margin-top: 0;
-
-    transform:
-        translateY(-15px)
-        scale(.96);
 
-    transition:
-        max-height .5s cubic-bezier(.4,0,.2,1),
-        opacity .3s ease,
-        margin-top .45s ease,
-        transform .4s cubic-bezier(.4,0,.2,1);
+.movimientos-tabla tr:hover td {
+  background: #142034;
 }
 
 /* =========================================================
-   MODAL
-========================================================= */
+   MODAL EXPORTAR
+   ========================================================= */
 
 .modal-overlay {
+  position: fixed;
 
-    position: fixed;
+  inset: 0;
 
-    inset: 0;
+  z-index: 9999;
 
-    z-index: 1000;
+  display: flex;
 
-    background:
-        rgba(2, 8, 23, .72);
+  align-items: center;
+  justify-content: center;
 
-    backdrop-filter:
-        blur(5px);
+  padding: 20px;
 
-    display: flex;
+  background: rgba(2, 8, 18, 0.72);
 
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    animation:
-        aparecerModal .25s ease;
-}
-
-@keyframes aparecerModal {
-
-    from {
-
-        opacity: 0;
-    }
-
-    to {
-
-        opacity: 1;
-    }
-
+  backdrop-filter: blur(5px);
 }
 
 .modal-exportar {
+  width: min(450px, 100%);
 
-    background: #fff;
+  padding: 28px;
 
-    border-radius: 16px;
+  border-radius: 15px;
 
-    padding: 25px;
+  background: #111c2d;
 
-    width: 320px;
+  border: 1px solid #34455e;
 
-    color: #0f172a;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.45);
 
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, .4);
-
-    animation:
-        modalEntrada .3s ease;
+  animation: modalEntrada 0.25s ease;
 }
 
 @keyframes modalEntrada {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
 
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(20px)
-            scale(.95);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-}
-
-.modal-icono {
-
-    width: 42px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #dbeafe;
-
-    color: #2563eb;
-
-    border-radius: 10px;
-
-    font-size: 22px;
-
-    margin-bottom: 12px;
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .modal-exportar h3 {
+  margin: 0 0 8px;
 
-    font-size: 17px;
-
-    margin-bottom: 5px;
+  color: white;
 }
 
-.modal-exportar > p {
+.modal-exportar p {
+  margin: 0 0 20px;
 
-    font-size: 13px;
+  color: #91a5bf;
 
-    color: #64748b;
-
-    margin-bottom: 18px;
+  font-size: 13px;
 }
 
+.modal-opciones {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.btn-formato {
+  padding: 12px;
+
+  border-radius: 8px;
+
+  border: 1px solid #3a4c65;
+
+  background: #172337;
+
+  color: #d9e5f4;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.btn-formato:hover {
+  background: #159fe0;
+
+  border-color: #159fe0;
+
+  color: white;
+}
+
+.btn-cerrar-modal {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #29374b;
+
+  color: #c5d2e2;
+
+  cursor: pointer;
+}
 
 /* =========================================================
-   FORMATOS
-========================================================= */
+   MENSAJE
+   ========================================================= */
 
-.formatos {
+.mensaje-exportacion {
+  margin-top: 15px;
 
-    display: grid;
+  padding: 10px;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+  border-radius: 7px;
 
-    gap: 10px;
+  background: rgba(220, 70, 70, 0.12);
 
-    margin-bottom: 15px;
+  color: #ff9d9d;
+
+  font-size: 12px;
 }
-
-.formatos button {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 3px;
-
-    border-radius: 10px;
-
-    border:
-        1px solid #e2e8f0;
-
-    background: #f8fafc;
-
-    padding: 13px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background .25s ease,
-        border .25s ease,
-        transform .25s ease;
-}
-
-.formatos button:hover {
-
-    background: #eff6ff;
-
-    border-color: #2563eb;
-
-    transform: translateY(-3px);
-}
-
-.formatos button small {
-
-    font-size: 9px;
-
-    color: #64748b;
-
-    font-weight: 400;
-}
-
-
-/* =========================================================
-   ERROR EXPORTACIÓN
-========================================================= */
-
-.mensaje-error {
-
-    color: #b91c1c !important;
-
-    font-size: 12px !important;
-
-    margin-bottom: 10px !important;
-}
-
-
-/* =========================================================
-   CANCELAR
-========================================================= */
-
-.btn-cancelar {
-
-    width: 100%;
-
-    background: transparent;
-
-    border: none;
-
-    color: #64748b;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    padding: 8px;
-
-    border-radius: 7px;
-
-    transition:
-        background .25s ease,
-        color .25s ease;
-}
-
-.btn-cancelar:hover {
-
-    background: #f1f5f9;
-
-    color: #0f172a;
-}
-
 
 /* =========================================================
    RESPONSIVE
-========================================================= */
+   ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
-    .metricas {
+  .reportes-container {
+    padding: 25px;
+  }
 
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
+  .metricas {
+    grid-template-columns: 1fr;
+  }
 
-    .movimientos-resumen {
-
-        grid-template-columns: 1fr;
-    }
-
-    .producto-movimiento {
-
-        align-items: flex-start;
-
-        gap: 15px;
-    }
-
-    .estadisticas-producto {
-
-        gap: 15px;
-    }
+  .detalle-grid {
+    grid-template-columns: 1fr;
+  }
 
 }
 
+@media (max-width: 750px) {
 
-@media (max-width: 768px) {
+  .reportes-container {
+    padding: 18px;
+  }
 
-    .reportes-container {
+  .reportes-header {
+    flex-direction: column;
+  }
 
-        padding: 20px;
-    }
+  .reportes-controles {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .reportes-header {
+  .tabs-reportes {
+    width: 100%;
+  }
 
-        flex-direction: column;
+  .tab-reporte {
+    flex: 1;
+    min-width: 0;
+  }
 
-        gap: 15px;
-    }
+  .selector-bodega {
+    width: 100%;
+  }
 
-    .btn-exportar {
+  .bodega-resumen {
+    grid-template-columns: 45px 1fr;
+  }
 
-        width: 100%;
+  .bodega-estado,
+  .bodega-valor {
+    grid-column: 2;
+    justify-self: start;
+  }
 
-        justify-content: center;
-    }
+  .detalle-info {
+    grid-template-columns: 1fr;
+  }
 
-    .metricas {
-
-        grid-template-columns: 1fr;
-    }
-
-    .select-bodega {
-
-        margin-left: 0;
-
-        width: 100%;
-    }
-
-    .movimientos-header {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 12px;
-    }
-
-    .btn-exportar-movimientos {
-
-        width: 100%;
-
-        justify-content: center;
-    }
-
-    .productos-movimiento {
-
-        padding: 15px;
-
-        border-radius: 25px;
-    }
-
-    .producto-movimiento {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        border-radius: 20px;
-
-        padding: 15px;
-    }
-
-    .producto-datos {
-
-        min-width: 100%;
-    }
-
-    .estadisticas-producto {
-
-        width: 100%;
-
-        justify-content: space-between;
-    }
+  .modal-opciones {
+    grid-template-columns: 1fr;
+  }
 
 }
-
 
 @media (max-width: 480px) {
 
-    .reportes-container {
-
-        padding: 14px;
-    }
-
-    .filtros {
-
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .tab {
-
-        width: 100%;
-    }
-
-    .movimientos-resumen {
-
-        gap: 12px;
-    }
-
-    .movimiento-card {
-
-        min-height: 95px;
-
-        padding: 15px;
-    }
-
-    .movimiento-info strong {
-
-        font-size: 27px;
-    }
-
-    .movimiento-icono {
-
-        font-size: 38px;
-    }
-
-    .estadisticas-producto {
-
-        gap: 5px;
-    }
-
-    .dato-producto {
-
-        min-width: 42px;
-    }
-
-    /* =========================================================
-   BODEGA - INTERACCIÓN
-========================================================= */
-
-.bodega-card {
-    cursor: pointer;
-}
-
-
-/* Indicador de detalles */
-
-.ver-detalle {
-    position: absolute;
-
-    bottom: 10px;
-    right: 16px;
-
-    font-size: 9px;
-
-    color: #2563eb;
-
-    opacity: 0;
-
-    transform: translateX(8px);
-
-    transition:
-        opacity .25s ease,
-        transform .25s ease;
-}
-
-.bodega-card:hover .ver-detalle {
-    opacity: 1;
-
-    transform: translateX(0);
-}
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
-
-.detalle-bodega-overlay {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 9999;
-
-    background:
-        rgba(2, 6, 23, .72);
-
-    backdrop-filter:
-        blur(7px);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 25px;
-
-    animation:
-        overlayEntrada .25s ease;
-}
-
-
-@keyframes overlayEntrada {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-
-/* =========================================================
-   MODAL DETALLE
-========================================================= */
-
-.detalle-bodega {
-
-    width: min(700px, 95vw);
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    background:
-        linear-gradient(
-            145deg,
-            #dbeafe,
-            #bfdbfe
-        );
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    color: #0f172a;
-
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, .45);
-
-    animation:
-        detalleEntrada .35s cubic-bezier(.2,.8,.2,1);
-
-}
-
-
-@keyframes detalleEntrada {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(30px)
-            scale(.94);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.detalle-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 15px;
-}
-
-
-.detalle-titulo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 13px;
-}
-
-
-.detalle-icono {
-
-    width: 45px;
-    height: 45px;
-
-    border-radius: 8px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #4f46e5,
-            #2563eb
-        );
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 20px;
-
-    box-shadow:
-        0 6px 15px rgba(37,99,235,.3);
-}
-
-
-.detalle-titulo h2 {
-
-    margin: 0;
-
-    font-size: 20px;
-
-    font-weight: 700;
-}
-
-
-.detalle-titulo span {
-
-    display: block;
-
-    margin-top: 3px;
-
-    color: #64748b;
-
-    font-size: 10px;
-}
-
-
-/* =========================================================
-   BOTÓN CERRAR
-========================================================= */
-
-.btn-cerrar-detalle {
-
-    width: 35px;
-    height: 35px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(15,23,42,.08);
-
-    color: #0f172a;
-
-    font-size: 23px;
-
-    cursor: pointer;
-
-    transition:
-        .25s ease;
-}
-
-
-.btn-cerrar-detalle:hover {
-
-    background: #ef4444;
-
-    color: white;
-
-    transform:
-        rotate(90deg);
-}
-
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
-.detalle-estado {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    background: #dcfce7;
-
-    color: #15803d;
-
-    border-radius: 20px;
-
-    padding: 6px 11px;
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    margin-bottom: 20px;
-}
-
-
-.estado-circulo {
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #22c55e;
-
-    box-shadow:
-        0 0 8px #22c55e;
-}
-
-
-/* =========================================================
-   MÉTRICAS
-========================================================= */
-
-.detalle-metricas {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 12px;
-
-    margin-bottom: 22px;
-}
-
-
-.detalle-metrica {
-
-    background:
-        rgba(255,255,255,.6);
-
-    border-radius: 10px;
-
+  .reportes-container {
     padding: 14px;
+  }
 
-    border:
-        1px solid rgba(255,255,255,.5);
+  .reportes-titulo h1 {
+    font-size: 23px;
+  }
 
-    transition:
-        transform .25s ease;
-}
+  .seccion-reporte {
+    padding: 15px;
+  }
 
+  .categoria-principal {
+    grid-template-columns: 12px 1fr;
+  }
 
-.detalle-metrica:hover {
+  .categoria-productos,
+  .categoria-porcentaje {
+    grid-column: 2;
+  }
 
-    transform:
-        translateY(-3px);
-}
-
-
-.detalle-metrica span {
-
-    display: block;
-
-    color: #64748b;
-
-    font-size: 10px;
-
-    margin-bottom: 5px;
-}
-
-
-.detalle-metrica strong {
-
-    font-size: 18px;
-
-    color: #0f172a;
-}
-
-
-.detalle-metrica:first-child strong {
-
-    color: #16a34a;
-}
-
-
-/* =========================================================
-   SECCIONES
-========================================================= */
-
-.detalle-seccion {
-
-    background:
-        rgba(255,255,255,.45);
-
-    border-radius: 12px;
-
-    padding: 17px;
-
-    margin-bottom: 15px;
-}
-
-
-.detalle-seccion h3 {
-
-    margin: 0 0 13px;
-
-    font-size: 13px;
-
-    color: #0f172a;
-}
-
-
-/* =========================================================
-   INFORMACIÓN
-========================================================= */
-
-.detalle-info-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 12px;
-}
-
-
-.detalle-info-grid div {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 4px;
-}
-
-
-.detalle-info-grid span {
-
-    font-size: 9px;
-
-    color: #64748b;
-}
-
-
-.detalle-info-grid strong {
-
-    font-size: 11px;
-
-    color: #1e293b;
-}
-
-
-.texto-activo {
-
-    color: #16a34a !important;
-}
-
-
-/* =========================================================
-   CATEGORÍAS
-========================================================= */
-
-.detalle-categorias {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-}
-
-
-.detalle-categoria {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    background:
-        rgba(255,255,255,.55);
-
-    padding: 10px 12px;
-
-    border-radius: 8px;
-
-    transition:
-        background .2s ease,
-        transform .2s ease;
-}
-
-
-.detalle-categoria:hover {
-
-    background:
-        rgba(255,255,255,.85);
-
-    transform:
-        translateX(3px);
-}
-
-
-.detalle-categoria-nombre {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-
-.detalle-categoria-datos {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    font-size: 10px;
-
-    color: #64748b;
-}
-
-
-.detalle-categoria-datos strong {
-
-    color: #16a34a;
-}
-
-
-/* =========================================================
-   BOTÓN CERRAR MODAL
-========================================================= */
-
-.btn-cerrar-modal {
-
-    width: 100%;
-
-    border: none;
-
-    border-radius: 8px;
-
-    padding: 11px;
-
-    background: #2563eb;
-
-    color: white;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        .25s ease;
-}
-
-
-.btn-cerrar-modal:hover {
-
-    background: #1d4ed8;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 7px 18px rgba(37,99,235,.25);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .detalle-bodega {
-
-        padding: 18px;
-
-        border-radius: 14px;
-    }
-
-
-    .detalle-metricas {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .detalle-info-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .detalle-categoria {
-
-        align-items: flex-start;
-
-        gap: 8px;
-
-        flex-direction: column;
-    }
-
-
-    .detalle-categoria-datos {
-
-        width: 100%;
-
-        justify-content: space-between;
-    }
-
-}
 }
