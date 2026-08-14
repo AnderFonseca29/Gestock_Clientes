@@ -1,0 +1,50 @@
+<div class="container">
+  <!-- Encabezado -->
+  <header class="header">
+    <div>
+      <h1 class="title">Cambiar de inventario</h1>
+      <p class="subtitle">Selecciona el inventario activo para trabajar en el panel.</p>
+    </div>
+    <button type="button" class="btn-close" (click)="cancelar()">
+      <i class="fas fa-times"></i>
+    </button>
+  </header>
+
+  <!-- Contenido Principal: Lista de Inventarios -->
+  <div class="inventarios-list">
+    @for (inv of inventariosFiltrados; track inv.id) {
+      <div 
+        class="inventario-card" 
+        [class.active]="inv.esActivo"
+        (click)="seleccionar(inv)"
+      >
+        <div class="inv-info">
+          <div class="inv-header">
+            <h3>{{ inv.nombre }}</h3>
+            <span class="badge-status" [class.active-badge]="inv.esActivo">
+              {{ inv.esActivo ? 'En uso' : inv.estado }}
+            </span>
+          </div>
+          <div class="inv-meta">
+            <span><i class="fas fa-warehouse"></i> {{ inv.ubicacion }}</span>
+            <span><i class="far fa-user"></i> {{ inv.responsable }}</span>
+          </div>
+        </div>
+
+        <button class="btn-select">
+          {{ inv.esActivo ? 'Activo' : 'Seleccionar' }}
+        </button>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <i class="fas fa-box-open"></i>
+        <p>No hay inventarios registrados en esta bodega.</p>
+      </div>
+    }
+  </div>
+
+  <!-- Pie de ventana -->
+  <footer class="footer-actions">
+    <button type="button" class="btn-cancel" (click)="cancelar()">Cerrar</button>
+  </footer>
+</div>

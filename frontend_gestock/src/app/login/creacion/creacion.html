@@ -1,0 +1,138 @@
+<div class="register-container">
+  <div class="register-card">
+    
+    <!-- Encabezado Modal -->
+    <div class="modal-header">
+      <div class="brand-title">
+        <span class="icon">📦</span>
+        <h3>Regístrate en GESTOCK</h3>
+      </div>
+      <!-- Indicador de pasos discreto -->
+      <span class="step-badge">Paso {{ pasoActual }} de 2</span>
+    </div>
+
+    <!-- ===== PASO 1: DATOS PERSONALES ===== -->
+    @if (pasoActual === 1) {
+      <div class="step-content">
+        <form (ngSubmit)="siguientePaso()">
+          <div class="form-grid">
+            
+            <div class="form-group">
+              <label>Nombres</label>
+              <input type="text" [(ngModel)]="nombres" name="nombres" required placeholder="Ej: Maicol">
+            </div>
+
+            <div class="form-group">
+              <label>Apellidos</label>
+              <input type="text" [(ngModel)]="apellidos" name="apellidos" required placeholder="Ej: Nore">
+            </div>
+
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" [(ngModel)]="telefono" name="telefono" placeholder="+57 300 000 0000">
+            </div>
+
+            <div class="form-group">
+              <label>Fecha de nacimiento</label>
+              <input type="date" [(ngModel)]="fechaNacimiento" name="fechaNacimiento">
+            </div>
+
+            <div class="form-group">
+              <label>Tipo de documento</label>
+              <select [(ngModel)]="tipoDocumento" name="tipoDocumento">
+                <option value="" disabled selected>Seleccione...</option>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Nº De Documento</label>
+              <input type="text" [(ngModel)]="numeroDocumento" name="numeroDocumento" required placeholder="123456789">
+            </div>
+
+          </div>
+
+          <div class="actions-group">
+            <button type="submit" class="btn-continue">
+              CONTINUAR →
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+
+    <!-- ===== PASO 2: CREAR USUARIO Y CONTRASEÑA ===== -->
+    @if (pasoActual === 2) {
+      <div class="step-content">
+        <div class="step-title">
+          <h4>Crea tus credenciales de acceso</h4>
+          <p>Define con qué nombre de usuario y contraseña ingresarás a Gestock.</p>
+        </div>
+
+        <form (ngSubmit)="completarRegistro()">
+          
+          <div class="form-group margin-bottom">
+            <label>Nombre de Usuario (Username)</label>
+            <div class="input-wrapper">
+              <span class="icon-input">👤</span>
+              <input 
+                type="text" 
+                [(ngModel)]="username" 
+                name="username" 
+                required 
+                placeholder="Ej: maicol_nore">
+            </div>
+          </div>
+
+          <div class="form-group margin-bottom">
+            <label>Contraseña</label>
+            <div class="input-wrapper">
+              <span class="icon-input">🔒</span>
+              <input 
+                type="password" 
+                [(ngModel)]="password" 
+                name="password" 
+                required 
+                placeholder="••••••••">
+            </div>
+          </div>
+
+          <div class="form-group margin-bottom">
+            <label>Confirmar Contraseña</label>
+            <div class="input-wrapper">
+              <span class="icon-input">🔑</span>
+              <input 
+                type="password" 
+                [(ngModel)]="confirmPassword" 
+                name="confirmPassword" 
+                required 
+                placeholder="Repite tu contraseña">
+            </div>
+          </div>
+
+          <div class="actions-step-2">
+            <button type="button" class="btn-back" (click)="atrasPaso()">
+              ← Volver
+            </button>
+            <button type="submit" class="btn-continue">
+              FINALIZAR Y REGISTRAR
+            </button>
+          </div>
+
+        </form>
+      </div>
+    }
+
+    <!-- Footer Modal -->
+    <div class="modal-footer">
+      <span>Gestock.com</span>
+      <span>•</span>
+      <span>Aviso legal</span>
+      <span>•</span>
+      <span>Declaración de privacidad</span>
+    </div>
+
+  </div>
+</div>

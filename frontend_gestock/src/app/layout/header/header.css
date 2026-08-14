@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .main-header {
   height: 60px;
   background-color: #ffffff;
@@ -27,11 +28,78 @@
   height: 34px;
   border-radius: 50%;
   background-color: #0f172a;
+=======
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 28px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notification-icon {
+  position: relative;
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 5px;
+}
+
+/* Contenedor del Perfil */
+.user-dropdown-container {
+  position: relative;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.user-trigger:hover {
+  background-color: #1a2333;
+}
+
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #2563eb;
+>>>>>>> origin/develop
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
+<<<<<<< HEAD
   font-size: 0.85rem;
 }
 
@@ -49,4 +117,79 @@
   width: 100%;
   background-color: #FFFFFF; /* Cambia al color de tu preferencia para evitar transparencia */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil opcional */
+=======
+  font-size: 15px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.user-role {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.arrow-icon {
+  font-size: 11px;
+  color: #64748b;
+  margin-left: 4px;
+}
+
+/* Menú Desplegable (Dropdown) */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 180px;
+  background-color: #121824;
+  border: 1px solid #1e2638;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  padding: 6px 0;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #1e2638;
+  margin: 6px 0;
+}
+
+.logout-btn {
+  color: #f87171;
+}
+
+.logout-btn:hover {
+  background-color: #2d1a1e;
+  color: #ef4444;
+>>>>>>> origin/develop
 }

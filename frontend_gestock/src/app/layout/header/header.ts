@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+=======
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth';
+import { UsuarioAuth } from '../../models/usuario-auth';
+>>>>>>> origin/develop
 
 @Component({
   selector: 'app-header',
@@ -8,6 +15,32 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
+<<<<<<< HEAD
 export class HeaderComponent {
   usuarioNombre: string = 'Administrador';
+=======
+export class HeaderComponent implements OnInit {
+  private authService = inject(AuthService);
+  usuario: UsuarioAuth | null = null;
+
+  ngOnInit(): void {
+    this.usuario = this.authService.obtenerUsuario();
+  }
+
+  get inicialNombre(): string {
+    return this.usuario?.nombre ? this.usuario.nombre.charAt(0).toUpperCase() : 'U';
+  }
+
+  cerrarSesion(): void {
+    this.authService.cerrarSesion();
+    window.location.href = '/login';
+  }
+
+  toggleMenu(): void {
+    this.menuAbierto = !this.menuAbierto;
+    console.log(this.menuAbierto);
+  }
+
+  menuAbierto = false;
+>>>>>>> origin/develop
 }
