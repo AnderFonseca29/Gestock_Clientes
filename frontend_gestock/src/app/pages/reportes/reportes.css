@@ -1,0 +1,1022 @@
+/* =========================================================
+   REPORTES - GESTOCK
+   Diseño general
+   ========================================================= */
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.reportes-container {
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding: 32px 42px 50px;
+  background: #0b1220;
+  color: #e8eef8;
+}
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.reportes-header {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 26px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.reportes-titulo h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.reportes-titulo p {
+  margin: 7px 0 0;
+  color: #8ea4c4;
+  font-size: 14px;
+}
+
+/* =========================================================
+   BOTÓN EXPORTAR
+   ========================================================= */
+
+.btn-exportar {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+
+  background: #159fe0;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-exportar:hover {
+  background: #0b8dcc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(21, 159, 224, 0.25);
+}
+
+.btn-exportar:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   MÉTRICAS
+   ========================================================= */
+
+.metricas {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 22px;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.metrica-card {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 105px;
+  padding: 22px;
+
+  border-radius: 13px;
+
+  background: linear-gradient(
+    135deg,
+    #d8eaff 0%,
+    #c4ddf5 100%
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: #0c2345;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.metrica-card::after {
+  content: "";
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -25px;
+  top: -40px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.metrica-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.2);
+}
+
+.metrica-label {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  color: #234d80;
+}
+
+.metrica-valor {
+  position: relative;
+  z-index: 1;
+
+  font-size: 25px;
+  font-weight: 800;
+  color: #071a35;
+}
+
+/* =========================================================
+   BARRA DE OPCIONES
+   ========================================================= */
+
+.reportes-controles {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+
+.tabs-reportes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-reporte {
+  min-width: 105px;
+
+  padding: 10px 18px;
+
+  border-radius: 7px;
+  border: 1px solid #34435c;
+
+  background: #121c2d;
+  color: #b9c7da;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.tab-reporte:hover {
+  color: #ffffff;
+  border-color: #159fe0;
+  background: #172840;
+}
+
+.tab-reporte.activo {
+  background: #159fe0;
+  color: #ffffff;
+
+  border-color: #159fe0;
+
+  box-shadow:
+    0 5px 15px rgba(21, 159, 224, 0.25);
+}
+
+/* =========================================================
+   SELECTOR DE BODEGA
+   ========================================================= */
+
+.selector-bodega {
+  min-width: 175px;
+
+  padding: 10px 14px;
+
+  border-radius: 8px;
+
+  border: 1px solid #3a4960;
+
+  background: #121c2d;
+  color: #d9e5f4;
+
+  outline: none;
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+.selector-bodega:focus {
+  border-color: #159fe0;
+}
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+.reporte-contenido {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   SECCIÓN GENERAL
+   ========================================================= */
+
+.seccion-reporte {
+  width: 100%;
+
+  padding: 22px;
+
+  border-radius: 14px;
+
+  background: #111b2b;
+
+  border: 1px solid #25344c;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.16);
+}
+
+.seccion-reporte h2 {
+  margin: 0 0 6px;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.seccion-reporte > p {
+  margin: 0 0 20px;
+
+  color: #8fa4c0;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   INVENTARIO - CATEGORÍAS
+   ========================================================= */
+
+.categorias-lista {
+  width: 100%;
+
+  background: #cfe3f7;
+
+  border-radius: 13px;
+
+  overflow: hidden;
+}
+
+.categoria-item {
+  position: relative;
+
+  padding: 15px 18px;
+
+  border-bottom: 1px solid rgba(20, 60, 100, 0.12);
+
+  color: #12345a;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    padding 0.3s ease;
+}
+
+.categoria-item:last-child {
+  border-bottom: none;
+}
+
+.categoria-item:hover {
+  background: #d9ebfa;
+}
+
+.categoria-principal {
+  display: grid;
+
+  grid-template-columns: 18px 1fr auto auto;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.categoria-indicador {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #dcecfb;
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.categoria-nombre {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.categoria-productos {
+  font-size: 12px;
+  color: #496783;
+}
+
+.categoria-porcentaje {
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* =========================================================
+   DETALLE DE CATEGORÍA
+   ========================================================= */
+
+.categoria-detalle {
+  margin-top: 14px;
+
+  padding: 16px;
+
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  animation: aparecerDetalle 0.25s ease;
+}
+
+@keyframes aparecerDetalle {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   POR BODEGA
+   ========================================================= */
+
+.bodegas-contenedor {
+  width: 100%;
+}
+
+.bodegas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+   TARJETA DE BODEGA
+   ========================================================= */
+
+.bodega-card {
+  width: 100%;
+
+  padding: 18px 20px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #d8eaff,
+    #c3dbf2
+  );
+
+  border: 1px solid #b5cce5;
+
+  color: #102d50;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.bodega-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+
+  background: linear-gradient(
+    135deg,
+    #e0efff,
+    #cce3f7
+  );
+}
+
+.bodega-resumen {
+  display: grid;
+
+  grid-template-columns: 55px 1fr auto auto;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+.bodega-icono {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #159fe0;
+
+  color: white;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 5px 12px rgba(21, 159, 224, 0.3);
+}
+
+.bodega-info h3 {
+  margin: 0 0 5px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  color: #102d50;
+}
+
+.bodega-info p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #53708e;
+}
+
+.bodega-estado {
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  background: #d9f8e6;
+
+  color: #167442;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.bodega-valor {
+  font-size: 14px;
+  font-weight: 800;
+
+  color: #102d50;
+}
+
+/* =========================================================
+   DETALLE DE BODEGA
+   ESTA ES LA PARTE QUE SE EXPANDE
+   ========================================================= */
+
+.bodega-detalle {
+  margin-top: 14px;
+
+  padding: 24px;
+
+  border-radius: 14px;
+
+  background: #f5f8fc;
+
+  color: #142a43;
+
+  border: 1px solid #d7e1ec;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.2);
+
+  animation: abrirBodega 0.35s ease;
+}
+
+@keyframes abrirBodega {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   CABECERA DETALLE
+   ========================================================= */
+
+.detalle-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 20px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #d9e2ec;
+}
+
+.detalle-header h3 {
+  margin: 0;
+
+  font-size: 20px;
+  color: #102d50;
+}
+
+.detalle-header p {
+  margin: 4px 0 0;
+
+  color: #6d8198;
+
+  font-size: 12px;
+}
+
+.btn-cerrar-detalle {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e8eef5;
+
+  color: #344a63;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-cerrar-detalle:hover {
+  background: #e04b5b;
+  color: white;
+}
+
+/* =========================================================
+   INFORMACIÓN DE BODEGA
+   ========================================================= */
+
+.detalle-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1.7fr;
+
+  gap: 22px;
+}
+
+/* =========================================================
+   BLOQUE DE INFORMACIÓN
+   ========================================================= */
+
+.detalle-info {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.info-card {
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background: #edf3f9;
+
+  border: 1px solid #d8e3ee;
+}
+
+.info-card span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #71869d;
+
+  font-size: 11px;
+}
+
+.info-card strong {
+  display: block;
+
+  color: #122f50;
+
+  font-size: 15px;
+}
+
+/* =========================================================
+   PRODUCTOS DE LA BODEGA
+   ========================================================= */
+
+.productos-bodega {
+  padding: 18px;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9e3ed;
+}
+
+.productos-bodega h4 {
+  margin: 0 0 14px;
+
+  font-size: 14px;
+
+  color: #163555;
+}
+
+.productos-lista {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.producto-bodega {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+
+  border-radius: 7px;
+
+  background: #f1f5f9;
+}
+
+.producto-bodega span {
+  font-size: 12px;
+  color: #50657a;
+}
+
+.producto-bodega strong {
+  font-size: 12px;
+  color: #142f4d;
+}
+
+/* =========================================================
+   MOVIMIENTOS
+   ========================================================= */
+
+.movimientos-contenedor {
+  width: 100%;
+}
+
+.movimientos-tabla {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border-radius: 10px;
+
+  border: 1px solid #293a51;
+}
+
+.movimientos-tabla table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 700px;
+}
+
+.movimientos-tabla th {
+  padding: 13px 15px;
+
+  background: #172337;
+
+  color: #a9bdd5;
+
+  font-size: 11px;
+
+  text-align: left;
+}
+
+.movimientos-tabla td {
+  padding: 13px 15px;
+
+  border-top: 1px solid #26364b;
+
+  color: #d8e3f0;
+
+  font-size: 12px;
+}
+
+.movimientos-tabla tr:hover td {
+  background: #142034;
+}
+
+/* =========================================================
+   MODAL EXPORTAR
+   ========================================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(2, 8, 18, 0.72);
+
+  backdrop-filter: blur(5px);
+}
+
+.modal-exportar {
+  width: min(450px, 100%);
+
+  padding: 28px;
+
+  border-radius: 15px;
+
+  background: #111c2d;
+
+  border: 1px solid #34455e;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.45);
+
+  animation: modalEntrada 0.25s ease;
+}
+
+@keyframes modalEntrada {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-exportar h3 {
+  margin: 0 0 8px;
+
+  color: white;
+}
+
+.modal-exportar p {
+  margin: 0 0 20px;
+
+  color: #91a5bf;
+
+  font-size: 13px;
+}
+
+.modal-opciones {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.btn-formato {
+  padding: 12px;
+
+  border-radius: 8px;
+
+  border: 1px solid #3a4c65;
+
+  background: #172337;
+
+  color: #d9e5f4;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.btn-formato:hover {
+  background: #159fe0;
+
+  border-color: #159fe0;
+
+  color: white;
+}
+
+.btn-cerrar-modal {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #29374b;
+
+  color: #c5d2e2;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   MENSAJE
+   ========================================================= */
+
+.mensaje-exportacion {
+  margin-top: 15px;
+
+  padding: 10px;
+
+  border-radius: 7px;
+
+  background: rgba(220, 70, 70, 0.12);
+
+  color: #ff9d9d;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .reportes-container {
+    padding: 25px;
+  }
+
+  .metricas {
+    grid-template-columns: 1fr;
+  }
+
+  .detalle-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 750px) {
+
+  .reportes-container {
+    padding: 18px;
+  }
+
+  .reportes-header {
+    flex-direction: column;
+  }
+
+  .reportes-controles {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabs-reportes {
+    width: 100%;
+  }
+
+  .tab-reporte {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .selector-bodega {
+    width: 100%;
+  }
+
+  .bodega-resumen {
+    grid-template-columns: 45px 1fr;
+  }
+
+  .bodega-estado,
+  .bodega-valor {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .detalle-info {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-opciones {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .reportes-container {
+    padding: 14px;
+  }
+
+  .reportes-titulo h1 {
+    font-size: 23px;
+  }
+
+  .seccion-reporte {
+    padding: 15px;
+  }
+
+  .categoria-principal {
+    grid-template-columns: 12px 1fr;
+  }
+
+  .categoria-productos,
+  .categoria-porcentaje {
+    grid-column: 2;
+  }
+
+}

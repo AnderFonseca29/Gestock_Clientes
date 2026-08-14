@@ -1,19 +1,28 @@
-<div class="layout-wrapper">
-  <!-- Menú lateral -->
-  <aside class="sidebar-container">
+<mat-sidenav-container class="layout-container">
+  
+  <!-- Menú Lateral Izquierdo -->
+  <mat-sidenav mode="side" opened class="sidenav-wrapper">
     <app-sidebar></app-sidebar>
-  </aside>
+  </mat-sidenav>
 
-  <!-- Área derecha principal -->
-  <div class="main-container">
-    <!-- Header superior -->
+  <!-- Contenido Principal -->
+  <mat-sidenav-content class="main-container">
+    
+    <!-- Header Superior -->
     <header class="header-container">
       <app-header></app-header>
     </header>
 
-    <!-- Contenido de la vista (Panel) -->
+    <!-- Contenido de la Vista -->
     <main class="content-body">
       <router-outlet></router-outlet>
     </main>
-  </div>
-</div>
+
+    <!-- Footer Inferior -->
+    <footer class="footer-container">
+      <app-footer></app-footer>
+    </footer>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

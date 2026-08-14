@@ -2,7 +2,7 @@
 
   <!-- ENCABEZADO DEL PANEL CON BOTÓN DE ACCIÓN '+' -->
   <div class="panel-header">
-  <h2 class="panel-title">{{ inventarioActivo.nombre }}</h2>
+    <h2 class="panel-title">{{ inventarioActivo.nombre }}</h2>
 
     <button mat-icon-button [matMenuTriggerFor]="invMenu" class="btn-add-action" aria-label="Opciones de inventario">
       <mat-icon>add</mat-icon>
@@ -13,14 +13,13 @@
         <span>Crear nuevo inventario</span>
       </button>
       <mat-divider></mat-divider>
-      <!-- CORREGIDO: Se agregó el (click) para activar el modal -->
       <button mat-menu-item (click)="openCambiarInventario()">
         <span>Cambiar de inventario</span>
       </button>
     </mat-menu>
   </div>
 
-  <!-- TARJETAS DE MÉTRICAS (GRID SUPERIOR VINCULADO A VARIABLES) -->
+  <!-- TARJETAS DE MÉTRICAS (GRID SUPERIOR) -->
   <div class="metrics-grid">
     
     <div class="metric-card">
@@ -52,7 +51,7 @@
     </div>
 
     <div class="metric-card">
-      <span class="metric-label">Tasa de ocupacion</span>
+      <span class="metric-label">Tasa de ocupación</span>
       <div class="metric-value">{{ kpis.tasaOcupacion }}%</div>
     </div>
 
@@ -91,7 +90,7 @@
     <!-- TARJETA: ÚLTIMOS MOVIMIENTOS -->
     <div class="content-card">
       <div class="card-header">
-        <h3>Ultimos movimientos</h3>
+        <h3>Últimos movimientos</h3>
       </div>
 
       <div class="movements-list">
@@ -115,7 +114,7 @@
 
 </div>
 
-<!-- MODAL CAMBIAR INVENTARIO (CORREGIDO: FALTABA AGREGARLO) -->
+<!-- MODAL CAMBIAR INVENTARIO -->
 @if (mostrarModalCambiar) {
   <app-cambiar-inventario
     [listaInventarios]="inventarios"

@@ -1,3 +1,148 @@
+/* =========================================
+   LAYOUT PRINCIPAL GESTOCK
+========================================= */
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-layout {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(37, 99, 235, 0.12),
+      transparent 35%
+    ),
+    #080d17;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar-container {
+  width: 260px;
+  min-width: 260px;
+  height: 100vh;
+  background: #0d1422;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 100;
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+.main-container {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header-container {
+  width: 100%;
+  height: 74px;
+  min-height: 74px;
+  background: rgba(10, 16, 28, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 50;
+}
+
+/* =========================================
+   CONTENIDO
+========================================= */
+
+.content-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 28px;
+  background:
+    linear-gradient(
+      rgba(8, 13, 23, 0.92),
+      rgba(8, 13, 23, 0.96)
+    );
+}
+
+/* Scroll */
+
+.content-container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.content-container::-webkit-scrollbar-track {
+  background: #080d17;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
+
+.content-container::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer-container {
+  width: 100%;
+  min-height: 45px;
+  background: #090f1b;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .sidebar-container {
+    width: 220px;
+    min-width: 220px;
+  }
+
+  .content-container {
+    padding: 20px;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .sidebar-container {
+    width: 70px;
+    min-width: 70px;
+  }
+
+  .content-container {
+    padding: 15px;
+  }
+
+.layout-container {
+  height: 100vh;
+}
 :host {
   display: block;
   width: 100vw;
@@ -42,4 +187,24 @@
   padding: 24px;
   overflow-y: auto;
   background-color: #0b0e14;
+
+}
+
+/* Personalización del Scrollbar */
+.page-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page-content::-webkit-scrollbar-track {
+  background: #0b0e14;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background: #1f2738;
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background: #2f80ed;
+}
 }

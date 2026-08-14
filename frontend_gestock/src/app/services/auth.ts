@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import { Service } from '@angular/core';
+
+@Service()
+export class Auth {
+  
+}
+=======
 import { Injectable } from '@angular/core';
 import { UsuarioAuth } from '../models/usuario-auth';
 
@@ -166,3 +174,4 @@ export class AuthService {
     }
   }
 }
+>>>>>>> origin/develop

@@ -1,22 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HeaderComponent } from './header';
+import { provideRouter } from '@angular/router';
 
-import { Header } from './header';
-
-describe('Header', () => {
-  let component: Header;
-  let fixture: ComponentFixture<Header>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Header],
+      imports: [HeaderComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Header);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have Gestock as system name', () => {
+    expect(component.nombreSistema).toBe('Gestock');
+  });
+
+  it('should have a user name', () => {
+    expect(component.userName).toBeTruthy();
+  });
+
+  it('should update date and time', () => {
+    component.actualizarFechaHora();
+
+    expect(component.fechaActual()).toBeTruthy();
+    expect(component.horaActual()).toBeTruthy();
   });
 });

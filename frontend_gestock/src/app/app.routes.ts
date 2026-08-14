@@ -1,54 +1,103 @@
 import { Routes } from '@angular/router';
-<<<<<<< HEAD
+import { LoginComponent } from './login/login/login';
+import { CreacionComponent } from './login/creacion/creacion';
+
+import { LayoutComponent } from './layout/layout/layout';
+import { authGuard } from './guards/auth-guard';
+
+import { PanelComponent } from './pages/panel/panel';
+import { EmpresasComponent } from './pages/empresas/empresas';
+import { InventarioComponent } from './pages/gestion/inventario/inventario';
+import { RolesUsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yusuarios';
+import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
+import { ReportesComponent } from './pages/reportes/reportes';
+import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
+
+
+
 
 export const routes: Routes = [
+
+  /* =========================
+     INICIO / REDIRECCIÓN
+  ========================= */
   {
     path: '',
-    loadComponent: () => import('./layout/layout').then(m => m.LayoutComponent),
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+
+  /* =========================
+     RUTAS PÚBLICAS
+  ========================= */
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'creacion-usuarios',
+    component: CreacionComponent
+  },
+
+  /* =========================
+     RUTAS PRIVADAS (PROTEGIDAS)
+  ========================= */
+  {
+    path: 'app',
+    component: LayoutComponent,
+    canActivate: [authGuard],
     children: [
-      // Redirección automática si entras a localhost:4200/
-      { 
-        path: '', 
-        redirectTo: 'gestion/auditorias', 
-        pathMatch: 'full' 
+      {
+        path: '',
+        redirectTo: 'panel',
+        pathMatch: 'full'
       },
       {
-        path: 'gestion/inventario',
-        loadComponent: () => import('./pages/gestion/inventario/inventario').then(m => m.InventarioComponent)
+        path: 'panel',
+        component: PanelComponent
       },
       {
-        path: 'gestion/auditorias',
-        loadComponent: () => import('./pages/gestion/auditorias/auditorias').then(m => m.AuditoriasComponent)
+        path: 'empresas',
+        component: EmpresasComponent
       },
       {
-        path: 'gestion/roles-yusuarios',
-        loadComponent: () => import('./pages/gestion/roles-yusuarios/roles-yusuarios').then(m => m.UsuariosComponent)
+        path: 'productos',
+        component: InventarioComponent
+      },
+      {
+        path: 'bodegas',
+        component: InventarioComponent
+      },
+      {
+        path: 'movimientos',
+        component: InventarioComponent
+      },
+      {
+        path: 'roles-usuarios',
+        component: RolesUsuariosComponent
+      },
+      {
+        path: 'auditorias',
+        component: AuditoriasComponent
+      },
+      {
+        path: 'reportes',
+        component: ReportesComponent
+      },
+      {
+        path: 'crear-inventario',
+        component: CrearInventarioComponent
       }
     ]
   },
-  { 
-    path: '**', 
-    redirectTo: ''  
-  }
-=======
-import { LoginComponent } from './login/login/login';
-import { CreacionComponent } from './login/creacion/creacion';
-import { LayoutComponent } from './layout/layout/layout';
-import { EmpresasComponent } from './pages/empresas/empresas';
-import { PanelComponent } from './pages/panel/panel';
-import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
-import { authGuard } from './guards/auth-guard';
 
-export const routes: Routes = [
-
-    // Al entrar a localhost:4200/
-    // enviamos al usuario directamente al login
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
-
+  /* =========================
+     RUTA COMODÍN (NOT FOUND)
+  ========================= */
+  {
+    path: '**',
+    redirectTo: 'login'
+  },
     // =========================
     // RUTAS PÚBLICAS
     // =========================
@@ -96,5 +145,4 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'login'
     }
->>>>>>> origin/develop
 ];
