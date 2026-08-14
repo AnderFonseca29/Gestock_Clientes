@@ -10,11 +10,10 @@ import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
 import { InventarioComponent } from './pages/gestion/inventario/inventario';
 import { RolesUsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yusuarios';
 import { PanelComponent } from './pages/panel/panel';
-<<<<<<< HEAD
 import { EmpresasComponent } from './pages/empresas/empresas';
 
 
-export const routes: Routes = [
+export const router: Routes = [
 
   /* =========================
      LOGIN
@@ -106,7 +105,6 @@ export const routes: Routes = [
     redirectTo: 'login'
   }
 
-=======
 import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
 import { authGuard } from './guards/auth-guard';
 
@@ -167,5 +165,4 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'login'
     }
->>>>>>> origin/develop
 ];
