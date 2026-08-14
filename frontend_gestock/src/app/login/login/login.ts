@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,16 +18,15 @@ import { AuthService } from '../services/auth';
 })
 export class LoginComponent {
 
-  // Variables vinculadas con [(ngModel)] en tu HTML
+  // Variables vinculadas con [(ngModel)] en la plantilla HTML
   email: string = '';
   password: string = '';
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  // Inyección de dependencias usando inject() o constructor tradicional
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
-  // Se ejecuta con el (ngSubmit)="login()" del formulario
+  // Se ejecuta al enviar el formulario (ngSubmit)="login()"
   login(): void {
     if (!this.email || !this.password) {
       alert('Por favor complete todos los campos');
@@ -41,18 +40,22 @@ export class LoginComponent {
       return;
     }
 
-    const usuario = this.authService.obtenerUsuario();
-    alert(`¡Bienvenido ${usuario?.nombre}!\nRol: ${usuario?.rol}`);
+    // Redirección hacia el panel principal sin alertas intermitentes
+    this.router.navigate(['/panel']).then((navegadoConExito) => {
+      if (!navegadoConExito) {
+        console.warn('La navegación a /panel fue bloqueada. Revisa la lógica de tu AuthGuard.');
+      }
+    }).catch((error) => {
+      console.error('Error al intentar navegar a /panel:', error);
+    });
+  }
 
-    // Redirecciona al dashboard de Gestock
-    this.router.navigate(['/app/panel']);  }
-
-  // Se ejecuta con el (click)="irACreacion()"
+  // Redirección a la creación de usuarios
   irACreacion(): void {
     this.router.navigate(['/creacion-usuarios']);
   }
 
-  // Se ejecuta con el (click)="loginConGoogle()"
+  // Autenticación con Google
   loginConGoogle(): void {
     console.log('Iniciando sesión con Google...');
     alert('Iniciando autenticación con Google');

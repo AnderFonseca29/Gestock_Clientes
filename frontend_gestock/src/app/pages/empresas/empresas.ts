@@ -1,60 +1,76 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-// Angular Material
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { AuthService, EmpresaInfo } from '../../services/auth'; // Ajusta la ruta a tu AuthService
 
 @Component({
   selector: 'app-empresas',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatIconModule
-  ],
-  templateUrl: './empresas.html', // Ajusta si tus archivos usan .component.html
-  styleUrl: './empresas.css'      // Ajusta si tus archivos usan .component.css
+  imports: [CommonModule, FormsModule],
+  templateUrl: './empresas.html',
+  styleUrl: './empresas.css'
 })
 export class EmpresasComponent implements OnInit {
-  companyForm!: FormGroup;
 
-  // Opciones para los selectores
-  currencies = [
-    { value: 'USD', label: 'USD - Dólar' },
-    { value: 'COP', label: 'COP - Peso Colombiano' },
-    { value: 'EUR', label: 'EUR - Euro' }
-  ];
+  // Iniciamos campos de texto vacíos para que NO estorben al escribir
+  empresa: EmpresaInfo = {
+    nombre: '',
+    email: '',
+    moneda: 'COP',
+    formatoFecha: 'YYYY-MM-DD'
+  };
 
-  dateFormats = [
-    { value: 'DD/MM/YYYY', label: 'DD/MM/YYYY' },
-    { value: 'MM/DD/YYYY', label: 'MM/DD/YYYY' },
-    { value: 'YYYY-MM-DD', label: 'YYYY-MM-DD' }
-  ];
+  guardando: boolean = false;
+  mensajeExito: string = '';
+  mensajeError: string = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.companyForm = this.fb.group({
-      companyName: ['GESTOCK Inc.', [Validators.required]],
-      contactEmail: ['contacto@gestock.com', [Validators.required, Validators.email]],
-      currency: ['USD', [Validators.required]],
-      dateFormat: ['DD/MM/YYYY', [Validators.required]]
-    });
+    this.cargarEmpresaGuardada();
   }
 
-  saveChanges(): void {
-    if (this.companyForm.valid) {
-      console.log('Datos guardados:', this.companyForm.value);
-      // Aquí conectaremos luego con el servicio backend
+  cargarEmpresaGuardada(): void {
+    const datosGuardados = this.authService.obtenerEmpresa();
+    // Solo asignamos si hay datos reales guardados previamente
+    if (datosGuardados) {
+      this.empresa = { ...datosGuardados };
     }
+  }
+
+  guardarCambios(): void {
+    if (!this.empresa.nombre.trim() || !this.empresa.email.trim()) {
+      this.mensajeError = 'Por favor completa los campos requeridos.';
+      this.mensajeExito = '';
+      return;
+    }
+
+    this.guardando = true;
+    this.mensajeError = '';
+    this.mensajeExito = '';
+
+    try {
+      // Guardar en AuthService / LocalStorage
+      this.authService.guardarEmpresa(this.empresa);
+
+      // Desactivar estado "Guardando..." en 300ms
+      setTimeout(() => {
+        this.guardando = false;
+        this.mensajeExito = '¡Configuración guardada exitosamente!';
+        
+        setTimeout(() => this.mensajeExito = '', 3000);
+      }, 300);
+
+    } catch (error) {
+      this.guardando = false;
+      this.mensajeError = 'Ocurrió un error al guardar los cambios.';
+    }
+  }
+
+  // Acción del botón Cancelar
+  cancelar(): void {
+    this.mensajeError = '';
+    this.mensajeExito = '';
+    this.cargarEmpresaGuardada(); // Restaura los datos anteriores
   }
 }

@@ -1,27 +1,41 @@
-<aside class="sidebar-container">
-  
-  <!-- Logo y Marca -->
-  <div class="sidebar-brand">
-    <div class="brand-logo">
-      <mat-icon class="brand-icon">inventory_2</mat-icon>
-      <span class="brand-name">Gestock</span>
-    </div>
+<div class="sidebar">
+  <div class="brand">
+    <i class="fas fa-boxes-stacked logo-icon"></i>
+    <span>Gestock</span>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- Menú de Opciones -->
-  <mat-nav-list class="nav-list">
-    @for (item of menuItems; track item.label) {
-      <a 
-        mat-list-item 
-        [routerLink]="item.route" 
-        routerLinkActive="active-link"
-        class="nav-item">
-        <mat-icon matListItemIcon class="item-icon">{{ item.icon }}</mat-icon>
-        <span matListItemTitle class="item-text">{{ item.label }}</span>
-      </a>
-    }
-  </mat-nav-list>
-
-</aside>
+  <nav class="menu-nav">
+    <a routerLink="/empresas" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-building"></i>
+      <span>Empresas</span>
+    </a>
+    <a routerLink="/panel" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-th-large"></i>
+      <span>Panel</span>
+    </a>
+    <a routerLink="/productos" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-box"></i>
+      <span>Productos</span>
+    </a>
+    <a routerLink="/bodegas" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-warehouse"></i>
+      <span>Bodegas</span>
+    </a>
+    <a routerLink="/movimientos" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Movimientos</span>
+    </a>
+    <a routerLink="/usuarios" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-users"></i>
+      <span>Usuarios</span>
+    </a>
+    <a routerLink="/reportes" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-chart-bar"></i>
+      <span>Reportes</span>
+    </a>
+    <a routerLink="/configuracion" routerLinkActive="active" class="nav-item">
+      <i class="fas fa-cog"></i>
+      <span>Configuración</span>
+    </a>
+  </nav>
+</div>

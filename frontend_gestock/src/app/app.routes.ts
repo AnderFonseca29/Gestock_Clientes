@@ -5,53 +5,63 @@ import { LayoutComponent } from './layout/layout/layout';
 import { EmpresasComponent } from './pages/empresas/empresas';
 import { PanelComponent } from './pages/panel/panel';
 import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  // Redirección inicial a /app si se entra a la raíz
-  {
-    path: '',
-    redirectTo: 'app',
-    pathMatch: 'full'
-  },
 
-  // Rutas públicas / Login
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'creacion-usuarios',
-    component: CreacionComponent
-  },
-
-  // Layout Contenedor con sus Vistas Hijas
-  {
-    path: 'app',
-    component: LayoutComponent,
-    children: [
-      {
+    // Al entrar a localhost:4200/
+    // enviamos al usuario directamente al login
+    {
         path: '',
-        redirectTo: 'empresas',
+        redirectTo: 'login',
         pathMatch: 'full'
-      },
-      {
-        path: 'empresas',
-        component: EmpresasComponent
-      },
-      {
-        path: 'panel',
-        component: PanelComponent
-      },
-      {
-        path: 'crear-inventario',
-        component: CrearInventarioComponent
-      }
-    ]
-  },
+    },
 
-  // Redirección comodín
-  {
-    path: '**',
-    redirectTo: 'login'
-  }
+    // =========================
+    // RUTAS PÚBLICAS
+    // =========================
+
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+
+    {
+        path: 'creacion',
+        component: CreacionComponent
+    },
+
+    // =========================
+    // RUTAS PRIVADAS
+    // =========================
+
+    {
+        path: '',
+        component: LayoutComponent,
+        canActivate: [authGuard],
+        children: [
+
+            {
+                path: 'empresas',
+                component: EmpresasComponent
+            },
+
+            {
+                path: 'crear-inventario',
+                component: CrearInventarioComponent
+            },
+
+            {
+                path: 'panel',
+                component: PanelComponent
+            }
+
+        ]
+    },
+
+    // Cualquier ruta que no exista
+    {
+        path: '**',
+        redirectTo: 'login'
+    }
 ];
