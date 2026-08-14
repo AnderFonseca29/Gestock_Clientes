@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* =========================================
    LAYOUT PRINCIPAL GESTOCK
 ========================================= */
@@ -140,4 +141,51 @@
     padding: 15px;
   }
 
+=======
+.layout-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #0b0e14;
+  overflow: hidden;
+}
+
+/* Sidebar Contenedor */
+.sidenav-wrapper {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+/* Área Derecha (Main) */
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #0b0e14;
+}
+
+/* Contenido Interno con Scroll suave */
+.page-content {
+  flex: 1;
+  padding: 24px 28px;
+  overflow-y: auto;
+  background-color: #0b0e14;
+}
+
+/* Personalización del Scrollbar */
+.page-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page-content::-webkit-scrollbar-track {
+  background: #0b0e14;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background: #1f2738;
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background: #2f80ed;
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }

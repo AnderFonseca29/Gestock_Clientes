@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :host {
   display: block;
   width: 100%;
@@ -347,11 +348,74 @@ form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
+=======
+.empresas-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header de la vista */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0 0 4px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #8b949e;
+}
+
+/* Tarjeta principal */
+.config-card {
+  background-color: #121722;
+  border: 1px solid #1f2738;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.card-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card-header p {
+  margin: 0 0 24px 0;
+  font-size: 0.85rem;
+  color: #8b949e;
+}
+
+/* Estructura del Formulario */
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  width: 100%;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   gap: 7px;
 }
 
@@ -436,4 +500,76 @@ form {
     font-size: 27px;
   }
 
+=======
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #c9d1d9;
+}
+
+/* Personalización Inputs de Angular Material */
+::ng-deep .custom-field .mat-mdc-text-field-wrapper {
+  background-color: #1a202c !important;
+  border-radius: 8px !important;
+  padding: 0 12px !important;
+}
+
+::ng-deep .custom-field .mat-mdc-form-field-flex {
+  align-items: center !important;
+}
+
+::ng-deep .custom-field input.mat-mdc-input-element,
+::ng-deep .custom-field .mat-mdc-select-value {
+  color: #ffffff !important;
+  font-size: 0.92rem !important;
+}
+
+::ng-deep .custom-field .mdc-notched-outline__leading,
+::ng-deep .custom-field .mdc-notched-outline__notch,
+::ng-deep .custom-field .mdc-notched-outline__trailing {
+  border-color: #2b3548 !important;
+}
+
+::ng-deep .custom-field.mat-focused .mdc-notched-outline__leading,
+::ng-deep .custom-field.mat-focused .mdc-notched-outline__notch,
+::ng-deep .custom-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #2f80ed !important;
+  border-width: 1.5px !important;
+}
+
+::ng-deep .custom-field .mat-mdc-select-arrow {
+  color: #8b949e !important;
+}
+
+/* Acciones y Botón */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn-save {
+  background-color: #2f80ed !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 8px 24px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.35);
+  transition: all 0.2s ease !important;
+}
+
+.btn-save:hover {
+  background-color: #1f6fd8 !important;
+  box-shadow: 0 6px 16px rgba(47, 128, 237, 0.5);
+}
+
+.btn-save:disabled {
+  background-color: #1f2738 !important;
+  color: #485264 !important;
+  box-shadow: none;
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }

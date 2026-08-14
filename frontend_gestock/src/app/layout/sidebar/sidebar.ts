@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -6,6 +7,20 @@ interface MenuItem {
   nombre: string;
   icono: string;
   ruta: string;
+=======
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+// Angular Material Imports
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
+interface MenuItem {
+  label: string;
+  icon: string;
+  route: string;
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }
 
 @Component({
@@ -14,11 +29,18 @@ interface MenuItem {
   imports: [
     CommonModule,
     RouterLink,
+<<<<<<< HEAD
     RouterLinkActive
+=======
+    RouterLinkActive,
+    MatListModule,
+    MatIconModule
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
+<<<<<<< HEAD
 export class SidebarComponent implements OnInit {
 
   // ==============================
@@ -124,4 +146,19 @@ export class SidebarComponent implements OnInit {
 
   }
 
+=======
+export class SidebarComponent {
+  
+  menuItems: MenuItem[] = [
+    { label: 'Empresas', icon: 'business', route: '/app/empresas' },
+    { label: 'Panel', icon: 'dashboard', route: '/app/dashboard' },
+    { label: 'Productos', icon: 'inventory_2', route: '/app/productos' },
+    { label: 'Bodegas', icon: 'store', route: '/app/bodegas' },
+    { label: 'Movimientos', icon: 'swap_horiz', route: '/app/movimientos' },
+    { label: 'Usuarios', icon: 'group', route: '/app/usuarios' },
+    { label: 'Reportes', icon: 'bar_chart', route: '/app/reportes' },
+    { label: 'Configuración', icon: 'settings', route: '/app/configuracion' }
+  ];
+
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }

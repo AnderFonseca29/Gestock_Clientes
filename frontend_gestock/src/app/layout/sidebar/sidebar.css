@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* =========================================
    SIDEBAR GESTOCK
 ========================================= */
@@ -355,4 +356,90 @@
   .user-mini {
     justify-content: center;
   }
+=======
+.sidebar-container {
+  width: 240px;
+  height: 100%;
+  background-color: #121722;
+  border-right: 1px solid #1f2738;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* Marca / Logo */
+.sidebar-brand {
+  padding: 20px 24px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  color: #2f80ed;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.brand-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #1f2738;
+  width: 100%;
+}
+
+/* Lista del menú */
+.nav-list {
+  padding-top: 16px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  margin: 0 14px !important;
+  border-radius: 8px !important;
+  height: 44px !important;
+  color: #8b949e !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+}
+
+/* Opción Activa (Azul Gestock) */
+.active-link {
+  background-color: #2f80ed !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(47, 128, 237, 0.4);
+}
+
+.active-link .item-icon {
+  color: #ffffff !important;
+}
+
+.item-icon {
+  color: #8b949e;
+  margin-right: 14px !important;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.item-text {
+  font-weight: 500;
+  font-size: 0.92rem;
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }

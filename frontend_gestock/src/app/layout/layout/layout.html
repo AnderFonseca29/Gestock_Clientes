@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="app-layout">
 
   <!-- SIDEBAR -->
@@ -28,3 +29,29 @@
   </div>
 
 </div>
+=======
+<mat-sidenav-container class="layout-container">
+  
+  <!-- SIDEBAR IZQUIERDO -->
+  <mat-sidenav mode="side" opened class="sidenav-wrapper">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <mat-sidenav-content class="main-wrapper">
+    
+    <!-- Header Superior -->
+    <app-header [title]="titleModule"></app-header>
+
+    <!-- Área de la página activa -->
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Footer Inferior -->
+    <app-footer></app-footer>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8

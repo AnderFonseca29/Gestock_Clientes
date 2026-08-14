@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <aside class="sidebar">
 
   <!-- LOGO -->
@@ -86,5 +87,32 @@
     </button>
 
   </div>
+=======
+<aside class="sidebar-container">
+  
+  <!-- Logo y Marca -->
+  <div class="sidebar-brand">
+    <div class="brand-logo">
+      <mat-icon class="brand-icon">inventory_2</mat-icon>
+      <span class="brand-name">Gestock</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Menú de Opciones -->
+  <mat-nav-list class="nav-list">
+    @for (item of menuItems; track item.label) {
+      <a 
+        mat-list-item 
+        [routerLink]="item.route" 
+        routerLinkActive="active-link"
+        class="nav-item">
+        <mat-icon matListItemIcon class="item-icon">{{ item.icon }}</mat-icon>
+        <span matListItemTitle class="item-text">{{ item.label }}</span>
+      </a>
+    }
+  </mat-nav-list>
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 
 </aside>

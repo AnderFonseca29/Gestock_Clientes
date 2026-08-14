@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Component,
   OnDestroy,
@@ -9,6 +10,15 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { Router } from '@angular/router';
+=======
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+// Angular Material
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -17,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
+<<<<<<< HEAD
 
   standalone: true,
 
@@ -194,4 +205,25 @@ export class HeaderComponent
 
   }
 
+=======
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule
+  ],
+  templateUrl: './header.html',
+  styleUrl: './header.css'
+})
+export class HeaderComponent {
+  // Título dinámico que se puede cambiar según la página
+  @Input() title: string = 'Empresas';
+
+  // Datos del usuario logueado
+  userName: string = 'Administrador';
+  userRole: string = 'Administrador';
+  userInitial: string = 'A';
+  notificationCount: number = 3;
+>>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 }
