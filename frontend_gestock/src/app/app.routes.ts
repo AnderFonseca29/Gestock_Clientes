@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 import { LoginComponent } from './login/login/login';
 import { CreacionComponent } from './login/creacion/creacion';
 
@@ -13,6 +12,9 @@ import { RolesUsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yu
 import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
 import { ReportesComponent } from './pages/reportes/reportes';
 import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
+
+
+
 
 export const routes: Routes = [
 
@@ -95,5 +97,52 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'login'
-  }
+  },
+    // =========================
+    // RUTAS PÚBLICAS
+    // =========================
+
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+
+    {
+        path: 'creacion',
+        component: CreacionComponent
+    },
+
+    // =========================
+    // RUTAS PRIVADAS
+    // =========================
+
+    {
+        path: '',
+        component: LayoutComponent,
+        canActivate: [authGuard],
+        children: [
+
+            {
+                path: 'empresas',
+                component: EmpresasComponent
+            },
+
+            {
+                path: 'crear-inventario',
+                component: CrearInventarioComponent
+            },
+
+            {
+                path: 'panel',
+                component: PanelComponent
+            }
+
+        ]
+    },
+
+    // Cualquier ruta que no exista
+    {
+        path: '**',
+        redirectTo: 'login'
+    }
 ];

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UsuarioAuth } from '../models/usuario-auth';
 
 export interface UsuarioAuth {
   nombre: string;

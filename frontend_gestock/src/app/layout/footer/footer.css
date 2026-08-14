@@ -1,3 +1,32 @@
+<<<<<<< HEAD
+.footer {
+  height: 45px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.775rem;
+  color: #64748b;
+}
+
+
+:host {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  width: 100%;
+  background-color: #FFFFFF; /* Cambia al color de tu preferencia */
+  border-top: 1px solid #E2E8F0; /* Borde superior sutil */
+}
+=======
 .footer-container {
   height: 40px;
   background-color: #0b0e14;
@@ -52,3 +81,4 @@
 .dot {
   color: #3d4554;
 }
+>>>>>>> origin/develop

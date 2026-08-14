@@ -1,253 +1,119 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import {
   Component,
   OnDestroy,
   OnInit,
   Input,
-  signal
+  signal,
+  inject
 } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
-
 import { Router } from '@angular/router';
-=======
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 // Angular Material
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
->>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatButtonModule } from '@angular/material/button';
-
-=======
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth';
+// 1. AGREGA ESTAS DOS IMPORTACIONES
+import { authGuard } from '../../guards/auth-guard'; // O verifica la ruta exacta a auth.service
+import { AuthService } from '../../login/services/auth'; 
 import { UsuarioAuth } from '../../models/usuario-auth';
->>>>>>> origin/develop
+
+
 
 @Component({
   selector: 'app-header',
-<<<<<<< HEAD
-
   standalone: true,
-
   imports: [
     CommonModule,
     MatIconModule,
     MatBadgeModule,
     MatButtonModule
   ],
-
-  templateUrl: './header.html',
-
-  styleUrl: './header.css'
-})
-export class HeaderComponent
-  implements OnInit, OnDestroy {
-
-
-  @Input()
-  title: string = 'Panel';
-
-
-  nombreSistema: string =
-    'Gestock';
-
-
-  descripcionSistema: string =
-    'Sistema de gestión de inventario y bodegas';
-
-
-  usuario: string =
-    'Administrador';
-
-
-  rol: string =
-    'Administrador';
-
-
-  userName: string =
-    'Administrador';
-
-
-  userRole: string =
-    'Administrador';
-
-
-  userInitial: string =
-    'A';
-
-
-  notificationCount: number =
-    3;
-
-
-  fechaActual =
-    signal('');
-
-
-  horaActual =
-    signal('');
-
-
-  private intervalo: any;
-
-
-  constructor(
-    private router: Router
-  ) {}
-
-
-  ngOnInit(): void {
-
-    this.usuario =
-      localStorage.getItem('nombre')
-      ?? 'Administrador';
-
-
-    this.rol =
-      localStorage.getItem('rol')
-      ?? 'Administrador';
-
-
-    this.userName =
-      this.usuario;
-
-
-    this.userRole =
-      this.rol;
-
-
-    this.userInitial =
-      this.usuario
-        .charAt(0)
-        .toUpperCase();
-
-
-    this.actualizarFechaHora();
-
-
-    this.intervalo =
-      setInterval(() => {
-
-        this.actualizarFechaHora();
-
-      }, 1000);
-  }
-
-
-  actualizarFechaHora(): void {
-
-    const ahora =
-      new Date();
-
-
-    this.fechaActual.set(
-
-      ahora.toLocaleDateString(
-        'es-CO',
-        {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }
-      )
-
-    );
-
-
-    this.horaActual.set(
-
-      ahora.toLocaleTimeString(
-        'es-CO',
-        {
-          hour12: false
-        }
-      )
-
-    );
-
-  }
-
-
-  cerrarSesion(): void {
-
-    localStorage.removeItem(
-      'usuarioLogueado'
-    );
-
-    localStorage.removeItem(
-      'nombre'
-    );
-
-    localStorage.removeItem(
-      'rol'
-    );
-
-
-    this.router.navigate([
-      '/login'
-    ]);
-
-  }
-
-
-  ngOnDestroy(): void {
-
-    if (this.intervalo) {
-
-      clearInterval(
-        this.intervalo
-      );
-
-    }
-
-  }
-
-=======
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
-  usuario: UsuarioAuth | null = null;
+  private router = inject(Router);
 
-<<<<<<< HEAD
-  // Datos del usuario logueado
+  @Input() title: string = 'Panel';
+
+  nombreSistema: string = 'Gestock';
+  descripcionSistema: string = 'Sistema de gestión de inventario y bodegas';
+
+  // Usuario autenticado mediante AuthService / LocalStorage
+  usuarioAuth: UsuarioAuth | null = null;
   userName: string = 'Administrador';
   userRole: string = 'Administrador';
   userInitial: string = 'A';
   notificationCount: number = 3;
->>>>>>> 5bf402a4f6f32522712376ec401ed193930e7fc8
-=======
-  ngOnInit(): void {
-    this.usuario = this.authService.obtenerUsuario();
+  menuAbierto: boolean = false;
+
+  // Reactividad para fecha y hora
+  fechaActual = signal('');
+  horaActual = signal('');
+  private intervalo: any;
+
+ ngOnInit(): void {
+  // Cargar usuario desde localStorage
+  const nombreGuardado = localStorage.getItem('nombre') || localStorage.getItem('usuarioLogueado');
+  const rolGuardado = localStorage.getItem('rol');
+
+  if (nombreGuardado) {
+    this.userName = nombreGuardado;
+    this.userInitial = this.userName.charAt(0).toUpperCase();
   }
+
+  if (rolGuardado) {
+    this.userRole = rolGuardado;
+  }
+
+  // Reloj
+  this.actualizarFechaHora();
+  this.intervalo = setInterval(() => {
+    this.actualizarFechaHora();
+  }, 1000);
+}
 
   get inicialNombre(): string {
-    return this.usuario?.nombre ? this.usuario.nombre.charAt(0).toUpperCase() : 'U';
+    return this.userName ? this.userName.charAt(0).toUpperCase() : 'A';
   }
 
-  cerrarSesion(): void {
-    this.authService.cerrarSesion();
-    window.location.href = '/login';
+  actualizarFechaHora(): void {
+    const ahora = new Date();
+
+    this.fechaActual.set(
+      ahora.toLocaleDateString('es-CO', {
+        weekday: 'long',
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      })
+    );
+
+    this.horaActual.set(
+      ahora.toLocaleTimeString('es-CO', {
+        hour12: false
+      })
+    );
   }
 
   toggleMenu(): void {
     this.menuAbierto = !this.menuAbierto;
-    console.log(this.menuAbierto);
   }
 
-  menuAbierto = false;
->>>>>>> origin/develop
+  cerrarSesion(): void {
+  localStorage.removeItem('usuarioLogueado');
+  localStorage.removeItem('nombre');
+  localStorage.removeItem('rol');
+  localStorage.removeItem('token');
+  this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalo) {
+      clearInterval(this.intervalo);
+    }
+  }
 }

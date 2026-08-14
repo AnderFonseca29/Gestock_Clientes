@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 // Angular Material Imports
@@ -17,6 +17,7 @@ export interface MenuItem {
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     RouterLink,
     RouterLinkActive,
     MatListModule,
@@ -27,25 +28,21 @@ export interface MenuItem {
 })
 export class SidebarComponent implements OnInit {
 
-  // ==============================
   // DATOS DEL USUARIO
-  // ==============================
   nombreUsuario: string = 'Administrador';
   rolUsuario: string = 'Administrador';
 
-  // ==============================
-  // MENÚ LATERAL (menuItems)
-  // ==============================
+  // MENÚ LATERAL (rutas activas del proyecto)
   menuItems: MenuItem[] = [
-    {
-      label: 'Empresas',
-      icon: 'business',
-      route: '/app/empresas'
-    },
     {
       label: 'Panel',
       icon: 'dashboard',
       route: '/app/panel'
+    },
+    {
+      label: 'Empresas',
+      icon: 'business',
+      route: '/app/empresas'
     },
     {
       label: 'Productos',
@@ -68,14 +65,14 @@ export class SidebarComponent implements OnInit {
       route: '/app/roles-usuarios'
     },
     {
+      label: 'Auditorías',
+      icon: 'fact_check',
+      route: '/app/auditorias'
+    },
+    {
       label: 'Reportes',
       icon: 'bar_chart',
       route: '/app/reportes'
-    },
-    {
-      label: 'Configuración',
-      icon: 'settings',
-      route: '/app/configuracion'
     }
   ];
 

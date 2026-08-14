@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { AuthService } from './auth';
 
-<<<<<<< HEAD
 import { Auth } from './auth';
 
 describe('Auth', () => {
@@ -9,8 +9,6 @@ describe('Auth', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(Auth);
-=======
-import { AuthService } from './auth';
 
 describe('Auth', () => {
   let service: AuthService;
@@ -18,10 +16,10 @@ describe('Auth', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
->>>>>>> origin/develop
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
+  }

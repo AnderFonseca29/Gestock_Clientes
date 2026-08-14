@@ -1,137 +1,48 @@
-<div class="modulo-container">
-  
-  <header class="modulo-header">
-    <h2>Control de Inventario y Bodega</h2>
-    <p>Gestión de existencias, ubicaciones, vencimientos y registro de productos</p>
+<div class="inventario-container">
+  <header class="inventario-header">
+    <div class="header-title">
+      <h1>Gestión de Inventario</h1>
+      <p>Administra existencias, bodegas, registro de productos y alertas en un solo lugar.</p>
+    </div>
   </header>
 
-  <!-- Navegación por Pestañas -->
-  <div class="nav-tabs">
+  <nav class="inventario-tabs">
     <button 
-      type="button"
-      [class.active]="vistaActiva === 'productos'" 
-      (click)="vistaActiva = 'productos'">
-      Listado de Stock
+      [class.active]="tabActiva() === 'stock'" 
+      (click)="setTab('stock')">
+      📊 Existencias
     </button>
     <button 
-      type="button"
-      [class.active]="vistaActiva === 'registro'" 
-      (click)="vistaActiva = 'registro'">
-      Registrar Producto
+      [class.active]="tabActiva() === 'bodegas'" 
+      (click)="setTab('bodegas')">
+      🏢 Bodegas
     </button>
     <button 
-      type="button"
-      [class.active]="vistaActiva === 'alertas'" 
-      (click)="vistaActiva = 'alertas'">
-      Alertas y Control
+      [class.active]="tabActiva() === 'registrar'" 
+      (click)="setTab('registrar')">
+      ➕ Registrar Producto
     </button>
-  </div>
+    <button 
+      [class.active]="tabActiva() === 'alertas'" 
+      (click)="setTab('alertas')">
+      🚨 Alertas y Control
+    </button>
+  </nav>
 
-  <!-- VISTA 1: LISTADO DE PRODUCTOS -->
-  <div *ngIf="vistaActiva === 'productos'" class="tabla-card">
-    <table class="custom-table">
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Producto</th>
-          <th>Categoría</th>
-          <th>Stock Actual</th>
-          <th>Ubicación</th>
-          <th>Vencimiento</th>
-          <th>Estado Stock</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let prod of productos">
-          <td><span class="badge">{{ prod.codigo }}</span></td>
-          <td><strong>{{ prod.nombre }}</strong></td>
-          <td>{{ prod.categoria }}</td>
-          <td>{{ prod.stock }} unid.</td>
-          <td><span class="location-tag">{{ prod.ubicacion }}</span></td>
-          <td>{{ prod.fechaVencimiento || 'N/A' }}</td>
-          <td>
-            <span class="status-tag" [ngClass]="{
-              'critico': esStockBajo(prod),
-              'exceso': esStockSobrepasado(prod),
-              'optimo': !esStockBajo(prod) && !esStockSobrepasado(prod)
-            }">
-              {{ esStockBajo(prod) ? 'Bajo Mínimo' : (esStockSobrepasado(prod) ? 'Sobre Límite' : 'Óptimo') }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- VISTA 2: FORMULARIO DE REGISTRO -->
-  <div *ngIf="vistaActiva === 'registro'" class="form-card">
-    <h3>Nuevo Registro de Producto</h3>
-    <form (ngSubmit)="guardarProducto()" class="grid-form">
-      <div class="form-group">
-        <label for="codigo">Código Único *</label>
-        <input id="codigo" type="text" [(ngModel)]="nuevoProducto.codigo" name="codigo" required class="custom-input" placeholder="Ej: PROD-004">
-      </div>
-
-      <div class="form-group">
-        <label for="nombre">Nombre del Producto *</label>
-        <input id="nombre" type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre" required class="custom-input" placeholder="Ej: Contenedor Plástico">
-      </div>
-
-      <div class="form-group">
-        <label for="categoria">Categoría</label>
-        <input id="categoria" type="text" [(ngModel)]="nuevoProducto.categoria" name="categoria" class="custom-input" placeholder="Ej: Insumos">
-      </div>
-
-      <div class="form-group">
-        <label for="ubicacion">Ubicación en Bodega</label>
-        <input id="ubicacion" type="text" [(ngModel)]="nuevoProducto.ubicacion" name="ubicacion" class="custom-input" placeholder="Ej: Bodega C-01">
-      </div>
-
-      <div class="form-group">
-        <label for="stock">Stock Inicial</label>
-        <input id="stock" type="number" [(ngModel)]="nuevoProducto.stock" name="stock" class="custom-input">
-      </div>
-
-      <div class="form-group">
-        <label for="stockMin">Stock Mínimo</label>
-        <input id="stockMin" type="number" [(ngModel)]="nuevoProducto.stockMin" name="stockMin" class="custom-input">
-      </div>
-
-      <div class="form-group">
-        <label for="fechaVencimiento">Fecha de Vencimiento</label>
-        <input id="fechaVencimiento" type="date" [(ngModel)]="nuevoProducto.fechaVencimiento" name="fechaVencimiento" class="custom-input">
-      </div>
-
-      <div class="form-actions">
-        <button type="button" class="btn-secondary" (click)="vistaActiva = 'productos'">Cancelar</button>
-        <button type="submit" class="btn-primary">Guardar Producto</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- VISTA 3: ALERTAS Y CONTROL -->
-  <div *ngIf="vistaActiva === 'alertas'" class="alertas-grid">
-    <div class="alerta-card warning">
-      <h4>Mínimos y Máximos de Stock</h4>
-      <ul>
-        <ng-container *ngFor="let prod of productos">
-          <li *ngIf="esStockBajo(prod)">
-            ⚠️ <strong>{{ prod.nombre }}</strong>: Stock actual de {{ prod.stock }} unidades (Mínimo requerido: {{ prod.stockMin }}).
-          </li>
-        </ng-container>
-      </ul>
-    </div>
-
-    <div class="alerta-card danger">
-      <h4>Control de Próximos Vencimientos</h4>
-      <ul>
-        <ng-container *ngFor="let prod of productos">
-          <li *ngIf="esProximoAVencer(prod.fechaVencimiento)">
-            ⏰ <strong>{{ prod.nombre }}</strong>: Vence el {{ prod.fechaVencimiento }}.
-          </li>
-        </ng-container>
-      </ul>
-    </div>
-  </div>
-
+  <main class="inventario-content">
+    @switch (tabActiva()) {
+      @case ('stock') {
+        <app-stock-list></app-stock-list>
+      }
+      @case ('bodegas') {
+        <app-bodegas></app-bodegas>
+      }
+      @case ('registrar') {
+        <app-registrar-productos></app-registrar-productos>
+      }
+      @case ('alertas') {
+        <app-alertas-control></app-alertas-control>
+      }
+    }
+  </main>
 </div>

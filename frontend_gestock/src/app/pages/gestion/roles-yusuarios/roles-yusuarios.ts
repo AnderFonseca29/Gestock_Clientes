@@ -1,19 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-export interface UsuarioEmpleado {
-  id: number;
-  nombre: string;
-  email: string;
-  rol: string;
-  activo: boolean;
-  tiempoTrabajadoHoy: string;
-  avatarColor: string;
-}
+import { UsuariosService } from './services/services';
 
 @Component({
-  selector: 'app-roles-yusuarios',
+  selector: 'app-usuarios',
   standalone: true,
   imports: [
     CommonModule,
@@ -22,6 +13,7 @@ export interface UsuarioEmpleado {
   templateUrl: './roles-yusuarios.html',
   styleUrl: './roles-yusuarios.css'
 })
+<<<<<<< HEAD
 export class RolesUsuariosComponent {
 
   rolesDisponibles: string[] = [
@@ -30,37 +22,30 @@ export class RolesUsuariosComponent {
     'Cajero',
     'Auditor'
   ];
+=======
+export class UsuariosComponent {
+  private usuariosService = inject(UsuariosService);
 
-  usuarios: UsuarioEmpleado[] = [
-    {
-      id: 1,
-      nombre: 'Carlos Mendoza',
-      email: 'carlos.mendoza@gestock.com',
-      rol: 'Auxiliar de Bodega',
-      activo: true,
-      tiempoTrabajadoHoy: '6h 15m',
-      avatarColor: '#2563EB'
-    },
-    {
-      id: 2,
-      nombre: 'María Paula Gómez',
-      email: 'maria.gomez@gestock.com',
-      rol: 'Cajero',
-      activo: true,
-      tiempoTrabajadoHoy: '4h 50m',
-      avatarColor: '#10B981'
-    },
-    {
-      id: 3,
-      nombre: 'John Alexander Pérez',
-      email: 'john.perez@gestock.com',
-      rol: 'Auditor',
-      activo: false,
-      tiempoTrabajadoHoy: '0h 0m',
-      avatarColor: '#64748B'
-    }
-  ];
+  // Conexión directa a las señales del servicio
+  usuarios = this.usuariosService.usuariosFiltrados;
+  busqueda = this.usuariosService.filtroBusqueda;
+  filtroEstado = this.usuariosService.filtroEstado;
 
+  // Estados locales para modales y formularios
+  modalFormularioAbierto = false;
+  modalConfirmacionAbierto = false;
+  esModoEdicion = false;
+  
+  rolesDisponibles = ['Administrador', 'Encargado de Bodega', 'Personal de Inventario'];
+  formData: any = { nombre: '', email: '', rol: '' };
+>>>>>>> origin/develop
+
+  // KPIs de ejemplo (puedes enlazarlos a tu servicio si ya los tienes calculados)
+  totalUsuarios = 12;
+  usuariosActivos = 8;
+  horasTotalesHoy = '64h';
+
+<<<<<<< HEAD
   modalAbierto = false;
 
   esModoEdicion = false;
@@ -125,9 +110,12 @@ export class RolesUsuariosComponent {
   // CREAR USUARIO
   // ==========================================
 
+=======
+>>>>>>> origin/develop
   abrirModalCrear(): void {
 
     this.esModoEdicion = false;
+<<<<<<< HEAD
 
     this.idUsuarioEditando = null;
 
@@ -287,6 +275,40 @@ export class RolesUsuariosComponent {
   ): void {
 
     usuario.rol = nuevoRol;
+=======
+    this.formData = { nombre: '', email: '', rol: this.rolesDisponibles[0] };
+    this.modalFormularioAbierto = true;
+  }
+
+  abrirModalEditar(usuario: any): void {
+    this.esModoEdicion = true;
+    this.formData = { ...usuario };
+    this.modalFormularioAbierto = true;
+  }
+
+  cerrarModales(): void {
+    this.modalFormularioAbierto = false;
+    this.modalConfirmacionAbierto = false;
+  }
+
+  solicitarGuardado(): void {
+    if (this.esModoEdicion) {
+      this.modalConfirmacionAbierto = true;
+    } else {
+      // Lógica directa para crear si lo deseas
+      this.cerrarModales();
+    }
+  }
+
+  confirmarEdicion(): void {
+    // Aquí ejecutas la lógica para guardar los cambios
+    this.cerrarModales();
+  }
+
+  toggleEstado(usuarioOrId: any): void {
+    const id = typeof usuarioOrId === 'object' ? usuarioOrId.id : usuarioOrId;
+    this.usuariosService.toggleEstadoUsuario(id);
+>>>>>>> origin/develop
   }
 
 }
