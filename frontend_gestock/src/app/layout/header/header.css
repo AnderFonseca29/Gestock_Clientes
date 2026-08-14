@@ -1,75 +1,124 @@
-.header-container {
+<<<<<<< HEAD
+.main-header {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  height: 64px;
-  padding: 0 28px;
-  background-color: #0b0e14;
-  border-bottom: 1px solid #1f2738;
-  color: #ffffff;
+  padding: 0 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Título */
-.header-title h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #ffffff;
+.system-title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #2563eb;
+  letter-spacing: 0.05em;
 }
 
-/* Acciones lado derecho */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Botón de campana */
-.icon-btn {
-  color: #8b949e !important;
-  transition: color 0.2s ease;
-}
-
-.icon-btn:hover {
-  color: #ffffff !important;
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* Estilos Badge Notificación */
-::ng-deep .mat-badge-content {
-  background-color: #ff4d4f !important;
-  font-weight: 600;
-  font-size: 10px;
-}
-
-/* Perfil de Usuario */
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 4px 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.user-profile:hover {
-  background-color: rgba(255, 255, 255, 0.04);
+  gap: 0.75rem;
 }
 
 .avatar {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background-color: #2f80ed;
+  background-color: #0f172a;
+=======
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 28px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notification-icon {
+  position: relative;
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 5px;
+}
+
+/* Contenedor del Perfil */
+.user-dropdown-container {
+  position: relative;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.user-trigger:hover {
+  background-color: #1a2333;
+}
+
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #2563eb;
+>>>>>>> origin/develop
   color: #ffffff;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-weight: 700;
-  font-size: 0.9rem;
-  box-shadow: 0 0 10px rgba(47, 128, 237, 0.4);
+<<<<<<< HEAD
+  font-size: 0.85rem;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que el header quede por encima de las tablas y cartas */
+  display: block;
+  width: 100%;
+  background-color: #FFFFFF; /* Cambia al color de tu preferencia para evitar transparencia */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil opcional */
+=======
+  font-size: 15px;
 }
 
 .user-info {
@@ -78,20 +127,69 @@
 }
 
 .user-name {
-  font-size: 0.88rem;
+  font-size: 13px;
   font-weight: 600;
   color: #ffffff;
-  line-height: 1.2;
 }
 
 .user-role {
-  font-size: 0.75rem;
-  color: #8b949e;
+  font-size: 11px;
+  color: #64748b;
 }
 
-.dropdown-icon {
-  color: #8b949e;
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
+.arrow-icon {
+  font-size: 11px;
+  color: #64748b;
+  margin-left: 4px;
+}
+
+/* Menú Desplegable (Dropdown) */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 180px;
+  background-color: #121824;
+  border: 1px solid #1e2638;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  padding: 6px 0;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #1e2638;
+  margin: 6px 0;
+}
+
+.logout-btn {
+  color: #f87171;
+}
+
+.logout-btn:hover {
+  background-color: #2d1a1e;
+  color: #ef4444;
+>>>>>>> origin/develop
 }

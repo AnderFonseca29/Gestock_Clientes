@@ -1,89 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
-interface RegistroAuditoria {
+export interface AuditoriaRegistro {
   id: number;
   usuario: string;
-  rol: string;
   accion: string;
   modulo: string;
-  fechaHora: string;
   detalles: string;
+  ip: string;
+  created_at: string;
 }
 
 @Component({
   selector: 'app-auditorias',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './auditorias.html',
-  styleUrl: './auditorias.css'
+  styleUrls: ['./auditorias.css']
 })
-export class AuditoriasComponent {
-  // Filtros
-  filtroUsuario: string = '';
-  filtroAccion: string = '';
-  filtroFecha: string = '';
+export class AuditoriasComponent implements OnInit {
+  listaAuditorias = signal<AuditoriaRegistro[]>([]);
+  cargando = signal<boolean>(false);
 
-  // Datos de prueba (Registro de actividades - HU017 / HU018)
-  registros: RegistroAuditoria[] = [
-    {
-      id: 101,
-      usuario: 'Anderson Rodelo',
-      rol: 'Administrador',
-      accion: 'Creación',
-      modulo: 'Inventario',
-      fechaHora: '2026-08-13 10:15',
-      detalles: 'Registró nuevo producto COD-9948'
-    },
-    {
-      id: 102,
-      usuario: 'Carlos Mendoza',
-      rol: 'Auxiliar de Bodega',
-      accion: 'Modificación',
-      modulo: 'Movimientos',
-      fechaHora: '2026-08-13 09:30',
-      detalles: 'Ajustó stock de 50 a 45 unidades'
-    },
-    {
-      id: 103,
-      usuario: 'Maria Gomez',
-      rol: 'Supervisión / Auditor',
-      accion: 'Asignación',
-      modulo: 'Roles y Permisos',
-      fechaHora: '2026-08-12 16:45',
-      detalles: 'Asignó permiso HU015 a Auxiliar'
-    },
-    {
-      id: 104,
-      usuario: 'Anderson Rodelo',
-      rol: 'Administrador',
-      accion: 'Eliminación',
-      modulo: 'Usuarios',
-      fechaHora: '2026-08-12 11:20',
-      detalles: 'Revocó usuario inactivo ID-40'
-    }
-  ];
-
-  // HU019: Filtrado dinámico por tipo de acción, usuario o fecha
-  get registrosFiltrados(): RegistroAuditoria[] {
-    return this.registros.filter(reg => {
-      const coincideUsuario = !this.filtroUsuario || 
-        reg.usuario.toLowerCase().includes(this.filtroUsuario.toLowerCase());
-      
-      const coincideAccion = !this.filtroAccion || 
-        reg.accion === this.filtroAccion;
-
-      const coincideFecha = !this.filtroFecha || 
-        reg.fechaHora.startsWith(this.filtroFecha);
-
-      return coincideUsuario && coincideAccion && coincideFecha;
-    });
+  ngOnInit(): void {
+    this.cargarAuditorias();
   }
 
-  limpiarFiltros(): void {
-    this.filtroUsuario = '';
-    this.filtroAccion = '';
-    this.filtroFecha = '';
+  cargarAuditorias() {
+    this.cargando.set(true);
+    
+    // Datos independientes de auditoría
+    const mockAuditorias: AuditoriaRegistro[] = [
+      {
+        id: 1,
+        usuario: 'Anderson Rodelo',
+        accion: 'MODIFICAR_ROL',
+        modulo: 'Roles y Usuarios',
+        detalles: 'Se actualizó el acceso del usuario Juan Pérez a Administrador.',
+        ip: '192.168.1.15',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: 2,
+        usuario: 'Maria Gomez',
+        accion: 'REGISTRAR_STOCK',
+        modulo: 'Inventario',
+        detalles: 'Se ingresó el lote #104 de suministros de oficina.',
+        ip: '192.168.1.22',
+        created_at: new Date(Date.now() - 3600000).toISOString()
+      },
+      {
+        id: 3,
+        usuario: 'Carlos Vives',
+        accion: 'LOGIN',
+        modulo: 'Seguridad',
+        detalles: 'Inicio de sesión exitoso en la plataforma GESTOCK.',
+        ip: '192.168.1.8',
+        created_at: new Date(Date.now() - 7200000).toISOString()
+      }
+    ];
+
+    setTimeout(() => {
+      this.listaAuditorias.set(mockAuditorias);
+      this.cargando.set(false);
+    }, 200);
   }
 }

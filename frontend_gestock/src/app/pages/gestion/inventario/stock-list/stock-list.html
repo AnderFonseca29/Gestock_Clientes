@@ -1,0 +1,58 @@
+<div class="stock-page fade-in">
+  <div class="stock-header">
+    <div class="stock-title-group">
+      <h2>Control de Inventario y Stock</h2>
+      <p>Visualiza existencias físicas, precios y estados actuales de almacén.</p>
+    </div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-card-title">
+      <h3>Lista de Productos en Stock</h3>
+      <span class="stock-badge">{{ productos().length }} ítems</span>
+    </div>
+
+    <div class="stock-table-container">
+      <table class="stock-data-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Stock Actual</th>
+            <th>Precio Unitario</th>
+            <th class="text-right">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (prod of productos(); track prod.id) {
+            <tr class="stock-row">
+              <td>
+                <div class="stock-prod-info">
+                  <div class="stock-avatar">{{ prod.nombre.charAt(0) }}</div>
+                  <span class="stock-name">{{ prod.nombre }}</span>
+                </div>
+              </td>
+              <td><span class="stock-category">{{ prod.categoria }}</span></td>
+              <td><strong>{{ prod.stock }} unidades</strong></td>
+              <td>{{ prod.precio | currency:'COP':'symbol':'1.0-0' }}</td>
+              <td class="text-right">
+                <span class="stock-status" [ngClass]="{
+                  'status-disponible': prod.estado === 'Disponible',
+                  'status-bajo': prod.estado === 'Bajo Stock',
+                  'status-agotado': prod.estado === 'Agotado'
+                }">
+                  <span class="dot"></span>
+                  {{ prod.estado }}
+                </span>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="stock-empty">No hay productos registrados en el inventario.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

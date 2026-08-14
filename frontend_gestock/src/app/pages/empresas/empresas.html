@@ -1,79 +1,224 @@
 <div class="empresas-container">
-  
-  <!-- Subtítulo de bienvenida/sección -->
-  <div class="page-header">
-    <h2 class="page-title">Empresas</h2>
-    <p class="page-subtitle">Personaliza tu experiencia en GESTOCK</p>
-  </div>
 
-  <!-- Tarjeta del Formulario de Configuración -->
-  <div class="config-card">
-    <div class="card-header">
-      <h3>Configuración</h3>
-      <p>Personaliza la información de tu empresa</p>
+  <!-- ENCABEZADO -->
+  <div class="page-header">
+    <div>
+      <span class="page-label">GESTIÓN EMPRESARIAL</span>
+      <h1>Empresas</h1>
+      <p>Administra las empresas registradas en el sistema Gestock.</p>
     </div>
 
-    <form [formGroup]="companyForm" (ngSubmit)="saveChanges()" class="config-form">
-      
-      <!-- Nombre de la Empresa -->
-      <div class="form-row">
-        <div class="form-group full-width">
-          <label>Nombre de la Empresa</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <input matInput formControlName="companyName" placeholder="Ej. GESTOCK Inc.">
-          </mat-form-field>
-        </div>
+    <button
+      type="button"
+      class="btn-primary"
+      (click)="abrirModalCrear()"
+    >
+      <span>＋</span>
+      Nueva empresa
+    </button>
+  </div>
+
+  <!-- ESTADÍSTICAS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue">🏢</div>
+      <div>
+        <span>Total empresas</span>
+        <strong>{{ totalEmpresas }}</strong>
       </div>
+    </div>
 
-      <!-- Email de Contacto -->
-      <div class="form-row">
-        <div class="form-group full-width">
-          <label>Email de contacto</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <input matInput type="email" formControlName="contactEmail" placeholder="contacto@empresa.com">
-          </mat-form-field>
-        </div>
+    <div class="stat-card">
+      <div class="stat-icon green">✓</div>
+      <div>
+        <span>Empresas activas</span>
+        <strong>{{ empresasActivas }}</strong>
       </div>
+    </div>
 
-      <!-- Moneda y Formato de Fecha en 2 Columnas -->
-      <div class="form-row grid-2">
-        
-        <div class="form-group">
-          <label>Moneda</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <mat-select formControlName="currency">
-              @for (curr of currencies; track curr.value) {
-                <mat-option [value]="curr.value">{{ curr.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="form-group">
-          <label>Formato de Fecha</label>
-          <mat-form-field appearance="outline" class="custom-field">
-            <mat-select formControlName="dateFormat">
-              @for (format of dateFormats; track format.value) {
-                <mat-option [value]="format.value">{{ format.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
-
+    <div class="stat-card">
+      <div class="stat-icon gray">○</div>
+      <div>
+        <span>Empresas inactivas</span>
+        <strong>{{ empresasInactivas }}</strong>
       </div>
+    </div>
+  </div>
 
-      <!-- Botón de Guardar Cambios -->
-      <div class="form-actions">
-        <button 
-          mat-flat-button 
-          type="submit" 
-          class="btn-save" 
-          [disabled]="companyForm.invalid">
-          Guardar cambios
-        </button>
+  <!-- TABLA DE EMPRESAS -->
+  <div class="table-card">
+    <div class="table-header">
+      <div>
+        <h2>Empresas registradas</h2>
+        <p>Información general de las empresas.</p>
       </div>
+    </div>
 
-    </form>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>EMPRESA</th>
+            <th>NIT</th>
+            <th>CONTACTO</th>
+            <th>CIUDAD</th>
+            <th>ESTADO</th>
+            <th>ACCIONES</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (empresa of empresas; track empresa.id) {
+            <tr>
+              <td>
+                <div class="empresa-info">
+                  <div class="empresa-avatar">
+                    {{ empresa.nombre.charAt(0) }}
+                  </div>
+                  <div>
+                    <strong>{{ empresa.nombre }}</strong>
+                    <small>{{ empresa.correo }}</small>
+                  </div>
+                </div>
+              </td>
+
+              <td>{{ empresa.nit }}</td>
+              <td>{{ empresa.telefono }}</td>
+              <td>{{ empresa.ciudad }}</td>
+
+              <td>
+                <button
+                  type="button"
+                  class="status"
+                  [class.active]="empresa.estado"
+                  [class.inactive]="!empresa.estado"
+                  (click)="cambiarEstado(empresa)"
+                >
+                  <span></span>
+                  {{ empresa.estado ? 'Activa' : 'Inactiva' }}
+                </button>
+              </td>
+
+              <td>
+                <div class="actions">
+                  <button
+                    type="button"
+                    class="action edit"
+                    title="Editar"
+                    (click)="editarEmpresa(empresa)"
+                  >
+                    ✎
+                  </button>
+
+                  <button
+                    type="button"
+                    class="action delete"
+                    title="Eliminar"
+                    (click)="eliminarEmpresa(empresa)"
+                  >
+                    🗑
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+
+          @if (empresas.length === 0) {
+            <tr>
+              <td colspan="6" class="empty">
+                No hay empresas registradas.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>
+
+<!-- MODAL CREAR / EDITAR EMPRESA -->
+@if (modalAbierto) {
+  <div class="modal-overlay" (click)="cerrarModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      
+      <div class="modal-header">
+        <div>
+          <span class="modal-label">GESTOCK</span>
+          <h2>{{ modoEdicion ? 'Editar empresa' : 'Nueva empresa' }}</h2>
+        </div>
+        <button type="button" class="close" (click)="cerrarModal()">×</button>
+      </div>
+
+      <form (ngSubmit)="guardarEmpresa()">
+        <div class="form-grid">
+          
+          <div class="form-group full">
+            <label>Nombre de la empresa</label>
+            <input
+              type="text"
+              name="nombre"
+              [(ngModel)]="formulario.nombre"
+              placeholder="Ej. Gestock S.A.S."
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>NIT</label>
+            <input
+              type="text"
+              name="nit"
+              [(ngModel)]="formulario.nit"
+              placeholder="901234567-1"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input
+              type="text"
+              name="telefono"
+              [(ngModel)]="formulario.telefono"
+              placeholder="320 000 0000"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input
+              type="email"
+              name="correo"
+              [(ngModel)]="formulario.correo"
+              placeholder="empresa@correo.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Ciudad</label>
+            <input
+              type="text"
+              name="ciudad"
+              [(ngModel)]="formulario.ciudad"
+              placeholder="Yopal"
+            >
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" (click)="cerrarModal()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-primary">
+            {{ modoEdicion ? 'Guardar cambios' : 'Crear empresa' }}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+}

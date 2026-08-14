@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Angular Material Imports
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+// MÓDULOS DE ANGULAR MATERIAL
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-// Componente del Modal Crear Inventario
+// IMPORTACIÓN DE COMPONENTES DE MODALES DESDE LA CARPETA PAGINAS
+import { CambiarInventarioComponent } from '../cambiar-inventario/cambiar-inventario';
 import { CrearInventarioComponent } from '../crear-inventario/crear-inventario';
 
 @Component({
@@ -18,67 +17,83 @@ import { CrearInventarioComponent } from '../crear-inventario/crear-inventario';
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
-    MatIconModule,
     MatButtonModule,
-    MatProgressBarModule,
+    MatIconModule,
     MatMenuModule,
     MatDividerModule,
-    MatDialogModule
+    MatProgressBarModule,
+    CambiarInventarioComponent,
+    CrearInventarioComponent
   ],
   templateUrl: './panel.html',
   styleUrl: './panel.css'
 })
 export class PanelComponent {
 
-  // 1. Declaramos las Alertas de Stock Bajo que usa el HTML
+  // 1. VARIABLES PARA CONTROLAR LOS MODALES
+  mostrarModalCambiar: boolean = false;
+  mostrarModalCrear: boolean = false;
+
+  // 2. DATOS DE INVENTARIOS
+  inventarios: any[] = [
+    { id: 1, nombre: 'Bodega Principal' },
+    { id: 2, nombre: 'Bodega Norte' }
+  ];
+
+  inventarioActivo = {
+    id: 1,
+    nombre: 'Bodega Principal'
+  };
+
+  // 3. MÉTRICAS Y KPIS DEL DASHBOARD
+  kpis = {
+    totalPrecios: 120,
+    activos: 115,
+    valorInventario: 45000000,
+    porcentajeMesAnterior: 12,
+    alertasTotal: 5,
+    alertasBajo: 3,
+    alertasAgotado: 2,
+    bodegasActivas: 4,
+    usuariosActivos: 8,
+    tasaOcupacion: 78
+  };
+
+  // 4. LISTADO DE ALERTAS DE STOCK BAJO
   stockAlerts = [
-    {
-      product: 'Disco duro externo 1TB',
-      location: 'Bodega central',
-      current: 3,
-      max: 10,
-      percentage: 30
-    },
-    {
-      product: 'Mouse inalambrico logitech',
-      location: 'Sucursal Norte',
-      current: 8,
-      max: 20,
-      percentage: 40
-    }
+    { product: 'Aceite de Motor 20W50', location: 'Estante A-12', current: 2, max: 20, percentage: 10 },
+    { product: 'Filtro de Aire Universal', location: 'Estante B-04', current: 5, max: 30, percentage: 16 }
   ];
 
-  // 2. Declaramos los Últimos Movimientos que usa el HTML
+  // 5. MOVIMIENTOS RECIENTES
   movements = [
-    {
-      title: 'Pc',
-      description: '+10 unidades | Administrador',
-      date: '20/01/2026',
-      type: 'Entrada'
-    },
-    {
-      title: 'Monitor',
-      description: '-5 unidades | Maicol Nore (Gerente)',
-      date: '24/01/2026',
-      type: 'Salida'
-    },
-    {
-      title: 'Mouse',
-      description: '+8 unidades | Erick Ruiz (Operador)',
-      date: '28/01/2026',
-      type: 'Transferencia'
-    }
+    { title: 'Entrada de mercancía', description: '50 unidades de Pastillas de Freno', date: 'Hoy, 10:30 AM', type: 'Entrada' },
+    { title: 'Salida de bodega', description: '2 unidades de Kit de Arrastre 520', date: 'Ayer, 04:15 PM', type: 'Salida' }
   ];
 
-  constructor(private dialog: MatDialog) {}
+  // 6. MÉTODOS PARA ABRIR/CERRAR MODALES
+  openCambiarInventario(): void {
+    this.mostrarModalCambiar = true;
+  }
 
-  // 3. Método para abrir la ventana modal
   openCrearInventario(): void {
-    this.dialog.open(CrearInventarioComponent, {
-      width: '850px',
-      panelClass: 'custom-dialog-container',
-      disableClose: false
-    });
+    this.mostrarModalCrear = true;
+  }
+
+  cerrarModal(): void {
+    this.mostrarModalCambiar = false;
+    this.mostrarModalCrear = false;
+  }
+
+  // 7. MANEJADORES DE EVENTOS
+  onInventarioSeleccionado(inventario: any): void {
+    this.inventarioActivo = inventario;
+    this.cerrarModal();
+  }
+
+  onInventarioCreado(nuevoInventario: any): void {
+    this.inventarios.push(nuevoInventario);
+    this.inventarioActivo = nuevoInventario;
+    this.cerrarModal();
   }
 }

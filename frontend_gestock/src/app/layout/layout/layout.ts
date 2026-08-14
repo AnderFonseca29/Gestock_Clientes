@@ -1,30 +1,23 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
-// Angular Material
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-// Componentes del Layout
-import { HeaderComponent } from '../header/header'; // Ajusta la ruta a '../header/header' si tus archivos no usan .component
+// 1. Importa el componente del Footer (ajusta la ruta según la ubicación real de tu archivo)
+import { FooterComponent } from '../footer/footer'; 
 import { SidebarComponent } from '../sidebar/sidebar';
-import { FooterComponent } from '../footer/footer';
+import { HeaderComponent } from '../header/header';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
   imports: [
-    CommonModule,
     RouterOutlet,
     MatSidenavModule,
-    HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    HeaderComponent,
+    FooterComponent // 2. Agrégalo aquí
   ],
-  templateUrl: './layout.html', // Ajusta si se llama ./layout.component.html
-  styleUrl: './layout.css'     // Ajusta si se llama ./layout.component.css
+  templateUrl: './layout.html',
+  styleUrl: './layout.css'
 })
-export class LayoutComponent {
-  // Título inicial del módulo activo
-  titleModule: string = 'Empresas';
-}
+export class LayoutComponent {}
