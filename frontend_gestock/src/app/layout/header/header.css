@@ -1,3 +1,34 @@
+<<<<<<< HEAD
+.main-header {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.system-title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #2563eb;
+  letter-spacing: 0.05em;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #0f172a;
+=======
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -62,11 +93,31 @@
   height: 36px;
   border-radius: 50%;
   background-color: #2563eb;
+>>>>>>> origin/develop
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
+<<<<<<< HEAD
+  font-size: 0.85rem;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que el header quede por encima de las tablas y cartas */
+  display: block;
+  width: 100%;
+  background-color: #FFFFFF; /* Cambia al color de tu preferencia para evitar transparencia */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil opcional */
+=======
   font-size: 15px;
 }
 
@@ -140,4 +191,5 @@
 .logout-btn:hover {
   background-color: #2d1a1e;
   color: #ef4444;
+>>>>>>> origin/develop
 }

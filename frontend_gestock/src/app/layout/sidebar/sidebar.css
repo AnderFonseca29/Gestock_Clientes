@@ -1,3 +1,106 @@
+<<<<<<< HEAD
+/* sidebar.css */
+.sidebar {
+  width: 240px;
+  background-color: #0f172a;
+  color: #f8fafc;
+  min-height: calc(100vh - 60px);
+  padding: 1.25rem 0.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-container {
+  width: 100%;
+}
+
+.sidebar-container ul,
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nav-item,
+.sidebar-container a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  color: #94a3b8;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-item:hover,
+.sidebar-container a:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.nav-item.active,
+.sidebar-container a.active {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.nav-item .icon,
+.sidebar-container a .icon {
+  font-size: 1.1rem;
+}
+/* layout.css */
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  overflow-y: auto;
+}
+/* sidebar.css */
+.sidebar {
+  width: 240px;
+  background-color: #ffffff; /* O #0f172a si prefieres oscuro */
+  border-right: 1px solid #e2e8f0;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Asegura que los enlaces se vean como botones */
+.sidebar a {
+  display: block;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: #475569;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background-color: #f1f5f9;
+}
+
+/* El estilo de la clase activa */
+.sidebar a.active {
+  background-color: #2563eb;
+  color: white;
+=======
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -59,4 +162,5 @@
 
 .nav-item.active i {
   color: #ffffff !important;
+>>>>>>> origin/develop
 }

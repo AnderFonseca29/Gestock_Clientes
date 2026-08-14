@@ -1,0 +1,10 @@
+<div class="alertas-list">
+  @for (alerta of alertas(); track alerta.id) {
+    <div class="alerta-card" [class.danger]="alerta.severidad === 'danger'" [class.warning]="alerta.severidad === 'warning'">
+      <div class="alerta-header">
+        <strong>{{ alerta.titulo }}</strong>
+      </div>
+      <p>{{ alerta.mensaje }}</p>
+    </div>
+  }
+</div>
