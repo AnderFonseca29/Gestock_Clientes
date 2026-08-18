@@ -1,19 +1,10 @@
-<div class="layout-wrapper">
-  <!-- Menú lateral -->
-  <aside class="sidebar-container">
-    <app-sidebar></app-sidebar>
-  </aside>
-
-  <!-- Área derecha principal -->
-  <div class="main-container">
-    <!-- Header superior -->
-    <header class="header-container">
-      <app-header></app-header>
-    </header>
-
-    <!-- Contenido de la vista (Panel) -->
-    <main class="content-body">
+<div class="layout-container">
+  <app-sidebar></app-sidebar>
+  <div class="main-wrapper">
+    <app-header></app-header>
+    <main class="content-area">
       <router-outlet></router-outlet>
     </main>
+    <app-footer></app-footer>
   </div>
 </div>

@@ -1,54 +1,8 @@
-.footer-container {
-  height: 40px;
-  background-color: #0b0e14;
-  border-top: 1px solid #1f2738;
-  display: flex;
-  align-items: center;
-  padding: 0 28px;
-  font-size: 0.78rem;
-  color: #727985;
-  user-select: none;
-}
-
-.footer-content {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.badge-sena {
-  background-color: rgba(47, 128, 237, 0.15);
-  color: #2f80ed;
-  border: 1px solid rgba(47, 128, 237, 0.3);
-  padding: 1px 8px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.7rem;
-}
-
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer-right a {
-  color: #727985;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.footer-right a:hover {
-  color: #2f80ed;
-}
-
-.dot {
-  color: #3d4554;
+.footer {
+  padding: 16px 24px;
+  background-color: #0b0c1e;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #6c7284;
+  font-size: 12px;
+  text-align: center;
 }

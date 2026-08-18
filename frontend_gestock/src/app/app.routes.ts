@@ -1,20 +1,16 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login/login';
-import { CreacionComponent } from './login/creacion/creacion';
 import { LayoutComponent } from './layout/layout/layout';
-import { EmpresasComponent } from './pages/empresas/empresas';
-import { PanelComponent } from './pages/panel/panel';
-import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
-import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-
-    // Al entrar a localhost:4200/
-    // enviamos al usuario directamente al login
-    {
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'reportes',
         pathMatch: 'full'
+<<<<<<< HEAD
     },
 
     // =========================
@@ -64,4 +60,23 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'login'
     }
+=======
+      },
+      {
+        path: 'reportes',
+        loadComponent: () =>
+          import('./pages/reportes/reportes').then(m => m.ReportesComponent)
+      },
+      {
+        path: 'configuracion',
+        loadComponent: () =>
+          import('./pages/configuracion/configuracion').then(m => m.ConfiguracionComponent)
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: '' // Redirige a la raíz para que tome la redirección a 'reportes' dentro del Layout
+  }
+>>>>>>> origin/develop
 ];
