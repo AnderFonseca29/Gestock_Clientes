@@ -1,0 +1,98 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #ffffff;
+}
+
+.page-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.page-header p {
+  color: #8a8d9b;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.tabs-header {
+  display: flex;
+  background-color: #1a1c38;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.tabs-header button {
+  background: none;
+  border: none;
+  color: #8a8d9b;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.tabs-header button.active {
+  background-color: #3a86ff;
+  color: white;
+}
+
+.config-panel {
+  background-color: #12142d;
+  border-radius: 12px;
+  padding: 16px 24px;
+}
+
+.config-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.config-row:last-child {
+  border-bottom: none;
+}
+
+.row-info h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.row-info p {
+  margin: 4px 0 0 0;
+  color: #6c7284;
+  font-size: 12px;
+}
+
+.toggle-btn {
+  background-color: #2b2e4a;
+  color: #e63946;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.toggle-btn.active {
+  background-color: #1e3a8a;
+  color: #4cc9f0;
+}
+
+.actions-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-save {
+  background-color: #3a86ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}

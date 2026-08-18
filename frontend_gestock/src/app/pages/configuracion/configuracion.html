@@ -1,0 +1,64 @@
+<div class="page-container">
+  <header class="page-header">
+    <h1>Configuración</h1>
+    <p>Personaliza tu experiencia en GESTOCK</p>
+  </header>
+
+  <div class="tabs-header">
+    <button [class.active]="tabActiva === 'notificaciones'" (click)="cambiarTab('notificaciones')">
+      🔔 Notificaciones
+    </button>
+    <button [class.active]="tabActiva === 'seguridad'" (click)="cambiarTab('seguridad')">
+      🛡️ Seguridad
+    </button>
+    <button [class.active]="tabActiva === 'backup'" (click)="cambiarTab('backup')">
+      💾 Backup
+    </button>
+  </div>
+
+  <div class="config-panel" *ngIf="tabActiva === 'notificaciones'">
+    <div class="config-row">
+      <div class="row-info">
+        <h3>Notificaciones por Email</h3>
+        <p>Configura qué notificaciones quieres recibir</p>
+      </div>
+      <button class="toggle-btn" [class.active]="notificaciones.emailGeneral" (click)="toggleNotificacion('emailGeneral')">
+        {{ notificaciones.emailGeneral ? 'Activo' : 'Desactivado' }}
+      </button>
+    </div>
+
+    <div class="config-row">
+      <div class="row-info">
+        <h3>Alertas de Stock bajo</h3>
+        <p>Notificación cuando un producto tenga un stock bajo</p>
+      </div>
+      <button class="toggle-btn" [class.active]="notificaciones.alertasStockBajo" (click)="toggleNotificacion('alertasStockBajo')">
+        {{ notificaciones.alertasStockBajo ? 'Activo' : 'Desactivado' }}
+      </button>
+    </div>
+
+    <div class="config-row">
+      <div class="row-info">
+        <h3>Alertas de Movimiento</h3>
+        <p>Notificación por cada movimiento de inventario</p>
+      </div>
+      <button class="toggle-btn" [class.active]="notificaciones.alertasMovimientos" (click)="toggleNotificacion('alertasMovimientos')">
+        {{ notificaciones.alertasMovimientos ? 'Activo' : 'Desactivado' }}
+      </button>
+    </div>
+
+    <div class="config-row">
+      <div class="row-info">
+        <h3>Reporte Diario</h3>
+        <p>Recibe un resumen diario del inventario</p>
+      </div>
+      <button class="toggle-btn" [class.active]="notificaciones.reporteDiario" (click)="toggleNotificacion('reporteDiario')">
+        {{ notificaciones.reporteDiario ? 'Activo' : 'Desactivado' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="actions-footer">
+    <button class="btn-save" (click)="guardarCambios()">Guardar cambios</button>
+  </div>
+</div>
