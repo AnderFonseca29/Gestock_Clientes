@@ -1,24 +1,12 @@
-<nav class="sidebar-menu">
-  <a routerLink="/gestion/inventario" routerLinkActive="active">Inventario</a>
-  <a routerLink="/gestion/auditorias" routerLinkActive="active">Auditoría</a>
-  <a routerLink="/gestion/roles-yusuarios" routerLinkActive="active">Usuarios</a>
-</nav>
+<div class="app-layout">
+  <!-- Barra lateral izquierda -->
+  <app-sidebar></app-sidebar>
 
-
-<div class="layout-wrapper">
-  <!-- Header arriba -->
-  <app-header></app-header>
-
-  <div class="layout-body">
-    <!-- Sidebar a la izquierda -->
-    <app-sidebar></app-sidebar>
-
-    <!-- Contenido dinámico de la aplicación -->
-    <main class="content-area">
+  <!-- Contenedor principal de la derecha -->
+  <div class="main-wrapper">
+    <app-header></app-header>
+    <main class="main-content">
       <router-outlet></router-outlet>
     </main>
   </div>
-
-  <!-- Footer al final -->
-  <app-footer></app-footer>
 </div>

@@ -23,7 +23,14 @@ export class UsuariosComponent {
   modalConfirmacionAbierto = false;
   esModoEdicion = false;
   
-  rolesDisponibles = ['Administrador', 'Encargado de Bodega', 'Personal de Inventario'];
+  // Roles unificados y corregidos según tus vistas de pestañas y tabla
+  rolesDisponibles = [
+    'Administrador general',
+    'Jefe de logística',
+    'Operario de bodega',
+    'Auditor interno',
+    'Cajero'
+  ];
   formData: any = { nombre: '', email: '', rol: '' };
 
   // KPIs de ejemplo (puedes enlazarlos a tu servicio si ya los tienes calculados)

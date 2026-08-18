@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { RouterModule } from '@angular/router';
-=======
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 // Angular Material Imports
@@ -14,14 +11,10 @@ interface MenuItem {
   icon: string;
   route: string;
 }
->>>>>>> origin/develop
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-<<<<<<< HEAD
-  imports: [CommonModule, RouterModule],
-=======
   imports: [
     CommonModule,
     RouterLink,
@@ -29,20 +22,10 @@ interface MenuItem {
     MatListModule,
     MatIconModule
   ],
->>>>>>> origin/develop
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
 export class SidebarComponent {
-<<<<<<< HEAD
-  menuItems = [
-    { label: 'Dashboard', route: '/dashboard', icon: '📊' },
-    { label: 'Gestión de Usuarios', route: '/gestion/roles-yusuarios', icon: '👥' },
-    { label: 'Inventario', route: '/inventario', icon: '📦' },
-    { label: 'Auditoría', route: '/auditoria', icon: '📋' }
-  ];
-=======
-  
   menuItems: MenuItem[] = [
     { label: 'Empresas', icon: 'business', route: '/app/empresas' },
     { label: 'Panel', icon: 'dashboard', route: '/app/dashboard' },
@@ -53,6 +36,4 @@ export class SidebarComponent {
     { label: 'Reportes', icon: 'bar_chart', route: '/app/reportes' },
     { label: 'Configuración', icon: 'settings', route: '/app/configuracion' }
   ];
-
->>>>>>> origin/develop
 }
