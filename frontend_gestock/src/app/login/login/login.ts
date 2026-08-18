@@ -41,7 +41,7 @@ export class LoginComponent {
     }
 
     // Redirección hacia el panel principal sin alertas intermitentes
-    this.router.navigate(['/panel']).then((navegadoConExito) => {
+    this.router.navigate(['/empresas']).then((navegadoConExito) => {
       if (!navegadoConExito) {
         console.warn('La navegación a /panel fue bloqueada. Revisa la lógica de tu AuthGuard.');
       }

@@ -27,7 +27,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'creacion',
+        path: 'creacion-usuarios',
         component: CreacionComponent
     },
 
