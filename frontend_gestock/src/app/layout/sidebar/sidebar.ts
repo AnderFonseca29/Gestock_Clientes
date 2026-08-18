@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -22,9 +23,18 @@ interface MenuItem {
     MatListModule,
     MatIconModule
   ],
+=======
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+@Component({
+  selector: 'app-sidebar',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive], // Necesario para routerLink y routerLinkActive en la plantilla
+>>>>>>> develop
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css'
+  styleUrls: ['./sidebar.css']
 })
+<<<<<<< HEAD
 export class SidebarComponent {
   menuItems: MenuItem[] = [
     { label: 'Empresas', icon: 'business', route: '/app/empresas' },
@@ -37,3 +47,6 @@ export class SidebarComponent {
     { label: 'Configuración', icon: 'settings', route: '/app/configuracion' }
   ];
 }
+=======
+export class SidebarComponent {}
+>>>>>>> develop

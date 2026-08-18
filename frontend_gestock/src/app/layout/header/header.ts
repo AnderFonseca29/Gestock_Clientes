@@ -1,15 +1,18 @@
+<<<<<<< HEAD
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth';
 import { UsuarioAuth } from '../../models/usuario-auth';
+=======
+import { Component } from '@angular/core';
+>>>>>>> develop
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrls: ['./header.css']
 })
+<<<<<<< HEAD
 export class HeaderComponent implements OnInit {
   private authService = inject(AuthService);
   usuario: UsuarioAuth | null = null;
@@ -33,3 +36,6 @@ export class HeaderComponent implements OnInit {
     console.log(this.menuAbierto);
   }
 }
+=======
+export class HeaderComponent {}
+>>>>>>> develop
