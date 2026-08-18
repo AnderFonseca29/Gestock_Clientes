@@ -7,7 +7,7 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FooterComponent]
+      declarations: [ FooterComponent ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
@@ -15,7 +15,7 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debe crearse el footer', () => {
     expect(component).toBeTruthy();
   });
 });

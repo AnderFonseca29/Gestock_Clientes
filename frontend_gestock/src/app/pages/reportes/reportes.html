@@ -1,917 +1,199 @@
-<div class="reportes-container">
+<div class="page-container">
+  <header class="page-header">
+    <h1>Reporte y análisis</h1>
+    <p>Visualiza el estado de tu inventario</p>
+  </header>
 
-    <!-- ===================================================== -->
-    <!-- ENCABEZADO -->
-    <!-- ===================================================== -->
-
-    <div class="reportes-header">
-
-        <div>
-            <h1>Reporte y análisis</h1>
-
-            <p>
-                Visualiza el estado de tu inventario
-            </p>
-        </div>
-
-
-        <button
-            type="button"
-            class="btn-exportar"
-            (click)="abrirModalExportar()">
-
-            Exportar inventario
-
-        </button>
-
+  <!-- KPIS DE INVENTARIOS Y BODEGA -->
+  @if (tabActiva === 'inventarios' || tabActiva === 'bodega') {
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-label">Valor total del inventario</span>
+        <h2 class="kpi-value">${{ kpis.valorTotal | number:'1.2-2' }}</h2>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Coste total</span>
+        <h2 class="kpi-value">${{ kpis.costeTotal | number:'1.2-2' }}</h2>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Margen de ganancia</span>
+        <h2 class="kpi-value">${{ kpis.margenGanancia | number:'1.2-2' }}</h2>
+        <span class="kpi-subtext">{{ kpis.porcentajeMargen }}% margen</span>
+      </div>
     </div>
+  }
 
-
-
-    <!-- ===================================================== -->
-    <!-- MÉTRICAS GENERALES -->
-    <!-- ===================================================== -->
-
-    <div class="metricas">
-
-        <!-- VALOR TOTAL -->
-
-        <div class="metrica-card">
-
-            <span class="metrica-label">
-                Valor total del inventario
-            </span>
-
-            <span class="metrica-valor">
-                ${{ metricas.valorTotal | number }}
-            </span>
-
+  <!-- KPIS DE MOVIMIENTOS -->
+  @if (tabActiva === 'movimientos') {
+    <div class="kpi-grid">
+      <div class="kpi-card card-entradas">
+        <span class="kpi-label">Total Entradas</span>
+        <div class="kpi-content">
+          <h2 class="kpi-value green-text">+{{ movimientosKpi.totalEntradas }}</h2>
+          <span class="icon-trend green-icon">↗</span>
         </div>
-
-
-        <!-- COSTE TOTAL -->
-
-        <div class="metrica-card">
-
-            <span class="metrica-label">
-                Coste total
-            </span>
-
-            <span class="metrica-valor">
-                ${{ metricas.costeTotal | number }}
-            </span>
-
+      </div>
+      <div class="kpi-card card-salidas">
+        <span class="kpi-label">Total salidas</span>
+        <div class="kpi-content">
+          <h2 class="kpi-value red-text">-{{ movimientosKpi.totalSalidas }}</h2>
+          <span class="icon-trend red-icon">↘</span>
         </div>
-
-
-        <!-- MARGEN -->
-
-        <div class="metrica-card">
-
-            <span class="metrica-label">
-                Margen de ganancia
-            </span>
-
-            <span class="metrica-valor">
-                ${{ metricas.margenGanancia | number }}
-            </span>
-
-        </div>
-
+        <span class="kpi-subtext">Unidades</span>
+      </div>
     </div>
+  }
 
-
-
-    <!-- ===================================================== -->
-    <!-- FILTROS / 3 OPCIONES -->
-    <!-- ===================================================== -->
-
-    <div class="filtros">
-
-        <!-- INVENTARIO -->
-
-        <button
-            type="button"
-            class="tab"
-            [class.tab-activo]="vistaActiva === 'inventario'"
-            (click)="cambiarVista('inventario')">
-
-            Inventario
-
-        </button>
-
-
-        <!-- MOVIMIENTOS -->
-
-        <button
-            type="button"
-            class="tab"
-            [class.tab-activo]="vistaActiva === 'movimientos'"
-            (click)="cambiarVista('movimientos')">
-
-            Movimientos
-
-        </button>
-
-
-        <!-- POR BODEGA -->
-
-        <button
-            type="button"
-            class="tab"
-            [class.tab-activo]="vistaActiva === 'bodega'"
-            (click)="cambiarVista('bodega')">
-
-            Por bodega
-
-        </button>
-
-
-        <!-- SELECTOR DE BODEGA -->
-
-        <select
-            class="select-bodega"
-            [(ngModel)]="bodegaSeleccionada"
-            (ngModelChange)="cambiarBodega($event)">
-
-            <option value="todas">
-                Todas las bodegas
-            </option>
-
-            @for (
-                bodega of bodegas;
-                track bodega.id
-            ) {
-
-                <option [value]="bodega.id">
-
-                    {{ bodega.nombre }}
-
-                </option>
-
-            }
-
-        </select>
-
+  <!-- BARRA DE CONTROLES -->
+  <div class="controls-bar">
+    <div class="tabs">
+      <button [class.active]="tabActiva === 'inventarios'" (click)="cambiarTab('inventarios')">Inventarios</button>
+      <button [class.active]="tabActiva === 'movimientos'" (click)="cambiarTab('movimientos')">Movimientos</button>
+      <button [class.active]="tabActiva === 'bodega'" (click)="cambiarTab('bodega')">Por bodega</button>
     </div>
-
-
-
-    <!-- ===================================================== -->
-    <!-- VISTA INVENTARIO -->
-    <!-- ===================================================== -->
-
-    @if (vistaActiva === 'inventario') {
-
-        <div class="panel-categorias">
-
-            <h2>
-                Por categorías
-            </h2>
-
-
-            @for (
-                categoria of categorias;
-                track categoria.nombre;
-                let i = $index
-            ) {
-
-                <!-- FILA DE CATEGORÍA -->
-
-                <div
-                    class="categoria-fila"
-                    (click)="verDetalleCategoria(i)">
-
-                    <span
-                        class="categoria-punto"
-                        [style.background]="categoria.color">
-                    </span>
-
-
-                    <span class="categoria-nombre">
-
-                        {{ categoria.nombre }}
-
-                    </span>
-
-
-                    <span class="categoria-info">
-
-                        {{ categoria.productos }}
-                        productos
-
-                        |
-
-                        ${{ categoria.valor | number }}
-
-                    </span>
-
-
-                    <span class="categoria-porcentaje">
-
-                        {{ categoria.porcentaje }}%
-
-                    </span>
-
-                </div>
-
-
-                <!-- DETALLE DE CATEGORÍA -->
-
-                @if (categoriaSeleccionada === i) {
-
-                    <div class="categoria-detalle">
-
-                        <strong>
-                            Detalles de {{ categoria.nombre }}
-                        </strong>
-
-                        <br>
-
-                        Productos:
-                        {{ categoria.productos }}
-
-                        <br>
-
-                        Valor:
-                        ${{ categoria.valor | number }}
-
-                        <br>
-
-                        Porcentaje:
-                        {{ categoria.porcentaje }}%
-
-                        <br>
-
-                        Costo promedio por unidad:
-                        ${{ costoPromedio(categoria) | number }}
-
-                    </div>
-
-                }
-
-            }
-
-        </div>
-
-    }
-
-
-
-    <!-- ===================================================== -->
-    <!-- VISTA MOVIMIENTOS -->
-    <!-- ===================================================== -->
-
-    @if (vistaActiva === 'movimientos') {
-
-        <div class="panel-categorias movimientos-panel">
-
-            <h2>
-                Movimientos del inventario
-            </h2>
-
-
-            <p class="texto-vacio">
-
-                Aquí se mostrarán los movimientos
-                de entrada y salida del inventario.
-
-            </p>
-
-        </div>
-
-    }
-
-
-
-    <!-- ===================================================== -->
-    <!-- VISTA POR BODEGA -->
-    <!-- ===================================================== -->
-
-    @if (vistaActiva === 'bodega') {
-
-        <div class="panel-bodegas">
-
-
-            <!-- ENCABEZADO DE BODEGAS -->
-
-            <div class="panel-bodegas-header">
-
+    <button class="btn-primary" (click)="abrirModalConfirmacion()">
+      📥 Exportar {{ tabActiva === 'movimientos' ? 'movimientos' : 'inventario' }}
+    </button>
+  </div>
+
+  <!-- TAB INVENTARIOS -->
+  @if (tabActiva === 'inventarios') {
+    <div class="card-panel">
+      <h3>Por categorías</h3>
+      <div class="categories-list">
+        @for (cat of categorias; track cat.nombre) {
+          <div class="category-item">
+            <div class="cat-info">
+              <span class="dot" [style.background-color]="cat.colorHex"></span>
+              <span class="cat-name">{{ cat.nombre }}</span>
+            </div>
+            <div class="cat-stats">
+              <span class="cat-count">{{ cat.cantidadProductos }} Productos | ${{ cat.totalValor | number:'1.2-2' }}</span>
+              <span class="cat-percent">{{ cat.porcentaje }}%</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- TAB MOVIMIENTOS -->
+  @if (tabActiva === 'movimientos') {
+    <div class="card-panel shadow-panel">
+      <h3>Productos con Mayor Movimiento</h3>
+      <div class="movimientos-list">
+        @for (prod of productosMovimiento; track prod.sku) {
+          <div class="movimiento-item">
+            <div class="prod-details">
+              <h4>{{ prod.nombre }}</h4>
+              <span class="prod-sku">{{ prod.sku }}</span>
+            </div>
+            <div class="prod-metrics">
+              <div class="metric-group green">
+                <span class="metric-val">+{{ prod.entradas }}</span>
+                <span class="metric-lbl">Entradas</span>
+              </div>
+              <div class="metric-group red">
+                <span class="metric-val">{{ prod.salidas }}</span>
+                <span class="metric-lbl">Salidas</span>
+              </div>
+              <div class="metric-group balance" [ngClass]="{'green': prod.balance > 0, 'red': prod.balance < 0}">
+                <span class="metric-val">{{ prod.balance > 0 ? '+' + prod.balance : prod.balance }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- TAB POR BODEGA -->
+  @if (tabActiva === 'bodega') {
+    <div class="bodegas-cards-container">
+      <h3>Distribución por Bodega</h3>
+      
+      <div class="bodegas-list">
+        @for (bodega of bodegas; track bodega.id) {
+          <div class="bodega-card" [class.expanded]="bodegaExpandidaId === bodega.id">
+            <!-- CABECERA DE LA TARJETA -->
+            <div class="bodega-header">
+              <div class="bodega-main-info">
+                <span class="dot" style="background-color: #3a86ff;"></span>
                 <div>
+                  <h4 class="bodega-title">{{ bodega.nombre }}</h4>
+                  <span class="bodega-subtitle">{{ bodega.ubicacion }} • {{ bodega.estado || 'Activa' }}</span>
+                </div>
+              </div>
 
-                    <h2>
-                        Por bodega
-                    </h2>
-
-                    <p>
-                        Consulta el estado y los detalles
-                        de cada bodega.
-                    </p>
-
+              <div class="bodega-stats-action">
+                <div class="bodega-metrics">
+                  <span class="metrics-main">{{ bodega.cantidadProductos }} Productos | ${{ bodega.valorTotal | number:'1.2-2' }}</span>
+                  <span class="metrics-percent">{{ bodega.porcentajeValorTotal }}% del total</span>
                 </div>
 
-            </div>
-
-
-
-            <!-- ================================================= -->
-            <!-- LISTADO DE BODEGAS -->
-            <!-- ================================================= -->
-
-            <div class="bodegas-grid">
-
-                @for (
-                    bodega of bodegas;
-                    track bodega.id
-                ) {
-
-                    <div
-                        class="bodega-card"
-                        (click)="abrirDetalleBodega(bodega)">
-
-
-                        <!-- ICONO -->
-
-                        <div class="bodega-icono">
-
-                            🏢
-
-                        </div>
-
-
-
-                        <!-- INFORMACIÓN -->
-
-                        <div class="bodega-contenido">
-
-
-                            <!-- NOMBRE Y ESTADO -->
-
-                            <div class="bodega-titulo">
-
-                                <h3>
-
-                                    {{ bodega.nombre }}
-
-                                </h3>
-
-
-                                <span class="bodega-estado">
-
-                                    Activa
-
-                                </span>
-
-                            </div>
-
-
-
-                            <!-- VALOR -->
-
-                            <div class="bodega-valor">
-
-                                <!--
-                                    Al mostrar las tarjetas usamos
-                                    las métricas generales.
-                                -->
-
-                                ${{ metricas.valorTotal | number }}
-
-                            </div>
-
-
-
-                            <!-- BOTÓN VISUAL -->
-
-                            <div class="bodega-footer">
-
-                                <span>
-
-                                    Ver detalles
-
-                                </span>
-
-
-                                <span class="bodega-flecha">
-
-                                    →
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                }
-
-            </div>
-
-        </div>
-
-    }
-
-
-
-    <!-- ===================================================== -->
-    <!-- DETALLE AMPLIADO DE LA BODEGA -->
-    <!-- ===================================================== -->
-
-    @if (
-        mostrarDetalleBodega &&
-        bodegaSeleccionadaDetalle
-    ) {
-
-
-        <!-- FONDO OSCURO -->
-
-        <div
-            class="detalle-bodega-overlay"
-            (click)="cerrarDetalleBodega()">
-
-
-            <!-- ================================================= -->
-            <!-- PANEL PRINCIPAL -->
-            <!-- ================================================= -->
-
-            <div
-                class="detalle-bodega"
-                (click)="$event.stopPropagation()">
-
-
-                <!-- ================================================= -->
-                <!-- CABECERA -->
-                <!-- ================================================= -->
-
-                <div class="detalle-bodega-header">
-
-
-                    <div class="detalle-titulo">
-
-
-                        <span class="detalle-bodega-icono">
-
-                            🏢
-
-                        </span>
-
-
-                        <div>
-
-                            <h2>
-
-                                {{ bodegaSeleccionadaDetalle.nombre }}
-
-                            </h2>
-
-
-                            <p>
-
-                                Información detallada de la bodega
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- CERRAR -->
-
-                    <button
-                        type="button"
-                        class="btn-cerrar-detalle"
-                        (click)="cerrarDetalleBodega()">
-
-                        ×
-
-                    </button>
-
-                </div>
-
-
-
-                <!-- ================================================= -->
-                <!-- INFORMACIÓN PRINCIPAL -->
-                <!-- ================================================= -->
-
-                <div class="detalle-bodega-contenido">
-
-
-                    <!-- NOMBRE -->
-
-                    <div class="detalle-card">
-
-                        <span class="detalle-label">
-
-                            Nombre de la bodega
-
-                        </span>
-
-
-                        <strong>
-
-                            {{ bodegaSeleccionadaDetalle.nombre }}
-
-                        </strong>
-
-                    </div>
-
-
-
-                    <!-- ID -->
-
-                    <div class="detalle-card">
-
-                        <span class="detalle-label">
-
-                            ID de la bodega
-
-                        </span>
-
-
-                        <strong>
-
-                            {{ bodegaSeleccionadaDetalle.id }}
-
-                        </strong>
-
-                    </div>
-
-
-
-                    <!-- ESTADO -->
-
-                    <div class="detalle-card">
-
-                        <span class="detalle-label">
-
-                            Estado
-
-                        </span>
-
-
-                        <strong class="estado-activo">
-
-                            Activa
-
-                        </strong>
-
-                    </div>
-
-
-
-                    <!-- VALOR -->
-
-                    <div class="detalle-card">
-
-                        <span class="detalle-label">
-
-                            Valor del inventario
-
-                        </span>
-
-
-                        <strong>
-
-                            ${{ metricasBodega.valorTotal | number }}
-
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- ================================================= -->
-                <!-- RESUMEN -->
-                <!-- ================================================= -->
-
-                <div class="detalle-resumen">
-
-                    <h3>
-
-                        Resumen de la bodega
-
-                    </h3>
-
-
-                    <div class="resumen-grid">
-
-
-                        <!-- PRODUCTOS -->
-
-                        <div class="resumen-item">
-
-                            <span>
-
-                                Productos
-
-                            </span>
-
-
-                            <strong>
-
-                                {{ categoriasBodega.length }}
-
-                            </strong>
-
-                        </div>
-
-
-
-                        <!-- VALOR -->
-
-                        <div class="resumen-item">
-
-                            <span>
-
-                                Valor total
-
-                            </span>
-
-
-                            <strong>
-
-                                ${{ metricasBodega.valorTotal | number }}
-
-                            </strong>
-
-                        </div>
-
-
-
-                        <!-- COSTE -->
-
-                        <div class="resumen-item">
-
-                            <span>
-
-                                Coste total
-
-                            </span>
-
-
-                            <strong>
-
-                                ${{ metricasBodega.costeTotal | number }}
-
-                            </strong>
-
-                        </div>
-
-
-
-                        <!-- MARGEN -->
-
-                        <div class="resumen-item">
-
-                            <span>
-
-                                Margen
-
-                            </span>
-
-
-                            <strong>
-
-                                ${{ metricasBodega.margenGanancia | number }}
-
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- ================================================= -->
-                <!-- CATEGORÍAS DE ESTA BODEGA -->
-                <!-- ================================================= -->
-
-                <div class="detalle-categorias">
-
-
-                    <div class="detalle-categorias-header">
-
-                        <div>
-
-                            <h3>
-
-                                Categorías
-
-                            </h3>
-
-
-                            <p>
-
-                                Productos almacenados
-                                en esta bodega
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    @if (categoriasBodega.length > 0) {
-
-
-                        <!-- LISTADO -->
-
-                        <div class="detalle-categorias-lista">
-
-                            @for (
-                                categoria of categoriasBodega;
-                                track categoria.nombre
-                            ) {
-
-
-                                <div
-                                    class="detalle-categoria-fila">
-
-
-                                    <!-- COLOR -->
-
-                                    <span
-                                        class="categoria-punto"
-                                        [style.background]="categoria.color">
-                                    </span>
-
-
-
-                                    <!-- NOMBRE -->
-
-                                    <span class="detalle-categoria-nombre">
-
-                                        {{ categoria.nombre }}
-
-                                    </span>
-
-
-
-                                    <!-- PRODUCTOS -->
-
-                                    <span>
-
-                                        {{ categoria.productos }}
-
-                                        productos
-
-                                    </span>
-
-
-
-                                    <!-- VALOR -->
-
-                                    <strong>
-
-                                        ${{ categoria.valor | number }}
-
-                                    </strong>
-
-
-                                </div>
-
-                            }
-
-                        </div>
-
-
-                    } @else {
-
-
-                        <!-- SIN DATOS -->
-
-                        <p class="detalle-sin-datos">
-
-                            No hay información disponible
-                            para esta bodega.
-
-                        </p>
-
-                    }
-
-                </div>
-
-
-
-                <!-- ================================================= -->
-                <!-- PIE DEL DETALLE -->
-                <!-- ================================================= -->
-
-                <div class="detalle-bodega-footer">
-
-
-                    <button
-                        type="button"
-                        class="btn-cerrar-bodega"
-                        (click)="cerrarDetalleBodega()">
-
-                        Cerrar detalles
-
-                    </button>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    }
-
-
-
-    <!-- ===================================================== -->
-    <!-- MODAL EXPORTAR -->
-    <!-- ===================================================== -->
-
-    @if (mostrarModalExportar) {
-
-
-        <div
-            class="modal-overlay"
-            (click)="cerrarModalExportar()">
-
-
-            <div
-                class="modal-exportar"
-                (click)="$event.stopPropagation()">
-
-
-                <h3>
-
-                    Exportar reporte
-
-                </h3>
-
-
-                <p>
-
-                    Elige el formato de salida
-
-                </p>
-
-
-
-                <div class="formatos">
-
-
-                    <button
-                        type="button"
-                        (click)="exportar('PDF')">
-
-                        PDF
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        (click)="exportar('Excel')">
-
-                        Excel
-
-                    </button>
-
-                </div>
-
-
-
-                @if (mensajeExportacion) {
-
-                    <p class="mensaje-error">
-
-                        {{ mensajeExportacion }}
-
-                    </p>
-
-                }
-
-
-
-                <button
-                    type="button"
-                    class="btn-cancelar"
-                    (click)="cerrarModalExportar()">
-
-                    Cancelar
-
+                <button class="btn-toggle-detail" (click)="toggleDetalleBodega(bodega.id)">
+                  {{ bodegaExpandidaId === bodega.id ? 'Ocultar detalles ▲' : 'Ver más detalles ▼' }}
                 </button>
-
-
+              </div>
             </div>
 
-        </div>
+            <!-- SECCIÓN DESPLEGABLE CON DETALLES COMPLETOS -->
+            @if (bodegaExpandidaId === bodega.id) {
+              <div class="bodega-detail-panel">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <span class="detail-label">Responsable:</span>
+                    <span class="detail-value">{{ bodega.responsable || 'No asignado' }}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Dirección:</span>
+                    <span class="detail-value">{{ bodega.direccion || 'Sin dirección' }}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Capacidad Ocupada:</span>
+                    <span class="detail-value">{{ bodega.capacidadOcupada }}%</span>
+                  </div>
+                </div>
 
-    }
-
+                @if (bodega.topProductos && bodega.topProductos.length > 0) {
+                  <div class="top-products-section">
+                    <h5>Productos destacados en esta bodega</h5>
+                    <div class="top-products-grid">
+                      @for (prod of bodega.topProductos; track prod.nombre) {
+                        <div class="top-prod-chip">
+                          <span class="prod-name">{{ prod.nombre }}</span>
+                          <span class="prod-data">{{ prod.stock }} unid. | ${{ prod.valor | number:'1.2-2' }}</span>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  }
 </div>
+
+<!-- MODAL CENTRADO DE CONFIRMACIÓN -->
+@if (mostrarModalConfirmacion) {
+  <div class="modal-backdrop" (click)="cerrarModalConfirmacion()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-icon-container">
+        <span class="modal-icon">📄</span>
+      </div>
+      <h3 class="modal-title">¿Confirmar exportación?</h3>
+      <p class="modal-description">
+        Se generará y descargará automáticamente un reporte PDF con la información de la sección 
+        <strong style="color: #3a86ff;">{{ tabActiva.toUpperCase() }}</strong>.
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" (click)="cerrarModalConfirmacion()">Cancelar</button>
+        <button class="btn-modal-confirm" (click)="confirmarYDescargarPDF()">Descargar PDF</button>
+      </div>
+    </div>
+  </div>
+}

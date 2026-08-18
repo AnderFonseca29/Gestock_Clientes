@@ -1,103 +1,30 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login/login';
-import { CreacionComponent } from './login/creacion/creacion';
-
+<<<<<<< HEAD
+=======
 import { LayoutComponent } from './layout/layout/layout';
-import { authGuard } from './guards/auth-guard';
-
-import { PanelComponent } from './pages/panel/panel';
-import { EmpresasComponent } from './pages/empresas/empresas';
-import { InventarioComponent } from './pages/gestion/inventario/inventario';
-import { RolesUsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yusuarios';
-import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
-import { ReportesComponent } from './pages/reportes/reportes';
-import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario';
-
-
-
+>>>>>>> develop
 
 export const routes: Routes = [
-
-  /* =========================
-     INICIO / REDIRECCIÓN
-  ========================= */
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-
-  /* =========================
-     RUTAS PÚBLICAS
-  ========================= */
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'creacion-usuarios',
-    component: CreacionComponent
-  },
-
-  /* =========================
-     RUTAS PRIVADAS (PROTEGIDAS)
-  ========================= */
-  {
-    path: 'app',
     component: LayoutComponent,
-    canActivate: [authGuard],
     children: [
+<<<<<<< HEAD
+      { 
+        path: '', 
+        redirectTo: 'gestion/inventario', 
+        pathMatch: 'full' 
+=======
       {
         path: '',
-        redirectTo: 'panel',
+        redirectTo: 'reportes',
         pathMatch: 'full'
-      },
-      {
-        path: 'panel',
-        component: PanelComponent
-      },
-      {
-        path: 'empresas',
-        component: EmpresasComponent
-      },
-      {
-        path: 'productos',
-        component: InventarioComponent
-      },
-      {
-        path: 'bodegas',
-        component: InventarioComponent
-      },
-      {
-        path: 'movimientos',
-        component: InventarioComponent
-      },
-      {
-        path: 'roles-usuarios',
-        component: RolesUsuariosComponent
-      },
-      {
-        path: 'auditorias',
-        component: AuditoriasComponent
-      },
-      {
-        path: 'reportes',
-        component: ReportesComponent
-      },
-      {
-        path: 'crear-inventario',
-        component: CrearInventarioComponent
-      }
-    ]
-  },
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+<<<<<<< HEAD
+    },
 
-  /* =========================
-     RUTA COMODÍN (NOT FOUND)
-  ========================= */
-  {
-    path: '**',
-    redirectTo: 'login'
-  },
     // =========================
     // RUTAS PÚBLICAS
     // =========================
@@ -108,7 +35,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'creacion',
+        path: 'creacion-usuarios',
         component: CreacionComponent
     },
 
@@ -145,4 +72,33 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'login'
     }
+=======
+>>>>>>> develop
+      },
+      {
+        path: 'reportes',
+        loadComponent: () =>
+          import('./pages/reportes/reportes').then(m => m.ReportesComponent)
+      },
+      {
+<<<<<<< HEAD
+        path: 'gestion/auditorias',
+        loadComponent: () => import('./pages/gestion/auditorias/auditorias').then(m => m.AuditoriasComponent)
+      },
+      {
+        path: 'gestion/roles-yusuarios',
+        loadComponent: () => import('./pages/gestion/roles-yusuarios/roles-yusuarios').then(m => m.UsuariosComponent) // <-- Apunta a UsuariosComponent
+=======
+        path: 'configuracion',
+        loadComponent: () =>
+          import('./pages/configuracion/configuracion').then(m => m.ConfiguracionComponent)
+>>>>>>> develop
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: '' // Redirige a la raíz para que tome la redirección a 'reportes' dentro del Layout
+  }
+>>>>>>> origin/develop
 ];

@@ -22,7 +22,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  // Inyección de dependencias
+  // Inyección de dependencias usando inject() o constructor tradicional
   private router = inject(Router);
   private authService = inject(AuthService);
 
@@ -40,8 +40,8 @@ export class LoginComponent {
       return;
     }
 
-    // Redirección hacia el panel principal
-    this.router.navigate(['/panel']).then((navegadoConExito) => {
+    // Redirección hacia el panel principal sin alertas intermitentes
+    this.router.navigate(['/empresas']).then((navegadoConExito) => {
       if (!navegadoConExito) {
         console.warn('La navegación a /panel fue bloqueada. Revisa la lógica de tu AuthGuard.');
       }
@@ -51,7 +51,7 @@ export class LoginComponent {
   }
 
   // Redirección a la creación de usuarios
-  goToRegister(): void {
+  irACreacion(): void {
     this.router.navigate(['/creacion-usuarios']);
   }
 
