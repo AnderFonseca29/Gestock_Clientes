@@ -10,6 +10,57 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'reportes',
         pathMatch: 'full'
+<<<<<<< HEAD
+    },
+
+    // =========================
+    // RUTAS PÚBLICAS
+    // =========================
+
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+
+    {
+        path: 'creacion-usuarios',
+        component: CreacionComponent
+    },
+
+    // =========================
+    // RUTAS PRIVADAS
+    // =========================
+
+    {
+        path: '',
+        component: LayoutComponent,
+        canActivate: [authGuard],
+        children: [
+
+            {
+                path: 'empresas',
+                component: EmpresasComponent
+            },
+
+            {
+                path: 'crear-inventario',
+                component: CrearInventarioComponent
+            },
+
+            {
+                path: 'panel',
+                component: PanelComponent
+            }
+
+        ]
+    },
+
+    // Cualquier ruta que no exista
+    {
+        path: '**',
+        redirectTo: 'login'
+    }
+=======
       },
       {
         path: 'reportes',
@@ -27,4 +78,5 @@ export const routes: Routes = [
     path: '**',
     redirectTo: '' // Redirige a la raíz para que tome la redirección a 'reportes' dentro del Layout
   }
+>>>>>>> origin/develop
 ];
