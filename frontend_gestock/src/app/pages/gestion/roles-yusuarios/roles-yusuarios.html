@@ -1,0 +1,271 @@
+<div class="users-page fade-in">
+  
+  <!-- ENCABEZADO PRINCIPAL -->
+  <div class="header-container">
+    <div class="header-text">
+      <h2>Gestión de Roles y Usuarios</h2>
+      <p>Administra accesos, asigna roles y monitorea la jornada activa de tu personal.</p>
+    </div>
+    <button type="button" class="btn-create hover-scale" (click)="abrirModalCrear()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      <span>Crear Nuevo Usuario</span>
+    </button>
+  </div>
+
+  <!-- TARJETAS DE MÉTRICAS (KPIS) -->
+  <div class="kpi-grid">
+    <div class="kpi-card hover-lift">
+      <div class="kpi-icon blue">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 010 7.75"></path>
+        </svg>
+      </div>
+      <div class="kpi-content">
+        <span class="kpi-number">{{ totalUsuarios }}</span>
+        <span class="kpi-label">Usuarios Registrados</span>
+      </div>
+    </div>
+
+    <div class="kpi-card hover-lift">
+      <div class="kpi-icon green">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <div class="kpi-content">
+        <div class="kpi-live">
+          <span class="kpi-number">{{ usuariosActivos }}</span>
+          <span class="pulse-dot"></span>
+        </div>
+        <span class="kpi-label">En Jornada Activa</span>
+      </div>
+    </div>
+
+    <div class="kpi-card hover-lift">
+      <div class="kpi-icon purple">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      </div>
+      <div class="kpi-content">
+        <span class="kpi-number">{{ horasTotalesHoy }}</span>
+        <span class="kpi-label">Horas Laboradas Hoy</span>
+      </div>
+    </div>
+
+    <div class="kpi-card hover-lift">
+      <div class="kpi-icon slate">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <div class="kpi-content">
+        <span class="kpi-number font-sm">100% Seguro</span>
+        <span class="kpi-label">Control de Permisos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN DE BÚSQUEDA Y FILTROS -->
+  <div class="usuarios-container">
+    <div class="filter-controls">
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="busqueda" 
+          placeholder="🔍 Buscar por nombre, correo o rol...">
+      </div>
+
+      <div class="filter-box">
+        <select [(ngModel)]="filtroEstado">
+          <option value="Todos">Todos los estados</option>
+          <option value="En línea">En línea (Activos)</option>
+          <option value="Inactivo">Inactivos</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TABLA PRINCIPAL DE EMPLEADOS -->
+    <div class="main-card">
+      <div class="card-title-bar">
+        <h3>Lista de Empleados</h3>
+        <span class="total-badge">{{ usuarios().length }} usuarios</span>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Empleado / Usuario</th>
+              <th>Rol Asignado</th>
+              <th>Estado Actual</th>
+              <th>Tiempo Trabajado (Hoy)</th>
+              <th class="text-right">Acciones Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (usuario of usuarios(); track usuario.id) {
+              <tr class="table-row">
+                
+                <!-- Empleado -->
+                <td>
+                  <div class="user-cell">
+                    <div class="avatar" style="background-color: #3b82f6;">
+                      {{ usuario.nombre.charAt(0) }}
+                    </div>
+                    <div class="user-details">
+                      <span class="name">{{ usuario.nombre }}</span>
+                      <span class="email">{{ usuario.email }}</span>
+                    </div>
+                  </div>
+                </td>
+
+                <!-- Rol (Badge) -->
+                <td>
+                  <span class="role-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    {{ usuario.rol }}
+                  </span>
+                </td>
+
+                <!-- Estado -->
+                <td>
+                  <span class="badge-status" [class.is-active]="usuario.estado === 'En línea'">
+                    <span class="status-dot"></span>
+                    {{ usuario.estado }}
+                  </span>
+                </td>
+
+                <!-- Tiempo Trabajado -->
+                <td>
+                  <div class="time-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>{{ usuario.horasTrabajadas }}</span>
+                  </div>
+                </td>
+
+                <!-- Acciones -->
+                <td class="text-right">
+                  <div class="actions-group">
+                    <button 
+                      type="button" 
+                      class="btn-edit" 
+                      (click)="abrirModalEditar(usuario)"
+                      title="Editar Rol del Empleado">
+                      ✏️ Editar Rol
+                    </button>
+                    <button 
+                      type="button"
+                      class="btn-action" 
+                      [class.btn-danger]="usuario.estado === 'En línea'"
+                      (click)="toggleEstado(usuario)">
+                      {{ usuario.estado === 'En línea' ? 'Desactivar' : 'Activar' }}
+                    </button>
+                  </div>
+                </td>
+
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5" class="empty-state">No se encontraron usuarios con los filtros aplicados.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE FORMULARIO -->
+  <div class="modal-backdrop fade-in" *ngIf="modalFormularioAbierto">
+    <div class="modal-box pop-in">
+      <div class="modal-head">
+        <h3>{{ esModoEdicion ? 'Modificar Rol de Usuario' : 'Registrar Nuevo Empleado' }}</h3>
+        <button type="button" class="btn-close" (click)="cerrarModales()">✕</button>
+      </div>
+      
+      <form (ngSubmit)="solicitarGuardado()" class="modal-form">
+        
+        <div class="field-group">
+          <label>Nombre Completo</label>
+          <input 
+            type="text" 
+            [(ngModel)]="formData.nombre" 
+            name="nombre" 
+            placeholder="Ej. Juan Pérez" 
+            [disabled]="esModoEdicion"
+            [class.disabled-input]="esModoEdicion"
+            required />
+        </div>
+
+        <div class="field-group">
+          <label>Correo Electrónico</label>
+          <input 
+            type="email" 
+            [(ngModel)]="formData.email" 
+            name="email" 
+            placeholder="ejemplo@gestock.com" 
+            [disabled]="esModoEdicion"
+            [class.disabled-input]="esModoEdicion"
+            required />
+        </div>
+
+        <div class="field-group highlight-field">
+          <label class="label-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Rol Asignado
+          </label>
+          <select [(ngModel)]="formData.rol" name="rol" class="field-select accent-select">
+            <option *ngFor="let r of rolesDisponibles" [value]="r">{{ r }}</option>
+          </select>
+        </div>
+
+        <div class="modal-buttons">
+          <button type="button" class="btn-cancel" (click)="cerrarModales()">Cancelar</button>
+          <button type="submit" class="btn-submit">
+            {{ esModoEdicion ? 'Guardar Rol' : 'Guardar Empleado' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN -->
+  <div class="modal-backdrop alert-backdrop fade-in" *ngIf="modalConfirmacionAbierto">
+    <div class="modal-box alert-box pop-in">
+      <div class="alert-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <h4>¿Confirmar cambio de rol?</h4>
+      <p>
+        ¿Estás seguro de asignar el rol de <strong>"{{ formData.rol }}"</strong> a <strong>{{ formData.nombre }}</strong>?
+      </p>
+      
+      <div class="modal-buttons center-buttons">
+        <button type="button" class="btn-cancel" (click)="modalConfirmacionAbierto = false">No, Cancelar</button>
+        <button type="button" class="btn-confirm" (click)="confirmarEdicion()">Sí, Cambiar Rol</button>
+      </div>
+    </div>
+  </div>
+
+</div>
