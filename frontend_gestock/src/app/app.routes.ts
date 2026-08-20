@@ -1,36 +1,23 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './layout/layout/layout';
+import { LoginComponent } from './pages/login/login/login'; // O la ruta correcta de tu login
 
 export const routes: Routes = [
-  // Ruta raíz: Landing page informativa
+  // Ruta pública de Login
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+  // Ruta principal del sistema con Layout / Sidebar
   {
     path: '',
-    loadComponent: () =>
-      import('./pagina/pagina').then((m) => m.PaginaComponent),
-  },
-
-  // Ruta de Login
-  { path: 'login', component: LoginComponent },
-
-  // Ruta de Creación de Usuarios
-  {
-    path: 'creacion-usuarios',
-    loadComponent: () =>
-      import('./pages/creacion-usuarios/creacion-usuarios').then(
-        (m) => m.CreacionUsuariosComponent
-      ),
-  },
-
-  // Ruta del sistema interno con Sidebar/Layout
-  {
-    path: 'app',
-    loadComponent: () =>
-      import('./layout/layout/layout').then((m) => m.LayoutComponent),
+    component: LayoutComponent,
     children: [
       {
         path: '',
         redirectTo: 'panel',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'panel',
@@ -38,35 +25,31 @@ export const routes: Routes = [
           import('./pages/panel/panel').then((m) => m.Panel),
       },
       {
-        path: 'envios',
-        loadComponent: () =>
-          import('./pages/envio/envio').then((m) => m.EnviosComponent),
-      },
-      /*
-      // Pendientes de creación de componentes:
-      {
         path: 'reportes',
         loadComponent: () =>
           import('./pages/reportes/reportes').then((m) => m.ReportesComponent),
       },
       {
+        path: 'gestion/auditorias',
+        loadComponent: () =>
+          import('./pages/gestion/auditorias/auditorias').then((m) => m.AuditoriasComponent),
+      },
+      {
+        path: 'gestion/roles-yusuarios',
+        loadComponent: () =>
+          import('./pages/gestion/roles-yusuarios/roles-yusuarios').then((m) => m.UsuariosComponent),
+      },
+      {
         path: 'configuracion',
         loadComponent: () =>
-          import('./pages/configuracion/configuracion').then(
-            (m) => m.ConfiguracionComponent
-          ),
-      },
-      */
-      {
-        path: '**',
-        redirectTo: 'panel',
-      },
-    ],
+          import('./pages/configuracion/configuracion').then((m) => m.ConfiguracionComponent),
+      }
+    ]
   },
 
-  // Redirige URLs inexistentes a la landing page
+  // Ruta comodín para redireccionar URLs no encontradas
   {
     path: '**',
-    redirectTo: '',
-  },
+    redirectTo: ''
+  }
 ];

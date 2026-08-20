@@ -1,0 +1,87 @@
+<div class="form-container">
+
+  <!-- Mensaje Toast Estilizado para Éxito / Error de Duplicado -->
+  <div *ngIf="mensajeToast() as toast" [ngClass]="['toast', toast.tipo]">
+    <div class="toast-icon-wrapper">
+      <span class="toast-icon">{{ toast.tipo === 'exito' ? '✓' : '⚠️' }}</span>
+    </div>
+    
+    <div class="toast-content">
+      <strong>{{ toast.titulo }}</strong>
+      <p>{{ toast.detalle }}</p>
+    </div>
+
+    <button type="button" class="toast-close" (click)="cerrarMensaje()">✕</button>
+    <div class="toast-progress"></div>
+  </div>
+
+  <form class="producto-form" (ngSubmit)="guardarProducto()">
+    <div class="form-group">
+      <label for="codigo">Código del Producto</label>
+      <input 
+        type="text" 
+        id="codigo" 
+        [(ngModel)]="codigo" 
+        (input)="validarCodigoEnTiempoReal()"
+        name="codigo" 
+        placeholder="PROD-000" 
+        [class.input-error]="errorCodigoDuplicado()"
+        required>
+
+      <!-- Mensaje contextual bajo el campo si el código es igual -->
+      <small *ngIf="errorCodigoDuplicado()" class="field-error-msg">
+        ⛔ Este código ya existe en el sistema.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Nombre del Producto</label>
+      <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" placeholder="Nombre completo" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" [(ngModel)]="categoria" name="categoria">
+          <option value="General">General</option>
+          <option value="Empaques">Empaques</option>
+          <option value="Cajas">Cajas</option>
+          <option value="Insumos">Insumos</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="ubicacion">Ubicación (Bodega)</label>
+        <select id="ubicacion" [(ngModel)]="ubicacion" name="ubicacion" required>
+          <option value="" disabled selected>Selecciona una bodega activa</option>
+          <option *ngFor="let bodega of bodegasActivas()" [value]="bodega.nombre">
+            {{ bodega.nombre }} ({{ bodega.ciudad }})
+          </option>
+        </select>
+
+        <small *ngIf="bodegasActivas().length === 0" class="field-error-msg">
+          ⚠️ No hay bodegas activas disponibles.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="stockInicial">Stock Inicial</label>
+        <input type="number" id="stockInicial" [(ngModel)]="stockInicial" name="stockInicial" min="0">
+      </div>
+
+      <div class="form-group">
+        <label for="stockMinimo">Stock Mínimo</label>
+        <input type="number" id="stockMinimo" [(ngModel)]="stockMinimo" name="stockMinimo" min="1">
+      </div>
+    </div>
+
+    <button 
+      type="submit" 
+      class="btn-guardar" 
+      [disabled]="bodegasActivas().length === 0 || errorCodigoDuplicado()">
+      Guardar Producto
+    </button>
+  </form>
+</div>
