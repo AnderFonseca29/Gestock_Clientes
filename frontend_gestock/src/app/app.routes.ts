@@ -1,104 +1,32 @@
 import { Routes } from '@angular/router';
-<<<<<<< HEAD
-=======
-import { LayoutComponent } from './layout/layout/layout';
->>>>>>> develop
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  
+  // Ruta de Login
+  { path: 'login', component: LoginComponent },
+  
+  // Ruta de Creación de Usuarios
+  { 
+    path: 'creacion-usuarios', 
+    loadComponent: () => import('./pages/creacion-usuarios/creacion-usuarios')
+      .then(m => m.CreacionUsuariosComponent) 
+  },
+
+  // Ruta principal de la app con el Layout (Header, Sidebar, Footer)
   {
-    path: '',
-    component: LayoutComponent,
+    path: 'app',
+    loadComponent: () => import('./layout/layout/layout').then(m => m.LayoutComponent),
     children: [
-<<<<<<< HEAD
-      { 
-        path: '', 
-        redirectTo: 'gestion/inventario', 
-        pathMatch: 'full' 
-=======
       {
-        path: '',
-        redirectTo: 'reportes',
-        pathMatch: 'full'
-<<<<<<< HEAD
->>>>>>> develop
-=======
-<<<<<<< HEAD
-    },
-
-    // =========================
-    // RUTAS PÚBLICAS
-    // =========================
-
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-
-    {
-        path: 'creacion-usuarios',
-        component: CreacionComponent
-    },
-
-    // =========================
-    // RUTAS PRIVADAS
-    // =========================
-
-    {
-        path: '',
-        component: LayoutComponent,
-        canActivate: [authGuard],
-        children: [
-
-            {
-                path: 'empresas',
-                component: EmpresasComponent
-            },
-
-            {
-                path: 'crear-inventario',
-                component: CrearInventarioComponent
-            },
-
-            {
-                path: 'panel',
-                component: PanelComponent
-            }
-
-        ]
-    },
-
-    // Cualquier ruta que no exista
-    {
-        path: '**',
-        redirectTo: 'login'
-    }
-=======
->>>>>>> develop
+        path: 'panel',
+        loadComponent: () => import('./pages/panel/panel').then(m => m.Panel)
       },
-      {
-        path: 'reportes',
-        loadComponent: () =>
-          import('./pages/reportes/reportes').then(m => m.ReportesComponent)
-      },
-      {
-<<<<<<< HEAD
-        path: 'gestion/auditorias',
-        loadComponent: () => import('./pages/gestion/auditorias/auditorias').then(m => m.AuditoriasComponent)
-      },
-      {
-        path: 'gestion/roles-yusuarios',
-        loadComponent: () => import('./pages/gestion/roles-yusuarios/roles-yusuarios').then(m => m.UsuariosComponent) // <-- Apunta a UsuariosComponent
-=======
-        path: 'configuracion',
-        loadComponent: () =>
-          import('./pages/configuracion/configuracion').then(m => m.ConfiguracionComponent)
->>>>>>> develop
-      }
+      { path: '', redirectTo: 'panel', pathMatch: 'full' }
     ]
   },
-  {
-    path: '**',
-    redirectTo: '' // Redirige a la raíz para que tome la redirección a 'reportes' dentro del Layout
-  }
->>>>>>> origin/develop
+
+  // Ruta comodín para redirigir en caso de URL no encontrada
+  { path: '**', redirectTo: 'login' }
 ];
