@@ -1,17 +1,72 @@
 import { Routes } from '@angular/router';
-import { InventarioComponent } from './pages/gestion/inventario/inventario';
-import { UsuariosComponent } from './pages/gestion/roles-yusuarios/roles-yusuarios';
-import { AuditoriasComponent } from './pages/gestion/auditorias/auditorias';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'app/inventario', pathMatch: 'full' },
+  // Ruta raíz: Landing page informativa
+  {
+    path: '',
+    loadComponent: () =>
+      import('./pagina/pagina').then((m) => m.PaginaComponent),
+  },
+
+  // Ruta de Login
+  { path: 'login', component: LoginComponent },
+
+  // Ruta de Creación de Usuarios
+  {
+    path: 'creacion-usuarios',
+    loadComponent: () =>
+      import('./pages/creacion-usuarios/creacion-usuarios').then(
+        (m) => m.CreacionUsuariosComponent
+      ),
+  },
+
+  // Ruta del sistema interno con Sidebar/Layout
   {
     path: 'app',
+    loadComponent: () =>
+      import('./layout/layout/layout').then((m) => m.LayoutComponent),
     children: [
-      { path: 'inventario', component: InventarioComponent },
-      { path: 'roles-usuarios', component: UsuariosComponent },
-      { path: 'auditorias', component: AuditoriasComponent }
-    ]
+      {
+        path: '',
+        redirectTo: 'panel',
+        pathMatch: 'full',
+      },
+      {
+        path: 'panel',
+        loadComponent: () =>
+          import('./pages/panel/panel').then((m) => m.Panel),
+      },
+      {
+        path: 'envios',
+        loadComponent: () =>
+          import('./pages/envio/envio').then((m) => m.EnviosComponent),
+      },
+      /*
+      // Pendientes de creación de componentes:
+      {
+        path: 'reportes',
+        loadComponent: () =>
+          import('./pages/reportes/reportes').then((m) => m.ReportesComponent),
+      },
+      {
+        path: 'configuracion',
+        loadComponent: () =>
+          import('./pages/configuracion/configuracion').then(
+            (m) => m.ConfiguracionComponent
+          ),
+      },
+      */
+      {
+        path: '**',
+        redirectTo: 'panel',
+      },
+    ],
   },
-  { path: '**', redirectTo: 'app/inventario' }
+
+  // Redirige URLs inexistentes a la landing page
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
