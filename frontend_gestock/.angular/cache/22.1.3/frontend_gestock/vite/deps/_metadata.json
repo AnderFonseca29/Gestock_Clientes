@@ -1,55 +1,73 @@
 {
-  "hash": "0cfd4c27",
-  "configHash": "b771f82c",
-  "lockfileHash": "9e34c0c6",
-  "browserHash": "7eb78492",
+  "hash": "eb39831b",
+  "configHash": "1a66240f",
+  "lockfileHash": "2416edc8",
+  "browserHash": "9f0c456d",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "25298ef3",
+      "fileHash": "3bbd4c45",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "2ff73446",
+      "fileHash": "63c59b0c",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "788e6577",
+      "fileHash": "7a613990",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "f11d8fb4",
+      "fileHash": "a9e547a3",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "71285c6c",
+      "fileHash": "3f7eefe8",
+      "needsInterop": false
+    },
+    "gsap": {
+      "src": "../../../../../../node_modules/gsap/index.js",
+      "file": "gsap.js",
+      "fileHash": "9e609a24",
+      "needsInterop": false
+    },
+    "gsap/ScrollTrigger": {
+      "src": "../../../../../../node_modules/gsap/ScrollTrigger.js",
+      "file": "gsap_ScrollTrigger.js",
+      "fileHash": "0b658e5a",
       "needsInterop": false
     },
     "jspdf-autotable": {
       "src": "../../../../../../node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.mjs",
       "file": "jspdf-autotable.js",
-      "fileHash": "fec3e28b",
+      "fileHash": "3263f0b9",
       "needsInterop": false
     },
     "jspdf": {
       "src": "../../../../../../node_modules/jspdf/dist/jspdf.es.min.js",
       "file": "jspdf.js",
-      "fileHash": "66106e2e",
+      "fileHash": "c0a3c581",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../../../../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "d7eb7afa",
       "needsInterop": false
     },
     "zone.js": {
       "src": "../../../../../../node_modules/zone.js/fesm2015/zone.js",
       "file": "zone__js.js",
-      "fileHash": "d303d7af",
+      "fileHash": "b38d9190",
       "needsInterop": true
     }
   },
