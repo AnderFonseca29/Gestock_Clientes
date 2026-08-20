@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Importación correcta de cada componente hijo según su nombre de clase real:
-import { ListaProductos } from './lista-productos/lista-productos'; 
-import { BodegasComponent } from './bodegas/bodegas'; 
-import { RegistrarProductos } from './registrar-productos/registrar-productos';
-import { AlertasControl } from './alertas-control/alertas-control';
+// Importaciones relativas exactas basadas en tu estructura de carpetas:
+import { StockListComponent } from './stock-list/stock-list';
+import { BodegasComponent } from './bodegas/bodegas';
+import { RegistrarProductosComponent } from './registrar-productos/registrar-productos';
+import { AlertasControlComponent } from './alertas-control/alertas-control';
 
 export type TabType = 'stock' | 'bodegas' | 'registrar' | 'alertas';
 
@@ -14,10 +14,10 @@ export type TabType = 'stock' | 'bodegas' | 'registrar' | 'alertas';
   standalone: true,
   imports: [
     CommonModule,
-    ListaProductos,
+    StockListComponent,
     BodegasComponent,
-    RegistrarProductos,
-    AlertasControl
+    RegistrarProductosComponent,
+    AlertasControlComponent
   ],
   templateUrl: './inventario.html',
   styleUrl: './inventario.css'
