@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Bl as operate, Dr as ViewEncapsulation, El as ɵɵdefineInjector, En as ElementRef, Fn as Injectable, Gl as SafeSubscriber, Il as map, In as Input, Jl as Subscription, O as booleanAttribute, Pn as Inject, Qn as Optional, Rl as Subject, Tc as InjectionToken, Tl as ɵɵdefineInjectable, Uc as SecurityContext, Ui as setClassMetadata, au as __spreadArray, ba as ɵɵclassProp, cn as Component, eo as ɵɵdefineComponent, f as HostAttributeToken, is as ɵɵprojectionDef, iu as __read, kl as ɵɵinject, no as ɵɵdefineNgModule, ol as inject, pc as DOCUMENT, qn as NgModule, rs as ɵɵprojection, va as ɵɵattribute, vc as ErrorHandler, ya as ɵɵclassMap } from "./core-DAZMwlyn.js";
 import { n as take, t as tap } from "./tap-BGjvMfs2.js";
 import { r as innerFrom } from "./from-LrVz9d2N.js";
@@ -81,18 +80,6 @@ function handleReset(reset, on) {
 	return innerFrom(on.apply(void 0, __spreadArray([], __read(args)))).subscribe(onSubscriber);
 }
 //#endregion
-=======
-import { Dr as ViewEncapsulation, El as ɵɵdefineInjector, En as ElementRef, Fn as Injectable, Il as map, In as Input, O as booleanAttribute, Pn as Inject, Qn as Optional, Tc as InjectionToken, Tl as ɵɵdefineInjectable, Uc as SecurityContext, Ui as setClassMetadata, Yl as Subscription, ba as ɵɵclassProp, cn as Component, eo as ɵɵdefineComponent, f as HostAttributeToken, is as ɵɵprojectionDef, kl as ɵɵinject, no as ɵɵdefineNgModule, ol as inject, pc as DOCUMENT, qn as NgModule, rs as ɵɵprojection, va as ɵɵattribute, vc as ErrorHandler, ya as ɵɵclassMap } from "./core-Cz0Y9r6B.js";
-import { t as take } from "./take-iaThNCNA.js";
-import { n as of } from "./switchMap-CCIfGu_P.js";
-import { n as throwError, t as catchError } from "./catchError-Bp03mV5t.js";
-import { t as forkJoin } from "./forkJoin-6Sf2CvRc.js";
-import { F as finalize, P as HttpClient, r as DomSanitizer } from "./platform-browser-tgmDsPkW.js";
-import { t as share } from "./share-C8GrZFw1.js";
-import { t as tap } from "./tap-oIOh8zpf.js";
-import { t as BidiModule } from "./bidi-CIMRJ465.js";
-import { r as trustedHTMLFromString } from "./private-BE-0oy_o.js";
->>>>>>> develop
 //#region node_modules/@angular/material/fesm2022/_icon-registry-chunk.mjs
 function getMatIconNameNotFoundError(iconName) {
 	return Error(`Unable to find icon with the name "${iconName}"`);

@@ -1,63 +1,22 @@
-<<<<<<< HEAD
-<div class="header-content">
-
-  <div class="profile-section" *ngIf="usuario">
-    <!-- Icono de Notificaciones -->
-    <div class="notification-icon">
-      <i class="fas fa-bell"></i>
-      <span class="badge">1</span>
-    </div>
-
-    <!-- Menú desplegable del perfil -->
-    <div class="user-dropdown-container">
-      <div class="user-trigger" (click)="toggleMenu()">
-        <div class="avatar-circle">
-          {{ usuario.nombre ? usuario.nombre.charAt(0).toUpperCase() : 'A' }}
-        </div>
-
-        <div class="user-info">
-          <span class="user-name">{{ usuario.nombre }}</span>
-          <span class="user-role">{{ usuario.rol }}</span>
-        </div>
-        <i class="fas fa-chevron-down arrow-icon"></i>
-      </div>
-
-      <!-- Menú Flotante -->
-      <div class="dropdown-menu" *ngIf="menuAbierto">
-        <a routerLink="/perfil" class="dropdown-item" (click)="menuAbierto = false">
-          <i class="fas fa-user-circle"></i>
-          <span>Ver perfil</span>
-        </a>
-        <a routerLink="/configuracion" class="dropdown-item" (click)="menuAbierto = false">
-          <i class="fas fa-cog"></i>
-          <span>Configuración</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <button class="dropdown-item logout-btn" (click)="cerrarSesion()">
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Cerrar sesión</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-=======
-<header class="header">
+<header class="top-header">
   <div class="header-title">
-    <span>GESTOCK</span>
+    <h2>GESTOCK</h2>
   </div>
+
   <div class="header-actions">
-    <div class="notifications">
+    <!-- Icono de Notificaciones -->
+    <button type="button" class="icon-btn" aria-label="Notificaciones">
       <span class="bell-icon">🔔</span>
-      <span class="badge">3</span>
-    </div>
+      <span class="notification-badge"></span>
+    </button>
+
+    <!-- Perfil de Usuario -->
     <div class="user-profile">
-      <div class="avatar">A</div>
+      <div class="avatar">M</div>
       <div class="user-info">
-        <span class="user-name">Administrador</span>
-        <span class="user-role">Administrador &#9660;</span>
+        <span class="user-email">maicolnore10</span>
+        <span class="user-role">Operador &#9662;</span>
       </div>
     </div>
   </div>
 </header>
->>>>>>> develop
