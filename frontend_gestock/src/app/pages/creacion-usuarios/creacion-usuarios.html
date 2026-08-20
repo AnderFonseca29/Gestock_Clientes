@@ -1,0 +1,105 @@
+<div class="register-container">
+  <div class="register-card">
+    
+    <!-- Sección Izquierda: Branding -->
+    <div class="brand-section">
+      <div class="brand-content-centered">
+        <div class="brand-logo-glow">
+          <span class="icon">📦</span>
+          <h2>Gestock</h2>
+        </div>
+        <p class="brand-tagline">Únete a la plataforma para gestionar tu inventario sin complicaciones.</p>
+      </div>
+      
+      <div class="brand-footer">
+        <small>Sistema ADSO &copy; 2026</small>
+      </div>
+    </div>
+
+    <!-- Sección Derecha: Formulario de Registro -->
+    <div class="form-section">
+      <div class="form-header">
+        <h2>Crear Cuenta</h2>
+        <p>Ingresa tus datos para registrarte en el sistema</p>
+      </div>
+
+      <form class="register-form" (ngSubmit)="registrarUsuario()">
+        
+        <!-- Nombre Completo -->
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input 
+              id="nombre" 
+              type="text" 
+              [(ngModel)]="nombre" 
+              name="nombre"
+              placeholder="Ej. Maicol Nore"
+              required>
+          </div>
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <div class="input-wrapper">
+            <span class="input-icon">✉️</span>
+            <input 
+              id="email" 
+              type="email" 
+              [(ngModel)]="email" 
+              name="email"
+              placeholder="nombre@empresa.com"
+              required>
+          </div>
+        </div>
+
+        <!-- Rol en la plataforma -->
+       <div class="form-group">
+            <label for="rol">Rol del Usuario</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🛡️</span>
+                    <select id="rol" [(ngModel)]="rol" name="rol" class="select-custom" required>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Empleado">Empleado</option>
+                    </select>
+                </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input 
+              id="password" 
+              type="password" 
+              [(ngModel)]="password" 
+              name="password"
+              placeholder="••••••••"
+              required>
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="actions-group">
+          <button type="submit" class="btn-primary">
+            <span>Registrar Usuario</span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+
+      </form>
+
+      <div class="divider">
+        <span>¿Ya tienes una cuenta?</span>
+      </div>
+
+      <button type="button" class="btn-secondary" (click)="goToLogin()">
+        Volver al Login
+      </button>
+    </div>
+
+  </div>
+</div>

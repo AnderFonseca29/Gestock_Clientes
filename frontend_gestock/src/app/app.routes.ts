@@ -1,33 +1,53 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout/layout';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
-  // Ruta raíz: landing page informativa
+  // Ruta raíz: Landing page informativa
   {
     path: '',
     loadComponent: () =>
       import('./pagina/pagina').then((m) => m.PaginaComponent),
   },
 
+  // Ruta de Login
+  { path: 'login', component: LoginComponent },
+
+  // Ruta de Creación de Usuarios
+  {
+    path: 'creacion-usuarios',
+    loadComponent: () =>
+      import('./pages/creacion-usuarios/creacion-usuarios').then(
+        (m) => m.CreacionUsuariosComponent
+      ),
+  },
+
   // Ruta del sistema interno con Sidebar/Layout
   {
     path: 'app',
-    component: LayoutComponent,
+    loadComponent: () =>
+      import('./layout/layout/layout').then((m) => m.LayoutComponent),
     children: [
       {
         path: '',
-        redirectTo: 'reportes',
+        redirectTo: 'panel',
         pathMatch: 'full',
       },
       {
-        path: 'reportes',
+        path: 'panel',
         loadComponent: () =>
-          import('./pages/reportes/reportes').then((m) => m.ReportesComponent),
+          import('./pages/panel/panel').then((m) => m.Panel),
       },
       {
         path: 'envios',
         loadComponent: () =>
           import('./pages/envio/envio').then((m) => m.EnviosComponent),
+      },
+      /*
+      // Pendientes de creación de componentes:
+      {
+        path: 'reportes',
+        loadComponent: () =>
+          import('./pages/reportes/reportes').then((m) => m.ReportesComponent),
       },
       {
         path: 'configuracion',
@@ -36,15 +56,15 @@ export const routes: Routes = [
             (m) => m.ConfiguracionComponent
           ),
       },
-      // CAPTURA CUALQUIER OTRA RUTA O CLIC DENTRO DEL PANEL
+      */
       {
         path: '**',
-        redirectTo: 'reportes',
+        redirectTo: 'panel',
       },
     ],
   },
 
-  // Redirige URLs externas inexistentes a la landing page
+  // Redirige URLs inexistentes a la landing page
   {
     path: '**',
     redirectTo: '',
