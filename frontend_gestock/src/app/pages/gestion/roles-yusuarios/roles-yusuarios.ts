@@ -1,19 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UsuariosService } from './services/services';
+import { Service } from '@angular/core'; 
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './roles-yusuarios.html',
   styleUrl: './roles-yusuarios.css'
 })
 export class UsuariosComponent {
-  private usuariosService = inject(UsuariosService);
+  private usuariosService = inject(Service);
 
-  // Conexión directa a las señales del servicio
+  // Conexión directa a las señales / propiedades del servicio
   usuarios = this.usuariosService.usuariosFiltrados;
   busqueda = this.usuariosService.filtroBusqueda;
   filtroEstado = this.usuariosService.filtroEstado;
@@ -23,14 +26,7 @@ export class UsuariosComponent {
   modalConfirmacionAbierto = false;
   esModoEdicion = false;
   
-  // Roles unificados y corregidos según tus vistas de pestañas y tabla
-  rolesDisponibles = [
-    'Administrador general',
-    'Jefe de logística',
-    'Operario de bodega',
-    'Auditor interno',
-    'Cajero'
-  ];
+  rolesDisponibles = ['Administrador', 'Encargado de Bodega', 'Personal de Inventario'];
   formData: any = { nombre: '', email: '', rol: '' };
 
   // KPIs de ejemplo (puedes enlazarlos a tu servicio si ya los tienes calculados)

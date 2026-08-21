@@ -1,22 +1,22 @@
-<<<<<<< HEAD
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
+// Servicio
 import { AuthService } from '../../services/auth';
-import { UsuarioAuth } from '../../models/usuario-auth';
-=======
-import { Component } from '@angular/core';
->>>>>>> develop
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './header.html',
-  styleUrls: ['./header.css']
+  styleUrl: './header.css'
 })
-<<<<<<< HEAD
 export class HeaderComponent implements OnInit {
   private authService = inject(AuthService);
-  usuario: UsuarioAuth | null = null;
-  menuAbierto = false;
+  
+  usuario: any = null; // Cambio a 'any' para evitar el error de import
+  menuAbierto: boolean = false;
 
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
@@ -33,9 +33,5 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu(): void {
     this.menuAbierto = !this.menuAbierto;
-    console.log(this.menuAbierto);
   }
 }
-=======
-export class HeaderComponent {}
->>>>>>> develop

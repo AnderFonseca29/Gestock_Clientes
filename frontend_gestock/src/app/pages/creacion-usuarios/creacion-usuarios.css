@@ -1,0 +1,221 @@
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #0f141d;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.register-card {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  background: #161d2a;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Sección Izquierda */
+.brand-section {
+  flex: 1;
+  background: linear-gradient(135deg, #131b2e 0%, #1a233d 100%);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+}
+
+.brand-logo-glow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.brand-logo-glow .icon {
+  font-size: 2rem;
+}
+
+.brand-logo-glow h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.brand-tagline {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.brand-footer small {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+/* Sección Derecha */
+.form-section {
+  flex: 1.2;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  margin-bottom: 1.5rem;
+}
+
+.form-header h2 {
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin: 0 0 0.4rem 0;
+  font-weight: 600;
+}
+
+.form-header p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Inputs y Select */
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  display: block;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.input-wrapper input,
+.select-custom {
+  width: 100%;
+  padding: 0.65rem 0.75rem 0.65rem 2.4rem;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.select-custom {
+  appearance: none;
+  cursor: pointer;
+}
+
+.select-custom option {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.input-wrapper input:focus,
+.select-custom:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Botones */
+.actions-group {
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #334155;
+}
+
+.divider span {
+  padding: 0 0.5rem;
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 0.65rem;
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}

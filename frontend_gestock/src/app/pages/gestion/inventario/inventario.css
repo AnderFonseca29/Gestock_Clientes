@@ -1,0 +1,63 @@
+.inventario-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.inventario-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.inventario-header p {
+  margin: 0.25rem 0 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.inventario-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+}
+
+.inventario-tabs button {
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.inventario-tabs button:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.inventario-tabs button.active {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.inventario-content {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}

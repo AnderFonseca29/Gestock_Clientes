@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -23,30 +22,21 @@ interface MenuItem {
     MatListModule,
     MatIconModule
   ],
-=======
-import { RouterLink, RouterLinkActive } from '@angular/router';
-
-@Component({
-  selector: 'app-sidebar',
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive], // Necesario para routerLink y routerLinkActive en la plantilla
->>>>>>> develop
   templateUrl: './sidebar.html',
-  styleUrls: ['./sidebar.css']
+  styleUrl: './sidebar.css'
 })
-<<<<<<< HEAD
 export class SidebarComponent {
+
   menuItems: MenuItem[] = [
     { label: 'Empresas', icon: 'business', route: '/app/empresas' },
-    { label: 'Panel', icon: 'dashboard', route: '/app/dashboard' },
+    { label: 'Panel', icon: 'dashboard', route: '/app/panel' },
     { label: 'Productos', icon: 'inventory_2', route: '/app/productos' },
     { label: 'Bodegas', icon: 'store', route: '/app/bodegas' },
     { label: 'Movimientos', icon: 'swap_horiz', route: '/app/movimientos' },
+    { label: 'Envíos 3D', icon: 'local_shipping', route: '/app/envios' },
     { label: 'Usuarios', icon: 'group', route: '/app/usuarios' },
     { label: 'Reportes', icon: 'bar_chart', route: '/app/reportes' },
     { label: 'Configuración', icon: 'settings', route: '/app/configuracion' }
   ];
+
 }
-=======
-export class SidebarComponent {}
->>>>>>> develop

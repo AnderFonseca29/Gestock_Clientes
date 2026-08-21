@@ -10,12 +10,12 @@ import { FooterComponent } from '../footer/footer';
   selector: 'app-layout',
   standalone: true,
   imports: [
-    RouterOutlet,     // Resuelve el error de 
-    HeaderComponent,  // Resuelve el error de 
-    SidebarComponent, // Resuelve el error de 
-    FooterComponent   // Resuelve el error de 
+    RouterOutlet,
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   templateUrl: './layout.html',
-  styleUrls: ['./layout.css']
+  styleUrl: './layout.css'
 })
 export class LayoutComponent {}
